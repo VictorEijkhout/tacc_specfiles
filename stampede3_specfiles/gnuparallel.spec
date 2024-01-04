@@ -46,7 +46,7 @@ Summary:    Set of tools for manipulating geographic and Cartesian data sets
 #%include name-defines.inc
 %include name-defines-noreloc.inc
 #%include name-defines-hidden.inc
-#%include name-defines-hidden-noreloc.inc
+#%include name-defines-noreloc.inc
 ########################################
 ############ Do Not Remove #############
 ########################################

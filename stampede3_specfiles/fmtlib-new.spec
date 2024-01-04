@@ -28,9 +28,9 @@ Summary: C++20 format lib
 ### Construct name based on includes ###
 ########################################
 #%include name-defines.inc
-%include name-defines-noreloc-home1.inc
+%include name-defines-noreloc.inc
 #%include name-defines-hidden.inc
-#%include name-defines-hidden-noreloc.inc
+#%include name-defines-noreloc.inc
 ########################################
 ############ Do Not Remove #############
 ########################################

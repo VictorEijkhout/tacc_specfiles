@@ -22,7 +22,7 @@
 ########################################
 ### Construct name based on includes ###
 ########################################
-%include name-defines-noreloc-home1.inc
+%include name-defines-noreloc.inc
 
 ############ Do Not Change #############
 Name:      %{pkg_name}

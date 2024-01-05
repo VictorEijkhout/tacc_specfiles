@@ -106,7 +106,8 @@ transforms or DCT/DST).
   # Delete the package installation directory.
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
 
-%setup -n %{pkg_base_name}-%{pkg_version}
+# note: fftw, not pgk_base_name
+%setup -n fftw-%{pkg_version}
 
 #-----------------------
 %endif # BUILD_PACKAGE |

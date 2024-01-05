@@ -43,11 +43,14 @@ Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
 Source0: %{pkg_base_name}-%{pkg_version}.tar.gz
 
+# Turn off debug package mode
 %define debug_package %{nil}
 %define _build_id_links none
+%define dbg           %{nil}
 ## %global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
-
+# Turn off the brp-python-bytecompile script
+%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 
 %package %{PACKAGE}
 Summary: Petsc local binary install

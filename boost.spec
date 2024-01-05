@@ -14,7 +14,7 @@ Summary: Boost install
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 81
+%define minor_version 83
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -39,7 +39,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -190,5 +190,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : up to 1.83
 * Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release 1.81.0

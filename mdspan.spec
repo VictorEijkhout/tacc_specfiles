@@ -14,7 +14,7 @@ Summary: C++20 mdspan from Kokos
 %define MODULE_VAR    MDSPAN
 
 # Create some macros (spec file variables)
-%define major_version git20231129
+%define major_version git20240105
 ## %define minor_version 1
 ## %define micro_version 1
 

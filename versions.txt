@@ -1,4 +1,5 @@
 cxxopts 3.1.1 1
+eigen 3.4.0 3
 hdf5 1.14.0 4
 hypre 2.30.0 1
 petsc 3.20.3 1

@@ -47,7 +47,7 @@ Source0: %{pkg_base_name}-%{pkg_version}.tar.gz
 %define debug_package %{nil}
 %define _build_id_links none
 %define dbg           %{nil}
-## %global _missing_build_ids_terminate_build 0
+## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 # Turn off the brp-python-bytecompile script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
@@ -133,6 +133,7 @@ popd
 
 ################ end of new stuff
 
+find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?:g' {} \;
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 

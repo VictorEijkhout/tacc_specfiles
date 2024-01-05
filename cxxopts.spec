@@ -2,9 +2,12 @@
 # cxxopts.spec
 # Victor Eijkhout
 #
-# ./build_rpm.sh -i191 cxxopts.spec
+# INCOMPATIBLE ./build_rpm.sh -i191 cxxopts.spec
+# ./build_rpm.sh -i231 cxxopts-new.spec
+# ./build_rpm.sh -g91 cxxopts-new.spec
+# ./build_rpm.sh -g132 cxxopts-new.spec
 #
-Summary: Commandline argument parsing for C++
+Summary: Commandline options handling
 
 # Give the package a base name
 %define pkg_base_name cxxopts
@@ -15,7 +18,8 @@ Summary: Commandline argument parsing for C++
 %define minor_version 1
 %define micro_version 1
 
-%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+%define pkg_version %{major_version}
+## .%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -144,20 +148,32 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 module load cmake
-rm -rf /tmp/%{pkg_base_name}-build
-mkdir -p /tmp/%{pkg_base_name}-build
-export PACKAGE_SRC=`pwd`
-pushd  /tmp/%{pkg_base_name}-build
-cmake \
-    -D CMAKE_INSTALL_PREFIX::PATH=%{INSTALL_DIR} \
-    ${PACKAGE_SRC}
-make
-make install
+
+################ new stuff
+
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## get rid of that PACKAGEROOT
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
 popd
 
-  # Copy everything from tarball over to the installation directory
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-  umount %{INSTALL_DIR}
+################ end of new stuff
+
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+umount %{INSTALL_DIR}
   
 #-----------------------  
 %endif # BUILD_PACKAGE |
@@ -243,9 +259,7 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Nov 27 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: up to 3.1.1
-* Mon Nov 14 2022 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: up to 3.0.0, pkgconfig support
-* Fri May 29 2020 eijkhout <eijkhout@tacc.utexas.edu>
+* Fri Jan 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: new setup
+* Wed Nov 29 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial build

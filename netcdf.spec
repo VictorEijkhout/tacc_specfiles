@@ -112,7 +112,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/netcdf
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load cmake
 module load phdf5/1.14

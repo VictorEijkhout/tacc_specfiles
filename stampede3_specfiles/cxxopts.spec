@@ -18,8 +18,7 @@ Summary: Commandline options handling
 %define minor_version 1
 %define micro_version 1
 
-%define pkg_version %{major_version}
-## .%{minor_version}.%{micro_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  

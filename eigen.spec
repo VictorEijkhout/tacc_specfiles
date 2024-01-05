@@ -135,6 +135,15 @@ module purge
 # Load MPI Library
 #%include mpi-load.inc
 
+echo "Building the package?:    %{BUILD_PACKAGE}"
+echo "Building the modulefile?: %{BUILD_MODULEFILE}"
+
+#------------------------
+%if %{?BUILD_PACKAGE}
+#------------------------
+
+mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
+  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -147,27 +156,14 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-# Insert further module commands
+  mkdir -p %{INSTALL_DIR}
+  mount -t tmpfs tmpfs %{INSTALL_DIR}
+  
 module load cmake
 ## module use /opt/apps/intel19/python2_7/modulefiles/
 module list
 ## module spider boost/1.69
 module load boost
-
-echo "Building the package?:    %{BUILD_PACKAGE}"
-echo "Building the modulefile?: %{BUILD_MODULEFILE}"
-
-#------------------------
-%if %{?BUILD_PACKAGE}
-#------------------------
-
-mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
-  
-export EIGEN_SRC_DIR=`pwd`
-export EIGEN_BUILD_DIR=/tmp/eigen-build
-rm -rf ${EIGEN_BUILD_DIR}
-mkdir ${EIGEN_BUILD_DIR}
-export EIGEN_INSTALL_DIR=%{INSTALL_DIR}
 
 ################ new stuff
 
@@ -190,21 +186,10 @@ popd
 
 ################ end of new stuff
 
-( \
-  cd ${EIGEN_BUILD_DIR} \
-  && echo "using CC=${CC}, CXX=${CXX}, FC=${FC}" \
-  && cmake -D CMAKE_INSTALL_PREFIX:PATH=${EIGEN_INSTALL_DIR} \
-        -D CMAKE_C_COMPILER:FILEPATH=${CC} \
-        -D CMAKE_CXX_COMPILER:FILEPATH=${CXX} \
-        -D CMAKE_Fortran_COMPILER:FILEPATH=${FC} \
-        ${EIGEN_SRC_DIR} \
-  && make && make install \
-  && mkdir ${EIGEN_INSTALL_DIR}/cmake \
-  && cp -r CMake* *cmake ${EIGEN_INSTALL_DIR}/cmake \
-)
-
-cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
-umount tmpfs
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+umount %{INSTALL_DIR}
 
 #-----------------------  
 %endif # BUILD_PACKAGE |

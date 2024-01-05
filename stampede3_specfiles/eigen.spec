@@ -64,7 +64,7 @@ License:   GNU
 Group:     Development/Tools
 Vendor:     Tuxfamily
 Group:      Libraries/maps
-Source:	    eigen-%{version}.tar.gz
+Source:	    eigen-%{version}.tgz
 URL:	    http://eigen.tuxfamily.org/
 Packager:   eijkhout@tacc.utexas.edu
 

@@ -38,7 +38,7 @@ Vendor: https://github.com/cburstedde/p4est
 #Source1: p4est-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: %{pkg_base_name}-%{major_version}.%{minor_version}.tar.gz
+Source0: %{pkg_base_name}-%{major_version}.%{minor_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none

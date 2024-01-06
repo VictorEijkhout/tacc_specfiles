@@ -142,7 +142,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/swig
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
@@ -181,37 +181,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   #######################################
   ########### Do Not Remove #############
   #######################################
-  
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the SWIG environment variables:
-# TACC_SWIG_DIR, TACC_SWIG_LIB, TACC_SWIG_INC
-
-# There are examples programs in \$TACC_SWIG_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: SWIG")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/swig")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local swig_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_SWIG_DIR",swig_dir)
-# setenv("TACC_SWIG_LIB",pathJoin(swig_dir,"lib"))
-# setenv("TACC_SWIG_INC",pathJoin(swig_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(swig_dir,"lib"))
-
-# EOF
   
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################

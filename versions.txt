@@ -11,4 +11,5 @@ petsc 3.20.3 1
 phdf5 1.14.0 4
 pcre2 git20240106 1
 swig 4.1.1 1
+trilinos 14.4.0 1
 zlib 1.2.13 1

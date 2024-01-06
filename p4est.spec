@@ -9,8 +9,8 @@ Summary: P4est install
 # Create some macros (spec file variables)
 %define major_version 2
 %define minor_version 8
-
-%define pkg_version %{major_version}.%{minor_version}
+%define micro_version 5
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -38,7 +38,7 @@ Vendor: https://github.com/cburstedde/p4est
 #Source1: p4est-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: %{pkg_base_name}-%{major_version}.%{minor_version}.tgz
+Source0: %{pkg_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none

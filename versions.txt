@@ -6,6 +6,7 @@ hdf5 1.14.0 4
 hypre 2.30.0 1
 mdspan git20240105
 netcdf 4.9.2 1
+p4est 2.8 3
 petsc 3.20.3 1
 phdf5 1.14.0 4
 pcre2 git20231213 1

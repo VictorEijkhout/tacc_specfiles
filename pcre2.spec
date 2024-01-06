@@ -10,7 +10,7 @@ Summary: Prereq for PCRE2
 %define MODULE_VAR    PCRE2
 
 # Create some macros (spec file variables)
-%define major_version git
+%define major_version git20240106
 ## %define minor_version 25
 
 %define pkg_version %{major_version}
@@ -38,7 +38,7 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release:   1
 License:   BSD
 Group:     Development/Tools
-URL:       https://github.com/flame/pcre2
+URL:       //github.com/PCRE2Project/pcre2
 Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
@@ -140,7 +140,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/pcre2
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
@@ -179,37 +179,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   #######################################
   ########### Do Not Remove #############
   #######################################
-  
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the PCRE2 environment variables:
-# TACC_PCRE2_DIR, TACC_PCRE2_LIB, TACC_PCRE2_INC
-
-# There are examples programs in \$TACC_PCRE2_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: PCRE2")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/pcre2")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local pcre2_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_PCRE2_DIR",pcre2_dir)
-# setenv("TACC_PCRE2_LIB",pathJoin(pcre2_dir,"lib"))
-# setenv("TACC_PCRE2_INC",pathJoin(pcre2_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(pcre2_dir,"lib"))
-
-# EOF
   
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################

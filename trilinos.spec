@@ -133,6 +133,9 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module load cmake boost swig
 module load hdf5 netcdf
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 
 ################ new stuff
 
@@ -158,7 +161,7 @@ popd
 
   # Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
-find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?:g' {} \;
+find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \; -print
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}

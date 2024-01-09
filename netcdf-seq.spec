@@ -13,7 +13,7 @@ Summary: Netcdf install
 
 %include rpm-dir.inc
 %include compiler-defines.inc
-%include mpi-defines.inc
+## %include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -34,10 +34,9 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release: 2%{?dist}
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
-#Source1: netcdf-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: netcdf-%{pkg_version}.tgz
+Source0: %{pkg_base_name}-%{pkg_version}.tar.gz
 
 %define debug_package %{nil}
 %define _build_id_links none
@@ -74,12 +73,10 @@ Forest support library
 # Setup modules
 %include system-load.inc
 %include compiler-defines.inc
-%include mpi-defines.inc
+## %include mpi-defines.inc
 module purge
 %include compiler-load.inc
-%include mpi-load.inc
-
-export NETCDF_DIR=`pwd`
+## %include mpi-load.inc
 
 #
 # Set Up Installation Directory and tmp file system
@@ -110,12 +107,10 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake
-module load phdf5/1.14
-env | grep HDF5_
+module load cmake hdf5
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
+make seq JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -132,45 +127,6 @@ cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
 
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << EOF
-# help( [[
-# The NETCDF modulefile defines the following environment variables:
-# TACC_NETCDF_DIR, TACC_NETCDF_LIB, and TACC_NETCDF_INC 
-# for the location of the NETCDF %{version} distribution, 
-# libraries, and include files, respectively.
-
-# Version %{pkg_version}
-# ]] )
-
-# whatis( "Name: Netcdf 'p4-est of octrees'" )
-# whatis( "Version: %{version}-${ext}" )
-# whatis( "Version-notes: ${netcdfversion}" )
-# whatis( "Category: library, mathematics" )
-# whatis( "URL: https://github.com/cburstedde/netcdf" )
-# whatis( "Description: octree support for dealii" )
-
-# local             netcdf_dir =     "%{INSTALL_DIR}"
-
-# prepend_path("LD_LIBRARY_PATH", pathJoin(netcdf_dir,"lib") )
-# prepend_path("PATH", pathJoin(netcdf_dir,"bin") )
-
-# setenv(          "NETCDF_DIR",             netcdf_dir)
-# setenv(          "TACC_NETCDF_DIR",        netcdf_dir)
-# setenv(          "TACC_NETCDF_BIN",        pathJoin(netcdf_dir,"bin"))
-# setenv(          "TACC_NETCDF_INC",        pathJoin(netcdf_dir,"include"))
-# setenv(          "TACC_NETCDF_LIB",        pathJoin(netcdf_dir,"lib"))
-
-# EOF
-
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.${version} << EOF
-# #%Module1.0#################################################
-# ##
-# ## version file for Netcdf %version
-# ##
-
-# set     ModulesVersion      "${modulefilename}"
-# EOF
-
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 %files %{PACKAGE}
@@ -185,5 +141,5 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1 using new makefile structure
+* Tue Jan 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : seq and par separated out

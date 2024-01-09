@@ -13,7 +13,7 @@ Summary: Netcdf install
 
 %include rpm-dir.inc
 %include compiler-defines.inc
-## %include mpi-defines.inc
+%include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -73,10 +73,10 @@ Forest support library
 # Setup modules
 %include system-load.inc
 %include compiler-defines.inc
-## %include mpi-defines.inc
+%include mpi-defines.inc
 module purge
 %include compiler-load.inc
-## %include mpi-load.inc
+%include mpi-load.inc
 
 #
 # Set Up Installation Directory and tmp file system

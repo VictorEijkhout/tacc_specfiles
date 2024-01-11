@@ -10,7 +10,7 @@ Summary: Prereq for gklib
 %define MODULE_VAR    GKLIB
 
 # Create some macros (spec file variables)
-%define major_version git
+%define major_version git20240111
 
 %define pkg_version %{major_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/gklib
@@ -278,5 +278,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Jan 11 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : new pull
 * Fri Mar 17 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

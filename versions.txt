@@ -7,6 +7,7 @@ hdf5 1.14.0 4
 phdf5 1.14.0 4
 hypre 2.30.0 1
 mdspan git20240105
+metis 5.1.0.3 1
 netcdf 4.9.2 2
 pnetcdf 4.9.2 2
 p4est 2.8.5 3

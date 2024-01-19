@@ -39,7 +39,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/rabauke/mpl
@@ -261,6 +261,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 19 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5 : to account for some ls6 mucking. otherwise nothing changed.
 * Mon Jul 17 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: new makefile structure
 - release 3: misfire

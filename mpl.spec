@@ -163,9 +163,9 @@ popd
 
 ################ end of new stuff
   
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
   
@@ -221,6 +221,7 @@ EOF
 #-----------------------
 %endif # BUILD_PACKAGE |
 #-----------------------
+
 #---------------------------
 %if %{?BUILD_MODULEFILE}
 %files modulefile 

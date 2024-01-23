@@ -10,7 +10,7 @@ Summary:   Udunits is a utility for netcdf
 # Create some macros (spec file variables)
 %define major_version 2
 %define minor_version 2
-%define micro_version 26
+%define micro_version 28
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPL
 Group:     applications/io
 Source:    udunits-%{version}.tar.gz
@@ -108,8 +108,8 @@ module purge
 #%include mpi-load.inc
 
 # Insert further module commands
-module load hdf5
-module load netcdf
+## module load hdf5
+## module load netcdf
 
 echo "Building the package?:    %{BUILD_PACKAGE}"
 echo "Building the modulefile?: %{BUILD_MODULEFILE}"
@@ -120,12 +120,6 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 
   mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
   
-#
-# Use mount temp trick
-#
-mkdir -p             %{INSTALL_DIR}
-mount -t tmpfs tmpfs %{INSTALL_DIR}
-
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -134,22 +128,39 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
   ########### Do Not Remove #############
   #######################################
 
-  #========================================
-  # Insert Build/Install Instructions Here
-  #========================================
-  
-#
-# config/make:
-#
-./configure --prefix=%{INSTALL_DIR}
-make -j 4
-make install
-# VLE this was before mount tmpfs: make DESTDIR=$RPM_BUILD_ROOT install
-# make test
+mkdir -p %{INSTALL_DIR}
+rm -rf %{INSTALL_DIR}/*
+mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
+################ new stuff
+
+module load cmake
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## get rid of that PACKAGEROOT
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
+popd
+
+################ end of new stuff
+  
+  # Copy installation from tmpfs to RPM directory
+  ls %{INSTALL_DIR}
+  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
+  
+ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
 %endif # BUILD_PACKAGE |
@@ -171,57 +182,6 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   ########### Do Not Remove #############
   #######################################
   
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << 'EOF'
---udunits
-
-local help_message = [[
-The %{name} module file defines the following environment variables:
-TACC_UDUNITS_DIR, TACC_UDUNITS_BIN, TACC_UDUNITS_LIB, and 
-TACC_UDUNITS_INC forthe location of the UDUNITS distribution, binaries,
-libraries, and include files, respectively.
-
-UDUNITS 4.1.1 uses the hdf5 libraries to support the UDUNITS 4 file format 
-in addition to the classic UDUNITS file format. 
-
-To use the UDUNITS library, compile the source code with the option:
-
-	-I${TACC_UDUNITS_INC} 
-
-and add the following options to the link step: 
-
-	-L${TACC_UDUNITS_LIB} -ludunits -L${TACC_HDF5_LIB} -lhdf5_hl -lhdf5 -lz -lm
-
-Version %{version}
-
-]]
-
-help(help_message,"\n")
-
-
-whatis("Udunits: Network Common Data Form")
-whatis("Version: %{version}")
-whatis("Category: library, runtime support")
-whatis("Keywords: I/O, Library")
-whatis("Description: I/O library which stores and retrieves data in self-describing, machine-independent datasets." )
-whatis("URL: http://www.unidata.ucar.edu/software/udunits/")
-
--- Prerequisites
-depends_on("hdf5")
-
---Prepend paths
-prepend_path("LD_LIBRARY_PATH","%{INSTALL_DIR}/lib")
-prepend_path("PATH",           "%{INSTALL_DIR}/bin")
-prepend_path("MANPATH",        "%{INSTALL_DIR}/share/man")
-prepend_path("PKG_CONFIG_PATH","%{INSTALL_DIR}/lib/pkgconfig")
-
---Env variables 
-setenv("TACC_UDUNITS_DIR", "%{INSTALL_DIR}")
-setenv("TACC_UDUNITS_INC", "%{INSTALL_DIR}/include")
-setenv("TACC_UDUNITS_LIB", "%{INSTALL_DIR}/lib")
-setenv("TACC_UDUNITS_BIN", "%{INSTALL_DIR}/bin")
-
-EOF
-
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module1.0#################################################
 ##
@@ -230,6 +190,11 @@ cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
  
 set     ModulesVersion      "%{version}"
 EOF
+
+  # Check the syntax of the generated lua modulefile only if a visible module
+  %if %{?VISIBLE}
+    %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
+  %endif
 
 #--------------------------
 %endif # BUILD_MODULEFILE |
@@ -285,5 +250,7 @@ rm -rf $RPM_BUILD_ROOT
 #---------------------------------------
 %changelog
 #---------------------------------------
+* Tue Jan 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : version 2.2.28, new structure
 * Mon Jul 29 2019 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial install

@@ -180,12 +180,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
-# Usage:
-#   import mpl
-# and use
-#   #include <mpl/mpl.hpp>"
-# in your code.
-
   mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   
   #######################################
@@ -209,6 +203,7 @@ EOF
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
   %endif
+
 #--------------------------
 %endif # BUILD_MODULEFILE |
 #--------------------------

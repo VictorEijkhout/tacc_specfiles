@@ -78,7 +78,8 @@ Udunits
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+# BUILD_PACKAGE |
+%endif 
 #-----------------------
 
 #---------------------------
@@ -87,7 +88,8 @@ Udunits
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+# BUILD_MODULEFILE |
+%endif 
 #--------------------------
 
 #---------------------------------------
@@ -163,7 +165,8 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+# BUILD_PACKAGE |
+%endif 
 #-----------------------
 
 
@@ -197,7 +200,8 @@ EOF
   %endif
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+# BUILD_MODULEFILE |
+%endif 
 #--------------------------
 
 
@@ -211,7 +215,8 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+# BUILD_PACKAGE 
+%endif
 #-----------------------
 #---------------------------
 %if %{?BUILD_MODULEFILE}
@@ -223,7 +228,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+# BUILD_MODULEFILE |
+%endif
 #--------------------------
 
 ########################################

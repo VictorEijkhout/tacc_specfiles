@@ -5,7 +5,7 @@
 # Create some macros (spec file variables)
 %define major_version 2
 %define minor_version 1
-%define micro_version 7
+%define micro_version 9
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -33,8 +33,8 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 #
 # Spec file for Ncview
 #
-Summary:   Ncview is a library for generating platform-independent data files
-Release:   2%{?dist}
+Summary:   Ncview is a netcdf viewer
+Release:   3%{?dist}
 License:   GPL
 Group:     applications/io
 Source:    ncview-%{version}.tar.gz
@@ -113,14 +113,6 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 %if %{?BUILD_PACKAGE}
 #------------------------
 
-  mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
-  
-#
-# Use mount temp trick
-#
-mkdir -p             %{INSTALL_DIR}
-mount -t tmpfs tmpfs %{INSTALL_DIR}
-
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -129,25 +121,39 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
   ########### Do Not Remove #############
   #######################################
 
-  #========================================
-  # Insert Build/Install Instructions Here
-  #========================================
+mkdir -p %{INSTALL_DIR}
+rm -rf %{INSTALL_DIR}/*
+mount -t tmpfs tmpfs %{INSTALL_DIR}
+
+################ new stuff
+
+module load cmake
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## get rid of that PACKAGEROOT
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
+popd
+
+################ end of new stuff
   
-#
-# config/make:
-#
-
-./configure  --prefix=%{INSTALL_DIR}  \
-    -with-udunits2_incdir=${TACC_UDUNITS_INC} \
-    -with-udunits2_libdir=${TACC_UDUNITS_LIB}
-make -j 3
-make install
-# VLE this was before mount tmpfs: make DESTDIR=$RPM_BUILD_ROOT install
-# make test
-
-cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
+
+ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
 %endif # BUILD_PACKAGE |
@@ -158,9 +164,6 @@ umount %{INSTALL_DIR}
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
-rm -rf   $RPM_BUILD_ROOT/%{MODULE_DIR}
-mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
-  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -169,41 +172,6 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   ########### Do Not Remove #############
   #######################################
   
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << 'EOF'
---ncview
-
-local help_message = [[
-The %{name} module file defines the following environment variables:
-TACC_NCVIEW_DIR, TACC_NCVIEW_BIN,
-for the location of the NCVIEW distribution and binaries, respectively.
-
-Version %{version}
-
-]]
-
-help(help_message,"\n")
-
-
-whatis("Ncview: NetCDF data viewer")
-whatis("Version: %{version}")
-whatis("Category: visualization, application")
-whatis("Keywords: I/O")
-whatis("Description: Visualization program for NetCDF files")
-whatis("URL: http://meteora.ucsd.edu/~pierce/ncview_home_page.html")
-
--- Prerequisites
-depends_on("hdf5","netcdf","udunits")
-
---Prepend paths
-prepend_path("LD_LIBRARY_PATH","%{INSTALL_DIR}/lib")
-prepend_path("PATH",           "%{INSTALL_DIR}/bin")
-
---Env variables 
-setenv("TACC_NCVIEW_DIR", "%{INSTALL_DIR}")
-setenv("TACC_NCVIEW_BIN", "%{INSTALL_DIR}/bin")
-
-EOF
-
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module1.0#################################################
 ##
@@ -214,10 +182,10 @@ set     ModulesVersion      "%{version}"
 EOF
 
 
-  # Check the syntax of the generated lua modulefile only if a visible module
-  %if %{?VISIBLE}
+# Check the syntax of the generated lua modulefile only if a visible module
+%if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua
-  %endif
+%endif
 
 #--------------------------
 %endif # BUILD_MODULEFILE |
@@ -268,6 +236,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jan 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3 : new structure
 * Tue Aug 30 2022 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: unreleased, unnecessary
 * Mon Jul 15 2019 eijkhout <eijkhout@tacc.utexas.edu>

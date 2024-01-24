@@ -9,6 +9,7 @@ hypre 2.30.0 1
 mdspan git20240105
 metis 5.1.0.3 1
 mpl 0.3.0 5
+ncview 2.1.9 3
 netcdf 4.9.2 2
 pnetcdf 4.9.2 2
 p4est 2.8.5 3

@@ -115,6 +115,8 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 %if %{?BUILD_PACKAGE}
 #------------------------
 
+  mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
+  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -167,6 +169,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
+mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -191,7 +195,7 @@ EOF
 %endif
 
 #--------------------------
-%endif 
+g%endif 
 # BUILD_MODULEFILE 
 #--------------------------
 

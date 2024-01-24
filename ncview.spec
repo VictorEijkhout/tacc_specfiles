@@ -195,7 +195,7 @@ EOF
 %endif
 
 #--------------------------
-g%endif 
+%endif 
 # BUILD_MODULEFILE 
 #--------------------------
 

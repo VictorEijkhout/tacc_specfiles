@@ -10,7 +10,7 @@ Summary: Kokkos, piggybacking on the PETSc install
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 1
+%define minor_version 2
 %define micro_version 00
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -37,10 +37,10 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1%{?dist}
+Release:   3%{?dist}
 License:   BSD-like
 Group:     Development/Numerical-Libraries
-URL:       http://graal.ens-lyon.fr/KOKKOS/
+URL:       https://github.com/kokkos/kokkos
 Packager:  TACC - eijkhout@tacc.utexas.edu
 #Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
 
@@ -63,7 +63,7 @@ Group: System Environment/Base
 This is the long description for the modulefile RPM...
 
 %description
-Kokkos is a solver library for distributed sparse linear system.
+Kokkos is a portal CPU/GPU programming model
 
 #---------------------------------------
 %prep
@@ -121,7 +121,7 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ## no prereqs
-## module load 
+module load cuda/12
 
 ################ new stuff
 
@@ -129,10 +129,10 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/zlib
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
+make cpu JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -211,6 +211,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jan 29 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3 : omp & cuda versions
 * Tue Oct 03 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: version 4, new spec make structure
 * Fri Apr 01 2022 eijkhout <eijkhout@tacc.utexas.edu>

@@ -57,7 +57,7 @@ fi
 ##
 ## build the rpm for all available compiler
 ##
-for config in i240 g132 ; do
+for config in COMPILERS ; do
     cmp=${config}
     echo "building ${package}/${version} with compiler=${cmp}"
     ./build_rpm.sh -${cmp} -l \

@@ -8,6 +8,6 @@ for s in *.spec ; do
 done
 
 cat install.sh \
-| sed -e 's/fontera/stampede3/' \
+| sed -e 's/fontera/stampede3/' -e 's/COMPILERS/i240 g132/' \
 > stampede3/install.sh
 chmod +x stampede3/install.sh

@@ -8,3 +8,4 @@ done
 
 cat install.sh \
 > frontera_specfiles/install.sh
+chmod +x frontera_specfiles/install.sh

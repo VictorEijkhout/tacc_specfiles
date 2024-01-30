@@ -10,3 +10,4 @@ done
 cat install.sh \
 | sed -e 's/fontera/stampede3/' \
 > stampede3/install.sh
+chmod +x stampede3/install.sh

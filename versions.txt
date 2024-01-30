@@ -6,12 +6,14 @@ gklib git20240111 2
 hdf5 1.14.0 4
 phdf5 1.14.0 4
 hypre 2.30.0 1
+kokkos-omp 4.2.00 3
+kokkos-cuda 4.2.00 3
 mdspan git20240105
 metis 5.1.0.3 1
 mpl 0.3.0 5
 ncview 2.1.9 3
-netcdf 4.9.2 2
-pnetcdf 4.9.2 2
+netcdf-seq 4.9.2 2
+netcdf-par 4.9.2 2
 p4est 2.8.5 3
 petsc 3.20.3 1
 pcre2 git20240106 1

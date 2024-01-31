@@ -17,8 +17,8 @@ metis 5.1.0.3 1
 mpl 0.3.0 5
 ncview 2.1.9 3
 
-netcdf-seq 4.9.2 2
-netcdf-par 4.9.2 2
+netcdf-seq 4.9.2 3
+netcdf-par 4.9.2 3
 
 p4est 2.8.5 3
 petsc 3.20.3 1

@@ -61,7 +61,7 @@ for config in COMPILERS ; do
     cmp=${config}
     echo "building ${package}/${version} with compiler=${cmp}"
     ./build_rpm.sh -${cmp} -l \
-                   $( if [ ! -z "$mpi" ] ; then echo -MPI ; fi ) \
+                   $( if [ ! -z "$mpi" ] ; then echo MPI ; fi ) \
                    ${specfile}
 done
 

@@ -59,7 +59,7 @@ fi
 ##
 for config in COMPILERS ; do
     cmp=${config%%,*}
-    mpi=$(config##*,}
+    mpi=${config##*,}
     echo "building ${package}/${version} with compiler=${cmp}"
     ./build_rpm.sh -${cmp} -l \
                    $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \

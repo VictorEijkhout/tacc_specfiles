@@ -58,10 +58,11 @@ fi
 ## build the rpm for all available compiler
 ##
 for config in COMPILERS ; do
-    cmp=${config}
+    cmp=${config%%,*}
+    mpi=$(config##*,}
     echo "building ${package}/${version} with compiler=${cmp}"
     ./build_rpm.sh -${cmp} -l \
-                   $( if [ ! -z "$mpi" ] ; then echo MPI ; fi ) \
+                   $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
                    ${specfile}
 done
 

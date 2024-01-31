@@ -7,7 +7,7 @@ for s in *.spec ; do
 done
 
 cat install.sh \
-| sed -e 's/COMPILERS/i191 i231 g91 g132/' -e 's/MPI/-j19_9/' \
+| sed -e 's/COMPILERS/i191,j19_9 i231,j21_9 g91,j19_9 g132,j21_9/' \
 > frontera_specfiles/install.sh
 
 cd frontera_specfiles

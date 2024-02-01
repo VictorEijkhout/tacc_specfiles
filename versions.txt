@@ -21,6 +21,8 @@ netcdf 4.9.2 3
 pnetcdf 4.9.2 3
 netcdf-seq 4.9.2 3
 netcdf-par 4.9.2 3
+netcdff-seq 4.6.1 3
+netcdff-par 4.6.1 3
 
 p4est 2.8.5 3
 petsc 3.20.3 1

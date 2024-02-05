@@ -1,8 +1,7 @@
 # KOKKOS specfile
 # Victor Eijkhout 2018
 
-
-Summary: Kokkos, piggybacking on the PETSc install
+Summary: Kokkos install, new setup
 
 # Give the package a base name
 %define pkg_base_name kokkos
@@ -18,14 +17,13 @@ Summary: Kokkos, piggybacking on the PETSc install
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-%include mpi-defines.inc
+#%include mpi-defines.inc
+
 ########################################
 ### Construct name based on includes ###
 ########################################
 #%include name-defines.inc
 %include name-defines-noreloc-home1.inc
-#%include name-defines-hidden.inc
-#%include name-defines-hidden-noreloc.inc
 
 ########################################
 ############ Do Not Remove #############
@@ -42,13 +40,13 @@ License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
 Packager:  TACC - eijkhout@tacc.utexas.edu
-#Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
+Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
 
 # Turn off debug package mode
 %define debug_package %{nil}
 %define _build_id_links none
 %define dbg           %{nil}
-
+%global _python_bytecompile_errors_terminate_build 0
 
 %package %{PACKAGE}
 Summary: The package RPM
@@ -68,15 +66,6 @@ Kokkos is a portal CPU/GPU programming model
 #---------------------------------------
 %prep
 #---------------------------------------
-
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-#---------------------------
-  #Delete the module installation directory.
-  rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
-#--------------------------
-%endif # BUILD_MODULEFILE |
-#--------------------------
 
 #---------------------------------------
 %build
@@ -129,7 +118,9 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
+pushd ${VICTOR}/makefiles/kokkos
+
+module load cmake
 
 ## get rid of that PACKAGEROOT
 make cpu JCOUNT=10 \
@@ -144,50 +135,24 @@ popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
   
-ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 #-----------------------  
 %endif # BUILD_PACKAGE |
 #-----------------------
 
 
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-#---------------------------
-
-  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
-  
-  #######################################
-  ##### Create TACC Canary Files ########
-  #######################################
-  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
-  #######################################
-  ########### Do Not Remove #############
-  #######################################
-  
-#--------------------------
-%endif # BUILD_MODULEFILE |
-#--------------------------
-
-
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-%files modulefile 
-#---------------------------
-
+%files %{PACKAGE}
   %defattr(-,root,install,)
-  # RPM modulefile contains files within these directories
-  %{MODULE_DIR}
+  %{INSTALL_DIR}
 
-#--------------------------
-%endif # BUILD_MODULEFILE |
-#--------------------------
+%files %{MODULEFILE}
+  %defattr(-,root,install,)
+  %{MODULE_DIR}
 
 ########################################
 ## Fix Modulefile During Post Install ##

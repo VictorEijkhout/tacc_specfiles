@@ -1,9 +1,8 @@
+# HDF5 sequential sepcfile
+# Victor Eijkhout
+
 Summary: Hdf5 install
 
-# ./build_rpm.sh -i191  -l hdf5-seq
-# ./build_rpm.sh -i231 -l hdf5-seq
-# ./build_rpm.sh -g91  -l hdf5-seq
-					
 # Give the package a base name
 %define pkg_base_name hdf5
 %define MODULE_VAR    HDF5
@@ -47,7 +46,6 @@ Source0: %{pkg_base_name}-%{pkg_version}.tar.gz
 %define _build_id_links none
 ## %global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
-
 
 %package %{PACKAGE}
 Summary: Hdf5 local binary install

@@ -221,12 +221,6 @@ export BASIC_FLAGS="${BASIC_FLAGS} -I${TBBROOT}/include"
 ## start of configure install
 ##
 
-# pushd 
-# ls -l %{_topdir}/SPECS/victor_scripts/remove_pthread_workarounds.patch 
-# ls -l %{_topdir}/BUILD/aspect-9.1.1/cmake/configure/configure_1_threads.cmake
-# patch -p1 < %{_topdir}/SPECS/victor_scripts/remove_pthread_workarounds.patch
-# popd 
-
 export LOGDIR=`pwd`
 export DEALDIR=`pwd`
 export DEALVERSION=%{pkg_version}

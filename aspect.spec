@@ -1,15 +1,17 @@
-Summary: Hypre install
+Summary: Aspect install
 
 # Give the package a base name
-%define pkg_base_name hypre
-%define MODULE_VAR    HYPRE
+%define pkg_base_name aspect
+%define MODULE_VAR    ASPECT
 
 # Create some macros (spec file variables)
 %define major_version 2
-%define minor_version 30
+%define minor_version 3
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+
+%define aspectdealversion/9.2.0-real
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -31,32 +33,30 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
-License: GPL
-Vendor: https://github.com/hypre-space/hypre
-#Source1: hypre-setup.sh
+Release: 2%{?dist}
+License: GPLv2
 Group: Development/Numerical-Libraries
+Source: %{pkg_base_name}-%{pkg_version}.tar.gz
+URL: http://www.aspect.org/
+Vendor: TAMU
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: %{pkg_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
 ## %global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
-
 %package %{PACKAGE}
-Summary: Hypre local binary install
-Group: System Environment/Base
+Summary: Aspect is an open source finite element package
+Group: Development/Numerical-Libraries
 %package %{MODULEFILE}
-Summary: Hypre local binary install
-Group: System Environment/Base
+Summary: Aspect is an open source finite element package
+Group: Development/Numerical-Libraries
 
 %description
 %description %{PACKAGE}
-Forest support library
+
 %description %{MODULEFILE}
-Forest support library
 
 %prep
 
@@ -75,11 +75,8 @@ Forest support library
 %include system-load.inc
 %include compiler-defines.inc
 %include mpi-defines.inc
-module purge
 %include compiler-load.inc
 %include mpi-load.inc
-
-export HYPRE_DIR=`pwd`
 
 #
 # Set Up Installation Directory and tmp file system
@@ -104,13 +101,11 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
-export MAKEINCLUDES=${VICTOR}/make-support-files
-
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
-
 module load cmake 
+module load dealii/%{aspectdealversion} \
+module load metis
+module load trilinos/%{aspecttrilinosversion}
+module load mumps netcdf phdf5
 
 ## get rid of that PACKAGEROOT
 make small big JCOUNT=20 \
@@ -125,12 +120,19 @@ popd
 
 ################ end of new stuff
 
+cp -r contrib   data    unit_tests \
+    benchmarks  doc  source    VERSION \
+    CITATION     CODE_OF_CONDUCT.md  cookbooks  LICENSE          tests \
+    %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
 
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+
+##
+## end of configure install section
+##
 
 %files %{PACKAGE}
   %defattr(-,root,install,)
@@ -142,8 +144,8 @@ umount %{INSTALL_DIR}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 %changelog
-* Tue Jan 02 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1 : first release with new makefiles
-
+* Mon Feb 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : new setup, 2.5 0
+* Fri Jul 30 2021 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release of 2.2.0

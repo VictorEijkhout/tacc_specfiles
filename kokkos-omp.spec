@@ -82,8 +82,9 @@ Kokkos is a portal CPU/GPU programming model
 %include system-load.inc
 %include compiler-defines.inc
 ## %include mpi-defines.inc
-module purge
+## module purge
 %include compiler-load.inc
+echo "loaded gnu compiler CXX=`which g++`"
 
 echo "Building the package?:    %{BUILD_PACKAGE}"
 echo "Building the modulefile?: %{BUILD_MODULEFILE}"
@@ -136,7 +137,7 @@ cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
   
-%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}-omp.lua 
 
 %files %{PACKAGE}
   %defattr(-,root,install,)

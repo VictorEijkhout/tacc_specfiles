@@ -1,5 +1,5 @@
 # KOKKOS specfile
-# Victor Eijkhout 2018
+# Victor Eijkhout 2024
 
 Summary: Kokkos install, new setup
 
@@ -86,10 +86,9 @@ module purge
 echo "Building the package?:    %{BUILD_PACKAGE}"
 echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 
-#------------------------
-%if %{?BUILD_PACKAGE}
-#------------------------
-
+#
+# Set Up Installation Directory and tmp file system
+#
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
   mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
@@ -136,11 +135,6 @@ cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 umount %{INSTALL_DIR}
   
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
-
-#-----------------------  
-%endif # BUILD_PACKAGE |
-#-----------------------
-
 
 %files %{PACKAGE}
   %defattr(-,root,install,)

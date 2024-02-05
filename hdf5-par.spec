@@ -1,9 +1,8 @@
+# HDF5 parallel install
+# Victor Eijkhout 2024
+
 Summary: Hdf5 install
 
-# ./build_rpm.sh -i191 -j19_9 -l hdf5-par
-# ./build_rpm.sh -i231 -j21_9 -l hdf5-par
-# ./build_rpm.sh -g91 -j19_9 -l hdf5-par
-					
 # Give the package a base name
 %define pkg_base_name phdf5
 %define MODULE_VAR    PHDF5

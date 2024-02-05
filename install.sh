@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage() {
-    echo "Usage: $0 [ -m (for mpi) ] [ -p (for actual name) ] package"
+    echo "Usage: $0 [ -m (for mpi) ] [ -p (for actual name) ] specname"
 }
 
 if [ $# -eq 0 ] ; then
@@ -21,12 +21,13 @@ while [ $# -gt 1 ] ; do
 done
 
 ##
-## package name and isntalled name
+## package name and installed name
 ##
-package=$1
+specname=$1
 if [ -z "${name}" ] ; then
-    name=$package
+    name=$specname
 fi
+echo "Installing package=$name from specfile=$specname"
 
 specdir=/admin/build/admin/rpms/frontera/SPECS
 if [ ! -d "${specdir}" ] ; then
@@ -49,7 +50,7 @@ fi
 ##
 ## find the spec file
 ##
-specfile=${taccfiles}/frontera_specfiles/${package}.spec
+specfile=${taccfiles}/frontera_specfiles/${specname}.spec
 if [ ! -f "${specfile}" ] ; then
     echo "ERROR could not find spec file <<${specfile}>>" && exit 1
 fi
@@ -60,7 +61,7 @@ fi
 for config in COMPILERS ; do
     cmp=${config%%,*}
     mpi=${config##*,}
-    echo "building ${package}/${version} with compiler=${cmp}"
+    echo "building ${name}/${version} with compiler=${cmp}"
     ./build_rpm.sh -${cmp} -l \
                    $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
                    ${specfile}

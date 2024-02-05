@@ -10,8 +10,11 @@ hdf5-seq 1.14.3 4
 hdf5-par 1.14.3 4
 
 hypre 2.30.0 1
+
+kokkos 4.2.00 3
 kokkos-omp 4.2.00 3
 kokkos-cuda 4.2.00 3
+
 mdspan git20240105
 metis 5.1.0.3 1
 mpl 0.3.0 5

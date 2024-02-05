@@ -78,8 +78,9 @@ Kokkos is a portal CPU/GPU programming model
 
 # Setup modules
 %include system-load.inc
+%include compiler-defines.inc
+## %include mpi-defines.inc
 module purge
-
 %include compiler-load.inc
 
 echo "Building the package?:    %{BUILD_PACKAGE}"
@@ -91,6 +92,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
   mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
+  rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
   mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   
   #######################################
@@ -106,13 +108,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   #========================================
   
 mkdir -p %{INSTALL_DIR}
-rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
-
-## no prereqs
-## module load 
-
-################ new stuff
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts

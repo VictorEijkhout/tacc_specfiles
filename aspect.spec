@@ -36,7 +36,7 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release: 2%{?dist}
 License: GPLv2
 Group: Development/Numerical-Libraries
-Source: %{pkg_base_name}-%{pkg_version}.tar.gz
+Source: %{pkg_base_name}-%{pkg_version}.tgz
 URL: http://www.aspect.org/
 Vendor: TAMU
 Packager: TACC -- eijkhout@tacc.utexas.edu

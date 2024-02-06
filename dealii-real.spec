@@ -171,7 +171,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
     pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
     ## get rid of that PACKAGEROOT
-    make small big JCOUNT=20 \
+    make real JCOUNT=20 \
 	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
 	PACKAGEVERSION=%{pkg_version} \
 	PACKAGEROOT=/tmp \

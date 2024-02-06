@@ -1,4 +1,4 @@
-# Summary: Dealii install
+Summary: Dealii install
 
 # https://www.dealii.org/9.1.1/readme.html
 

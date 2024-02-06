@@ -137,7 +137,7 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 module load cmake python3
 ## %{python_version}/%{python_module}
 module load boost gsl metis p4est
-module load mumps netcdf phdf5
+module load pnetcdf phdf5
 module load petsc/%{dealiipetscversion}
 module load trilinos/%{dealiitrilinosversion}
 module list

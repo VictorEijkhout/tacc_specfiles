@@ -127,10 +127,6 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-mkdir -p %{INSTALL_DIR}
-rm -rf %{INSTALL_DIR}/*
-mount -t tmpfs tmpfs %{INSTALL_DIR}
-
 module load cmake boost swig
 module load hdf5 netcdf
 %if "%{comp_fam}" == "gcc"
@@ -138,6 +134,10 @@ module load hdf5 netcdf
 %endif
 
 ################ new stuff
+
+mkdir -p %{INSTALL_DIR}
+rm -rf %{INSTALL_DIR}/*
+mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts

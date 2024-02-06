@@ -1,4 +1,4 @@
-Summary: Dealii install
+<Summary: Dealii install
 
 # https://www.dealii.org/9.1.1/readme.html
 
@@ -9,7 +9,7 @@ Summary: Dealii install
 # Create some macros (spec file variables)
 %define major_version 9
 %define minor_version 5
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 

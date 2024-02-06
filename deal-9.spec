@@ -8,14 +8,14 @@ Summary: Dealii install
 
 # Create some macros (spec file variables)
 %define major_version 9
-%define minor_version 2
+%define minor_version 5
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %define use_petsc 1
 ## petsc 3.11 has been compiled with impi: release instead of release_mt
-%define dealiipetscversion 3.15
+%define dealiipetscversion 3.20
 ## as of petsc 3.15 slepc is rolled into petsc
 %define explicit_slepc 0
 %define python_version 3
@@ -45,10 +45,10 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5%{?dist}
+Release: 1%{?dist}
 License: GPLv2
 Group: Development/Numerical-Libraries
-Source: %{pkg_base_name}-%{pkg_version}.tar.gz
+Source: %{pkg_base_name}-%{pkg_version}.tgz
 URL: http://www.dealii.org/
 Vendor: TAMU
 Packager: TACC -- eijkhout@tacc.utexas.edu
@@ -96,7 +96,7 @@ consumption.
 
 %prep
 
-%setup -n dealii-%{version}
+%setup -n %{pkg_base_name}-%{version}
 
 #---------------------------------------
 %build
@@ -113,10 +113,6 @@ consumption.
 %include mpi-defines.inc
 %include compiler-load.inc
 %include mpi-load.inc
-
-%if "%{comp_fam}" == "gcc"
-%error "too many problems with mt and petsc"
-%endif
 
 #
 # Set Up Installation Directory and tmp file system
@@ -292,12 +288,6 @@ export BASIC_FLAGS="${BASIC_FLAGS} -I${TBBROOT}/include"
 ## start of configure install
 ##
 
-# pushd 
-# ls -l %{_topdir}/SPECS/victor_scripts/remove_pthread_workarounds.patch 
-# ls -l %{_topdir}/BUILD/dealii-9.1.1/cmake/configure/configure_1_threads.cmake
-# patch -p1 < %{_topdir}/SPECS/victor_scripts/remove_pthread_workarounds.patch
-# popd 
-
 export LOGDIR=`pwd`
 export DEALDIR=`pwd`
 export DEALVERSION=%{pkg_version}
@@ -464,15 +454,5 @@ umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 rm -rf $RPM_BUILD_ROOT
 %changelog
 # release 4: adding boost-mpi dependency
-* Thu Apr 08 2021 eijkhout <eijkhout@tacc.utexas.edu>
-- release 5: better lapack specification, real/complex versions
-* Wed Aug 19 2020 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: update to 9.2.0
-* Fri May 01 2020 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: trying trilinos again, using 12.18.1
-* Sat Apr 18 2020 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: using petsc 3.11 which has release-{non-mt} MPI
-             adding GSL, Metis under gcc
-             disabled: trilinos
-* Mon Sep 02 2019 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: initial release of 9.1.1
+* Tue Feb 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release of 9.5.0 under new setup

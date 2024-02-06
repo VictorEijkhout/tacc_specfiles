@@ -133,9 +133,7 @@ module purge
 # Insert further module commands
 module load cmake
 echo $MODULEPATH
-#module use /opt/apps/intel19/impi19_0/modulefiles
-module load python3/3.8.1
-#module use /opt/apps/intel19/python3_7/modulefiles/
+module load python3
 module load boost
 
 echo "Building the package?:    %{BUILD_PACKAGE}"

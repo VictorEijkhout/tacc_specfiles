@@ -145,7 +145,6 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mkdir -p %{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
-#module load python3/3.8.2 # just for boost
 module load cmake
 rm -rf /tmp/catch2-build
 mkdir -p /tmp/catch2-build

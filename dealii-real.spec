@@ -134,7 +134,8 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake python3
+module load cmake
+module load python3
 ## %{python_version}/%{python_module}
 module load boost gsl metis p4est
 module load pnetcdf phdf5

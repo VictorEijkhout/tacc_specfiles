@@ -101,32 +101,32 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
-mkdir -p %{INSTALL_DIR}
-mount -t tmpfs tmpfs %{INSTALL_DIR}
-
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
-
 module load cmake 
 
-## get rid of that PACKAGEROOT
-make small big JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGEVERSION=%{pkg_version} \
-    PACKAGEROOT=/tmp \
-    SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+mkdir -p %{INSTALL_DIR}
+mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-popd
+    pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-################ end of new stuff
+    ## get rid of that PACKAGEROOT
+    make small big JCOUNT=20 \
+	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+	PACKAGEVERSION=%{pkg_version} \
+	PACKAGEROOT=/tmp \
+	SRCPATH=${SRCPATH} \
+	INSTALLPATH=%{INSTALL_DIR} \
+	MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 
-cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+    popd
+
+    ################ end of new stuff
+
+    cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+    ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
 

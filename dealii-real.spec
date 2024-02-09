@@ -23,7 +23,7 @@ Summary: Dealii install
 %define python_module 3.8.2
 
 %define use_trilinos 1
-%define dealiitrilinosversion 12.18.1
+%define dealiitrilinosversion 15.0.0
 
 %include rpm-dir.inc
 %include compiler-defines.inc

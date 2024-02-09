@@ -1,7 +1,10 @@
 #!/bin/bash
 
 function usage() {
-    echo "Usage: $0 [ -m (for mpi) ] [ -p (for actual name) ] specname"
+    echo "Usage: $0 "
+    echo "    [ -c gcc/intel : limit to one family ]"
+    echo "    [ -m (for mpi) ]"
+    echo "    [ -p (for actual name) ] specname"
 }
 
 if [ $# -eq 0 ] ; then
@@ -10,9 +13,12 @@ fi
 
 mpi=
 name=
+compfamily=
 while [ $# -gt 1 ] ; do
     if [ $1 = "-h" ] ; then
         usage && return 0;
+    elif [ $1 = "-c" ] ; then 
+	shift && compfamily=$1 && shift 
     elif [ $1 = "-m" ] ; then
         mpi=1 && shift
     elif [ $1 = "-p" ] ; then
@@ -60,11 +66,14 @@ fi
 ##
 for config in COMPILERS ; do
     cmp=${config%%,*}
+    cmpfam=${cmp%%/*}
     mpi=${config##*,}
-    echo "building ${name}/${version} with compiler=${cmp}"
-    ./build_rpm.sh -${cmp} -l \
-                   $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
-                   ${specfile}
+    if [ -z ${compfamily} -o ${cmpfam} = ${compfamily} ] ; then 
+	echo "building ${name}/${version} with compiler=${cmp}"
+	./build_rpm.sh -${cmp} -l \
+            $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
+            ${specfile}
+    fi
 done
 
 for p in ../RPMS/x86_64/tacc-${name}-*package-${version}-${release}* ; do

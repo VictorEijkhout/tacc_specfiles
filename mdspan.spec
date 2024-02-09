@@ -14,7 +14,7 @@ Summary: C++20 mdspan from Kokos
 %define MODULE_VAR    MDSPAN
 
 # Create some macros (spec file variables)
-%define major_version git20240105
+%define major_version git20240209
 ## %define minor_version 1
 ## %define micro_version 1
 
@@ -42,7 +42,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/kokkos/mdspan
@@ -259,5 +259,7 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Feb 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : new pull, cmake prefix set
 * Wed Nov 29 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial build

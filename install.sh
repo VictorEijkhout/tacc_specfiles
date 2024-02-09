@@ -2,7 +2,7 @@
 
 function usage() {
     echo "Usage: $0 "
-    echo "    [ -c gcc/intel : limit to one family ]"
+    echo "    [ -c g/i : limit to one family ]"
     echo "    [ -m (for mpi) ]"
     echo "    [ -p (for actual name) ] specname"
 }
@@ -19,10 +19,13 @@ while [ $# -gt 1 ] ; do
         usage && return 0;
     elif [ $1 = "-c" ] ; then 
 	shift && compfamily=$1 && shift 
+	echo "Install only with compiler=<<${compfamily}>>"
     elif [ $1 = "-m" ] ; then
         mpi=1 && shift
+	echo "Install with MPI"
     elif [ $1 = "-p" ] ; then
         shift && name=$1 && shift
+	echo "Install for package name <<$name>>"
     fi
 done
 
@@ -66,13 +69,15 @@ fi
 ##
 for config in COMPILERS ; do
     cmp=${config%%,*}
-    cmpfam=${cmp%%/*}
+    cmpfam=${cmp%%[0-9]*}
     mpi=${config##*,}
-    if [ -z ${compfamily} -o ${cmpfam} = ${compfamily} ] ; then 
+    if [ -z "${compfamily}" -o "${cmpfam}" = "${compfamily}" ] ; then 
 	echo "building ${name}/${version} with compiler=${cmp}"
 	./build_rpm.sh -${cmp} -l \
             $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
             ${specfile}
+    else 
+	echo "not building with compiler=${cmp}"
     fi
 done
 

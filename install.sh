@@ -2,7 +2,7 @@
 
 function usage() {
     echo "Usage: $0 "
-    echo "    [ -c g/i : limit to one family ]"
+    echo "    [ -c g/i : limit to one family ] [ -v 123 : compiler specific version ]"
     echo "    [ -m (for mpi) ]"
     echo "    [ -p (for actual name) ] specname"
 }
@@ -14,18 +14,22 @@ fi
 mpi=
 name=
 compfamily=
+compversion=
 while [ $# -gt 1 ] ; do
     if [ $1 = "-h" ] ; then
         usage && return 0;
-    elif [ $1 = "-c" ] ; then 
-	shift && compfamily=$1 && shift 
-	echo "Install only with compiler=<<${compfamily}>>"
+    elif [ $1 = "-c" ] ; then
+        shift && compfamily=$1 && shift
+        echo "Install only with compiler=<<${compfamily}>>"
+    elif [ $1 = "-v" ] ; then
+        shift && compversion=$1 && shift
+        echo "install only with version=<<${compversion}>>"
     elif [ $1 = "-m" ] ; then
         mpi=1 && shift
-	echo "Install with MPI"
+        echo "Install with MPI"
     elif [ $1 = "-p" ] ; then
         shift && name=$1 && shift
-	echo "Install for package name <<$name>>"
+        echo "Install for package name <<$name>>"
     fi
 done
 
@@ -70,14 +74,18 @@ fi
 for config in COMPILERS ; do
     cmp=${config%%,*}
     cmpfam=${cmp%%[0-9]*}
+    cmpver=${cmp##*[a-z]}
+    echo "compiler: $cmpfam+$cmpver"
     mpi=${config##*,}
-    if [ -z "${compfamily}" -o "${cmpfam}" = "${compfamily}" ] ; then 
-	echo "building ${name}/${version} with compiler=${cmp}"
-	./build_rpm.sh -${cmp} -l \
+    if [ ! -z "${compfamily}" -a "${cmpfam}" != "${compfamily}" ] ; then
+        echo "not building with compiler=${cmp}"
+    elif [ ! -z "${compversion}" -a "${cmpver}" != "${compversion}" ] ; then
+        echo "not building with compiler=${cmp}"
+    else
+        echo "building ${name}/${version} with compiler=${cmp}"
+        ./build_rpm.sh -${cmp} -l \
             $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
             ${specfile}
-    else 
-	echo "not building with compiler=${cmp}"
     fi
 done
 

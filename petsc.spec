@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -153,6 +153,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Feb 20 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: adding ptscotch
 * Wed Feb 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : up to 3.20.4
 * Tue Jan 02 2024 eijkhout <eijkhout@tacc.utexas.edu>

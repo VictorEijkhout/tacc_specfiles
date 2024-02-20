@@ -133,7 +133,7 @@ popd
 
 ################ end of new stuff
 
-find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \;
+find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \; -print
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 

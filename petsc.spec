@@ -153,8 +153,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Feb 20 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: adding ptscotch
+* Thu Feb 22 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: adding ptscotch and nohdf5
 * Wed Feb 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : up to 3.20.4
 * Tue Jan 02 2024 eijkhout <eijkhout@tacc.utexas.edu>

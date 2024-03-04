@@ -120,7 +120,6 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 module load cmake 
 # module load python3
 
-## make par JCOUNT=20 \
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 
 export     PACKAGEROOT=/tmp 

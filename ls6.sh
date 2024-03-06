@@ -10,7 +10,7 @@ for s in *.spec ; do
 done
 
 cat install.sh \
-| sed -e 's/frontera/ls6/' -e 's/COMPILERS/i240,j21_11 i19,j19_0 g112,j19_0/' \
+| sed -e 's/frontera/ls6/' -e 's/COMPILERS/i240,j21_11 i19,j19_0 g112,j19_0 g132,j19_0/' \
 > ls6_specfiles/install.sh
 
 cd ls6_specfiles

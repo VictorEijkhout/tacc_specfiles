@@ -152,6 +152,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Mar 12 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4 : up to 3.20.5, adding f08 versions
 * Thu Feb 22 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: adding ptscotch and nohdf5
 * Wed Feb 14 2024 eijkhout <eijkhout@tacc.utexas.edu>

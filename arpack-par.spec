@@ -113,7 +113,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/arpack
 
-module load cmake zlib
+module load cmake eigen
 
 ## get rid of that PACKAGEROOT
 make par JCOUNT=20 \

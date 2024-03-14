@@ -40,7 +40,7 @@ Vendor: https://github.com/opencollab/arpack-ng
 #Source1: arpack-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: arpack-%{pkg_version}.tar.gz
+Source0: arpack-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none

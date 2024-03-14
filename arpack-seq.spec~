@@ -1,11 +1,11 @@
-# HDF5 parallel install
-# Victor Eijkhout 2024
+# HDF5 sequential sepcfile
+# Victor Eijkhout
 
 Summary: Hdf5 install
 
 # Give the package a base name
-%define pkg_base_name phdf5
-%define MODULE_VAR    PHDF5
+%define pkg_base_name hdf5
+%define MODULE_VAR    HDF5
 
 # Create some macros (spec file variables)
 %define major_version 1
@@ -16,7 +16,7 @@ Summary: Hdf5 install
 
 %include rpm-dir.inc
 %include compiler-defines.inc
-%include mpi-defines.inc
+## %include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -40,13 +40,12 @@ Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: hdf5-%{pkg_version}.tar.gz
+Source0: %{pkg_base_name}-%{pkg_version}.tar.gz
 
 %define debug_package %{nil}
 %define _build_id_links none
 ## %global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
-
 
 %package %{PACKAGE}
 Summary: Hdf5 local binary install
@@ -77,10 +76,10 @@ Forest support library
 # Setup modules
 %include system-load.inc
 %include compiler-defines.inc
-%include mpi-defines.inc
+## %include mpi-defines.inc
 module purge
 %include compiler-load.inc
-%include mpi-load.inc
+## %include mpi-load.inc
 
 export HDF5_DIR=`pwd`
 
@@ -116,7 +115,7 @@ pushd ${VICTOR}/makefiles/hdf5
 module load cmake zlib
 
 ## get rid of that PACKAGEROOT
-make par JCOUNT=20 \
+make seq JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -147,7 +146,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Aug 07 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: now with fortran enabled
+* Thu Sep 07 2023 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4 : fortran enabled
 * Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3 using new makefile structure
+- release 3 : using new makefile structure

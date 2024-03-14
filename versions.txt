@@ -1,6 +1,7 @@
 arpack 3.9.1 1
 arpack-seq 3.9.1 1
-arpack-par 3.9.1 1
+parpack 3.9.1 1
+parpack-par 3.9.1 1
 
 aspect 2.5.0 2
 boost 1.84.0 3

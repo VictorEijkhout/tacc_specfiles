@@ -1,16 +1,16 @@
-# HDF5 parallel install
+# ARPACK parallel install
 # Victor Eijkhout 2024
 
-Summary: Hdf5 install
+Summary: Arpack install
 
 # Give the package a base name
-%define pkg_base_name phdf5
-%define MODULE_VAR    PHDF5
+%define pkg_base_name parpack
+%define MODULE_VAR    PARPACK
 
 # Create some macros (spec file variables)
-%define major_version 1
-%define minor_version 14
-%define micro_version 3
+%define major_version 3
+%define minor_version 9
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,13 +34,13 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4%{?dist}
+Release: 1%{?dist}
 License: GPL
-Vendor: https://portal.hdfgroup.org
-#Source1: hdf5-setup.sh
+Vendor: https://github.com/opencollab/arpack-ng
+#Source1: arpack-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: hdf5-%{pkg_version}.tar.gz
+Source0: arpack-%{pkg_version}.tar.gz
 
 %define debug_package %{nil}
 %define _build_id_links none
@@ -49,10 +49,10 @@ Source0: hdf5-%{pkg_version}.tar.gz
 
 
 %package %{PACKAGE}
-Summary: Hdf5 local binary install
+Summary: Arpack local binary install
 Group: System Environment/Base
 %package %{MODULEFILE}
-Summary: Hdf5 local binary install
+Summary: Arpack local binary install
 Group: System Environment/Base
 
 %description
@@ -63,7 +63,7 @@ Forest support library
 
 %prep
 
-%setup -n hdf5-%{version}
+%setup -n arpack-%{version}
 
 #---------------------------------------
 %build
@@ -82,7 +82,7 @@ module purge
 %include compiler-load.inc
 %include mpi-load.inc
 
-export HDF5_DIR=`pwd`
+export ARPACK_DIR=`pwd`
 
 #
 # Set Up Installation Directory and tmp file system
@@ -111,7 +111,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/hdf5
+pushd ${VICTOR}/makefiles/arpack
 
 module load cmake zlib
 
@@ -147,7 +147,5 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Aug 07 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: now with fortran enabled
-* Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3 using new makefile structure
+* Thu Mar 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1 : under new management

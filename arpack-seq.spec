@@ -112,6 +112,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/arpack
 
 module load cmake eigen
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 
 ## get rid of that PACKAGEROOT
 make seq JCOUNT=20 \

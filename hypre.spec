@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Vendor: https://github.com/hypre-space/hypre
 #Source1: hypre-setup.sh
@@ -144,6 +144,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Mar 18 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: because 1 is already somehow on ls6
 * Tue Jan 02 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1 : first release with new makefiles
 

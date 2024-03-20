@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -152,6 +152,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Mar 20 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5 : use downloaded hypre
 * Tue Mar 12 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4 : up to 3.20.5, adding f08 versions
 * Thu Feb 22 2024 eijkhout <eijkhout@tacc.utexas.edu>

@@ -77,7 +77,7 @@ for config in COMPILERS ; do
     cmpver=${cmp##*[a-z]}
     echo "compiler: $cmpfam+$cmpver"
     mpi=${config##*,}
-    if [[ ! -z "${compfamily}" -a ! "${compfamily}" = ""${cmpfam}*" ]] ; then
+    if [[ ! -z "${compfamily}" -a ! "${compfamily}" = "${cmpfam}*" ]] ; then
         echo "not building with compiler=${cmp}"
     elif [[ ! -z "${compversion}" -a ! "${cmpver}" ~= "${compversion}" ]] ; then
         echo "not building with compiler=${cmp}"

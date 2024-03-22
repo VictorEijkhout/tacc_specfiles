@@ -7,7 +7,7 @@ function usage() {
     echo "    [ -p (for actual name) ] specname"
 }
 
-if [ $# -eq 0 ] ; then
+if [ $# -eq 0 -o $1 = "-h" ] ; then
     usage && exit 0
 fi
 
@@ -73,13 +73,13 @@ fi
 ##
 for config in COMPILERS ; do
     cmp=${config%%,*}
-    cmpfam=${cmp%%[0-9]*}
+    cmpfam=${cmp%%[0-9]*} # single letter!
     cmpver=${cmp##*[a-z]}
     echo "compiler: $cmpfam+$cmpver"
     mpi=${config##*,}
-    if [ ! -z "${compfamily}" -a "${cmpfam}" != "${compfamily}" ] ; then
+    if [[ ! -z "${compfamily}" -a ! "${compfamily}" = ""${cmpfam}*" ]] ; then
         echo "not building with compiler=${cmp}"
-    elif [ ! -z "${compversion}" -a "${cmpver}" != "${compversion}" ] ; then
+    elif [[ ! -z "${compversion}" -a ! "${cmpver}" ~= "${compversion}" ]] ; then
         echo "not building with compiler=${cmp}"
     else
         echo "building ${name}/${version} with compiler=${cmp}"

@@ -77,15 +77,18 @@ for config in COMPILERS ; do
     cmpver=${cmp##*[a-z]}
     echo "compiler: $cmpfam+$cmpver"
     mpi=${config##*,}
-    if [[ ! -z "${compfamily}" -a ! "${compfamily}" = "${cmpfam}*" ]] ; then
-        echo "not building with compiler=${cmp}"
-    elif [[ ! -z "${compversion}" -a ! "${cmpver}" ~= "${compversion}" ]] ; then
-        echo "not building with compiler=${cmp}"
-    else
+    cdo=1 && cvr=1
+    if [ ! -z "${compfamily}" ] ; then
+        if [[ ! ${compfamily} =~ ${cmpfam} ]] ; then cdo=0; fi ; fi
+    if [ ! -z "${compversion}" ] ; then
+        if [[ ! ${cmpver} =~ ${compversion} ]] ; then cvr=0; fi ; fi
+    if [ $cdo -eq 1 -a $cvr -eq 1 ] ; then
         echo "building ${name}/${version} with compiler=${cmp}"
         ./build_rpm.sh -${cmp} -l \
             $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
             ${specfile}
+    else
+        echo "Skip compiler/version <<$compfamily/$compversion>>"
     fi
 done
 

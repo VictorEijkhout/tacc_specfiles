@@ -39,7 +39,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -190,6 +190,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Mar 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: adding serialization
 * Mon Mar 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: up to 1.84, adding system
 * Fri Jan 05 2024 eijkhout <eijkhout@tacc.utexas.edu>

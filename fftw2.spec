@@ -187,6 +187,11 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 #-----------------------
 
 
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+%files modulefile 
+#---------------------------
+
   # Check the syntax of the generated lua modulefile only if a visible module
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua
@@ -196,7 +201,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %endif
 # BUILD_MODULEFILE |
 #--------------------------
-
 
 #------------------------
 %if %{?BUILD_PACKAGE}

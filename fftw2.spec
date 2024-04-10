@@ -88,7 +88,8 @@ transforms or DCT/DST).
 %setup -n %{pkg_base_name}-%{version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -97,7 +98,8 @@ transforms or DCT/DST).
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -180,7 +182,8 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -190,7 +193,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   %endif
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -203,7 +207,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 #---------------------------
 %if %{?BUILD_MODULEFILE}
@@ -214,7 +219,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 ########################################

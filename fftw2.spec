@@ -189,9 +189,16 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #---------------------------
 %if %{?BUILD_MODULEFILE}
-%files modulefile 
 #---------------------------
 
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+  
   # Check the syntax of the generated lua modulefile only if a visible module
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua

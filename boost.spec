@@ -1,11 +1,6 @@
 #
 # Boost by Victor, as opposed to Si Liu
 #
-# ./build_rpm.sh -i191 -l boost-new
-# ./build_rpm.sh -i231 -l boost-new
-# ./build_rpm.sh -g91 -l boost-new
-# ./build_rpm.sh -g132 -l boost-new
-
 Summary: Boost install
 
 # Give the package a base name
@@ -14,7 +9,7 @@ Summary: Boost install
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 84
+%define minor_version 85
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -39,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -190,6 +185,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Apr 15 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: finally using correct compiler
 * Wed Apr 03 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: adding graphviz
 * Tue Mar 26 2024 eijkhout <eijkhout@tacc.utexas.edu>

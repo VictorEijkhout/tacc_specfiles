@@ -1,17 +1,13 @@
 Summary: Petsc install
 
-# ./build_rpm.sh -i191 -j19_9 -l petsc-par
-# ./build_rpm.sh -i231 -j21_9 -l petsc-par
-# ./build_rpm.sh -g91 -j19_9 -l petsc-par
-					
 # Give the package a base name
 %define pkg_base_name petsc
 %define MODULE_VAR    PETSC
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 20
-%define micro_version 5
+%define minor_version 21
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -152,6 +148,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Apr 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: 3.21, fix scalar-type=complex
 * Wed Mar 20 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5 : use downloaded hypre
 * Tue Mar 12 2024 eijkhout <eijkhout@tacc.utexas.edu>

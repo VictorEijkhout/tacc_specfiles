@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 21
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -148,6 +148,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Apr 21 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: 3.21.1 fixes K&R packages
 * Tue Apr 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 3.21, fix scalar-type=complex
 * Wed Mar 20 2024 eijkhout <eijkhout@tacc.utexas.edu>

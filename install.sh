@@ -3,7 +3,7 @@
 function usage() {
     echo "Usage: $0 "
     echo "    [ -c g/i : limit to one family ] [ -v 123 : compiler specific version ]"
-    echo "    [ -m (for mpi) ]"
+    echo "    [ -j jcount] [ -m (for mpi) ]"
     echo "    [ -p (for actual name) ] specname"
 }
 
@@ -15,12 +15,16 @@ mpi=
 name=
 compfamily=
 compversion=
+jcount=8
 while [ $# -gt 1 ] ; do
     if [ $1 = "-h" ] ; then
         usage && return 0;
     elif [ $1 = "-c" ] ; then
         shift && compfamily=$1 && shift
         echo "Install only with compiler=<<${compfamily}>>"
+    elif [ $1 = "-j" ] ; then
+        shift && jcount=$1 && shift
+        echo "Using threads: $jcount (ignored!)"
     elif [ $1 = "-v" ] ; then
         shift && compversion=$1 && shift
         echo "install only with version=<<${compversion}>>"
@@ -30,6 +34,8 @@ while [ $# -gt 1 ] ; do
     elif [ $1 = "-p" ] ; then
         shift && name=$1 && shift
         echo "Install for package name <<$name>>"
+    else
+	echo "ERROR unrecognized option $1" && exit 1
     fi
 done
 

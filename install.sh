@@ -46,6 +46,8 @@ specname=$1
 if [ -z "${name}" ] ; then
     name=$specname
 fi
+# strip in ase of auto-complete
+specname=${specname%%.spec}
 echo "Installing package=$name from specfile=$specname"
 
 specdir=/admin/build/admin/rpms/frontera/SPECS

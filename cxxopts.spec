@@ -45,7 +45,6 @@ Release:   3
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jarro2783/cxxopts/releases
-Group: TACC
 Packager: eijkhout@tacc.utexas.edu 
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 

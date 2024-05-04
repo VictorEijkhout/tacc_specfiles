@@ -15,10 +15,10 @@ fftw2 2.1.5 1
 fftw3 3.3.10 6
 gklib git20240111 2
 
-hdf5 1.14.3 4
-phdf5 1.14.3 4
-hdf5-seq 1.14.3 4
-hdf5-par 1.14.3 4
+hdf5 1.14.4 5
+phdf5 1.14.4 5
+hdf5-seq 1.14.4 5
+hdf5-par 1.14.4 5
 
 hypre 2.30.0 2
 

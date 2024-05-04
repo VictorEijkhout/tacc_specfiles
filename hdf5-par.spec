@@ -10,7 +10,7 @@ Summary: Hdf5 install
 # Create some macros (spec file variables)
 %define major_version 1
 %define minor_version 14
-%define micro_version 3
+%define micro_version 4
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -147,6 +147,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat May 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5 : 1.14.4
 * Mon Aug 07 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: now with fortran enabled
 * Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>

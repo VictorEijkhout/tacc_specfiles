@@ -16,7 +16,8 @@ Summary: Autoconf
 %define minor_version 72
 ## define micro_version 13
 
-%define pkg_version %{major_version}.%{minor_version} ## {micro_version}
+%define pkg_version %{major_version}.%{minor_version}
+## {micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  

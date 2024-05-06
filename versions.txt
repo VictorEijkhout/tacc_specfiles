@@ -38,7 +38,7 @@ pnetcdf 1.13.0 1
 p4est 2.8.6 4
 petsc 3.21.1 7
 parmetis 4.0.3 2
-pcre2 git20240106 1
+pcre2 git2024050 2
 swig 4.1.1 1
 trilinos 15.1.0 3
 udunits 2.2.28 2

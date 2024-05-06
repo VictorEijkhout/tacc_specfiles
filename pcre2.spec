@@ -10,11 +10,11 @@ Summary: Prereq for PCRE2
 %define MODULE_VAR    PCRE2
 
 # Create some macros (spec file variables)
-%define major_version git20240106
-## %define minor_version 25
+%define major_version git20240506
+## define minor_version 25
 
 %define pkg_version %{major_version}
-## .%{minor_version}
+## {minor_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       //github.com/PCRE2Project/pcre2
@@ -250,5 +250,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon May 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: new git pull for no reason
 * Fri Mar 17 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

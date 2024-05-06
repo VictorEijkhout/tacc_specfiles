@@ -32,14 +32,7 @@ mpl 0.3.0 5
 ncview 2.1.9 3
 
 netcdf 4.9.2 3
-pnetcdf 4.9.2 3
-netcdf-seq 4.9.2 3
-netcdf-par 4.9.2 3
-
-netcdff 4.6.1 3
-pnetcdff 4.6.1 3
-netcdff-seq 4.6.1 3
-netcdff-par 4.6.1 3
+pnetcdf 1.13.0 1
 
 p4est 2.8.6 4
 petsc 3.21.1 7

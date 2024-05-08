@@ -111,7 +111,8 @@ varies with each package.
 %include compiler-load.inc
 %include mpi-load.inc
 
-module load python3 phdf5/%{phdf5version} petsc/%{petscversion}-nohdf5
+module load phdf5/%{phdf5version} petsc/%{petscversion}-nohdf5
+module load python3
 echo $LD_LIBRARY_PATH
 
 

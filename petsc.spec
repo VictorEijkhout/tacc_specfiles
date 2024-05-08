@@ -148,7 +148,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Apr 21 2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Fri Apr 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: 3.21.1 fixes K&R packages
 * Tue Apr 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 3.21, fix scalar-type=complex

@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -115,6 +115,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load cmake 
 # module load python3
+pip install numpy
 
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 
@@ -148,6 +149,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu May 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: python3 fix
 * Fri Apr 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: 3.21.1 fixes K&R packages
 * Tue Apr 16 2024 eijkhout <eijkhout@tacc.utexas.edu>

@@ -2,8 +2,6 @@
 # zlib.spec
 # Victor Eijkhout
 #
-# ./build_rpm.sh -i231 -l zlib.spec
-#
 
 Summary: Zlib
 
@@ -13,8 +11,8 @@ Summary: Zlib
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 2
-%define micro_version 13
+%define minor_version 3
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 ## .%{minor_version}
@@ -38,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/zlib
@@ -250,5 +248,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue May 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: update to 1.3.1
 * Mon May 15 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

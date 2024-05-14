@@ -4,7 +4,8 @@ function usage() {
     echo "Usage: $0 "
     echo "    [ -c g/i : limit to one family ] [ -v 123 : compiler specific version ]"
     echo "    [ -j jcount] [ -m (for mpi) ]"
-    echo "    [ -p (for actual name) ] specname"
+    echo "    [ -p installed_package_name ] [ -q other_than_default_version ]"
+    echo "    specname"
 }
 
 if [ $# -eq 0 -o $1 = "-h" ] ; then
@@ -13,6 +14,7 @@ fi
 
 mpi=
 name=
+version=
 compfamily=
 compversion=
 jcount=8
@@ -34,6 +36,9 @@ while [ $# -gt 1 ] ; do
     elif [ $1 = "-p" ] ; then
         shift && name=$1 && shift
         echo "Install for package name <<$name>>"
+    elif [ $1 = "-q" ] ; then
+        shift && version=$1 && shift
+        echo "Install for package version <<$version>>"
     else
 	echo "ERROR unrecognized option $1" && exit 1
     fi
@@ -60,12 +65,14 @@ taccfiles=${specdir}/victor_scripts/tacc_specfiles/
 ##
 ## determine version and release frm the versions.txt file
 ##
-cmdline=$( cat ${taccfiles}/versions.txt \
-               | awk '/'${name}' / {print "pcheck="$1" version="$2" release="$3 }'
-       )
-eval $cmdline
 if [ -z "${version}" ] ; then
-    echo "ERROR could not extract version for <<${name}>>" && exit 1
+    cmdline=$( cat ${taccfiles}/versions.txt \
+		   | awk '/'${name}' / {print "pcheck="$1" version="$2" release="$3 }'
+	   )
+    eval $cmdline
+    if [ -z "${version}" ] ; then
+	echo "ERROR could not extract version for <<${name}>>" && exit 1
+    fi
 fi
 
 ##

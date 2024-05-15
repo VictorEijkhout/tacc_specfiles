@@ -113,7 +113,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/pnetcdf
 
-module load cmake
+module load autoconf/2.72
 
 ## get rid of that PACKAGEROOT
 make default_install JCOUNT=20 \

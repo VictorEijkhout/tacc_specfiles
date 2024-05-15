@@ -21,7 +21,7 @@ Summary: Autoconf
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
-%include compiler-defines.inc
+# include compiler-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -103,7 +103,7 @@ Autoconf
 %include system-load.inc
 module purge
 # Load Compiler
-%include compiler-load.inc
+# %include compiler-load.inc
 
 # Insert further module commands
 
@@ -141,6 +141,8 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/autoconf
+
+module load gcc
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

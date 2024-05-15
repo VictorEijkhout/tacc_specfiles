@@ -37,6 +37,7 @@ mpl 0.3.0 5
 ncview 2.1.9 3
 
 netcdf 4.9.2 3
+netcdf-seq 4.9.2 3
 pnetcdf 1.13.0 1
 
 p4est 2.8.6 4

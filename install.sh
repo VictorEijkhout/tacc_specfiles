@@ -67,7 +67,7 @@ taccfiles=${specdir}/victor_scripts/tacc_specfiles/
 ##
 if [ -z "${version}" ] ; then
     cmdline=$( cat ${taccfiles}/versions.txt \
-		   | awk '/'${name}' / {print "pcheck="$1" version="$2" release="$3 }'
+		   | awk '/^'${name}' / {print "pcheck="$1" version="$2" release="$3 }'
 	   )
     eval $cmdline
     if [ -z "${version}" ] ; then

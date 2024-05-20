@@ -113,7 +113,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/pnetcdf
 
-module load autoconf/2.72
+## ls6 only?
+# module load autoconf/2.72
+# netcdf 4.9.2 3
 
 ## get rid of that PACKAGEROOT
 make default_install JCOUNT=20 \

@@ -128,8 +128,9 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake boost swig
-module load phdf5 netcdf pnetcdf
+module load cmake 
+module load boost swig
+module load phdf5 pnetcdf
 %if "%{comp_fam}" == "gcc"
   module load mkl
 %endif

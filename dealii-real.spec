@@ -15,7 +15,7 @@ Summary: Dealii install
 
 %define use_petsc 1
 ## petsc 3.11 has been compiled with impi: release instead of release_mt
-%define dealiipetscversion 3.20
+%define dealiipetscversion 3.21
 ## as of petsc 3.15 slepc is rolled into petsc
 %define explicit_slepc 0
 %define python_version 3

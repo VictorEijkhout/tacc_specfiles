@@ -98,6 +98,7 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
+module list
 module load cmake 
 module load dealii/%{aspectdealversion}
 module load metis

@@ -11,7 +11,7 @@ Summary: Aspect install
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
-%define aspectdealversion/9.5.2
+%define aspectdealversion 9.5.2
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -98,14 +98,14 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
-mkdir -p %{INSTALL_DIR}
-mount -t tmpfs tmpfs %{INSTALL_DIR}
-
 module load cmake 
 module load dealii/%{aspectdealversion} \
 module load metis
 module load trilinos/%{aspecttrilinosversion}
 module load mumps netcdf phdf5
+
+mkdir -p %{INSTALL_DIR}
+mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ## get rid of that PACKAGEROOT
 make small big JCOUNT=20 \

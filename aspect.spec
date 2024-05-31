@@ -99,7 +99,7 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   #========================================
   
 module load cmake 
-module load dealii/%{aspectdealversion} \
+module load dealii/%{aspectdealversion}
 module load metis
 module load trilinos/%{aspecttrilinosversion}
 module load mumps netcdf phdf5

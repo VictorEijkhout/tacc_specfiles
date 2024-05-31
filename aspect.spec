@@ -12,6 +12,7 @@ Summary: Aspect install
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %define aspectdealversion 9.5.2
+%define aspecttrilinosversion 15.1.0
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -103,13 +104,19 @@ module load cmake
 module load dealii/%{aspectdealversion}
 module load metis
 module load trilinos/%{aspecttrilinosversion}
-module load mumps netcdf phdf5
+module load netcdf phdf5
 
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
 ## get rid of that PACKAGEROOT
-make small big JCOUNT=20 \
+make default_install JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

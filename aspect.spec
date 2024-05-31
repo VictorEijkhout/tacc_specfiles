@@ -11,7 +11,7 @@ Summary: Aspect install
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
-%define aspectdealversion/9.2.0-real
+%define aspectdealversion/9.5.2
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -43,7 +43,7 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 
 %define debug_package %{nil}
 %define _build_id_links none
-## %global _missing_build_ids_terminate_build 0
+## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
 %package %{PACKAGE}

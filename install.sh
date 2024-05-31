@@ -13,7 +13,7 @@ if [ $# -eq 0 -o $1 = "-h" ] ; then
 fi
 
 mpi=
-name=
+packagename=
 version=
 compfamily=
 compversion=
@@ -34,8 +34,8 @@ while [ $# -gt 1 ] ; do
         mpi=1 && shift
         echo "Install with MPI"
     elif [ $1 = "-p" ] ; then
-        shift && name=$1 && shift
-        echo "Install for package name <<$name>>"
+        shift && packagename=$1 && shift
+        echo "Install for package name <<$packagename>>"
     elif [ $1 = "-q" ] ; then
         shift && version=$1 && shift
         echo "Install for package version <<$version>>"
@@ -48,12 +48,12 @@ done
 ## package name and installed name
 ##
 specname=$1
-if [ -z "${name}" ] ; then
-    name=$specname
-fi
 # strip in ase of auto-complete
 specname=${specname%%.spec}
-echo "Installing package=$name from specfile=$specname"
+if [ -z "${packagename}" ] ; then
+    packagename=$specname
+fi
+echo "Installing package=$packagename from specfile=$specname"
 
 specdir=/admin/build/admin/rpms/frontera/SPECS
 if [ ! -d "${specdir}" ] ; then
@@ -67,11 +67,11 @@ taccfiles=${specdir}/victor_scripts/tacc_specfiles/
 ##
 if [ -z "${version}" ] ; then
     cmdline=$( cat ${taccfiles}/versions.txt \
-		   | awk '/^'${name}' / {print "pcheck="$1" version="$2" release="$3 }'
+		   | awk '/^'${packagename}' / {print "pcheck="$1" version="$2" release="$3 }'
 	   )
     eval $cmdline
     if [ -z "${version}" ] ; then
-	echo "ERROR could not extract version for <<${name}>>" && exit 1
+	echo "ERROR could not extract version for <<${packagename}>>" && exit 1
     fi
 fi
 
@@ -98,7 +98,7 @@ for config in COMPILERS ; do
     if [ ! -z "${compversion}" ] ; then
         if [[ ! ${cmpver} =~ ${compversion} ]] ; then cvr=0; fi ; fi
     if [ $cdo -eq 1 -a $cvr -eq 1 ] ; then
-        echo "building ${name}/${version} with compiler=${cmp}"
+        echo "building ${packagename}/${version} with compiler=${cmp}"
         ./build_rpm.sh -${cmp} -l \
             $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
             ${specfile}
@@ -107,13 +107,13 @@ for config in COMPILERS ; do
     fi
 done
 
-for p in ../RPMS/x86_64/tacc-${name}-*package-${version}-${release}* ; do
+for p in ../RPMS/x86_64/tacc-${packagename}-*package-${version}-${release}* ; do
     rpm -i --force --nodeps $p
 done
-for p in ../RPMS/x86_64/tacc-${name}-*modulefile-${version}-${release}* ; do
+for p in ../RPMS/x86_64/tacc-${packagename}-*modulefile-${version}-${release}* ; do
     rpm -i --force --nodeps $p
 done
 
 ls -l \
-  ../RPMS/x86_64/tacc-${name}-*package-${version}-${release}* \
-  ../RPMS/x86_64/tacc-${name}-*modulefile-${version}-${release}*
+  ../RPMS/x86_64/tacc-${packagename}-*package-${version}-${release}* \
+  ../RPMS/x86_64/tacc-${packagename}-*modulefile-${version}-${release}*

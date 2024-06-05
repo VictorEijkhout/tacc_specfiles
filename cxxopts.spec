@@ -15,8 +15,8 @@ Summary: Commandline options handling
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 1
-%define micro_version 1
+%define minor_version 2
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -41,7 +41,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jarro2783/cxxopts/releases
@@ -257,6 +257,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jun 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 3.2.1
 * Fri Jan 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: new setup
 * Wed Nov 29 2023 eijkhout <eijkhout@tacc.utexas.edu>

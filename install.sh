@@ -67,12 +67,22 @@ taccfiles=${specdir}/victor_scripts/tacc_specfiles/
 ##
 if [ -z "${version}" ] ; then
     cmdline=$( cat ${taccfiles}/versions.txt \
-		   | awk '/^'${packagename}' / {print "pcheck="$1" version="$2" release="$3 }'
-	   )
-    eval $cmdline
-    if [ -z "${version}" ] ; then
-	echo "ERROR could not extract version for <<${packagename}>>" && exit 1
+                   | awk '/^'${packagename}' / {print "pcheck="$1" version="$2" release="$3 }' \
+           )
+    if [ -z "${cmdline}" ] ; then
+        echo "ERROR not finding <<${packagename}>> in versions.txt"
+        exit 1
     fi
+    ## echo $cmdline
+    eval $cmdline
+    if [ "${pcheck}" != "${packagename}" ] ; then
+        echo "ERROR got line for <<${pcheck}>> instead of <<${packagename}>>"
+        exit 1
+    fi
+    if [ -z "${version}" ] ; then
+        echo "ERROR could not extract version for <<${packagename}>>" && exit 1
+    fi
+    echo "Found version <<${version}>> in versions.txt"
 fi
 
 ##

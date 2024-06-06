@@ -40,11 +40,9 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release:   1
 License:   BSD
 Group:     Development/Tools
-URL:       https://github.com/madler/nclncarg
+URL:       https://www.ncl.ucar.edu/
 Packager:  TACC - eijkhout@tacc.utexas.edu
-Source0:    %{pkg_base_name}-%{pkg_version}.tgz
-Source1:    ncl_gcc.sh
-Source2:    nclncarg_configure.sh
+Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
@@ -78,22 +76,6 @@ Nclncarg
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
 
 %setup -n %{pkg_base_name}-%{pkg_version}
-
-export CC=${TACC_CC}
-export CFLAGS="-O2 -ansi -std=c99 -fopenmp -fPIC"
-export CCOPTIONS="-O2 -ansi -std=c99 -fopenmp -fPIC"
-
-export CXX=${TACC_CXX}
-export CXXFLAGS="-O2 -ansi -std=c99 -fopenmp -fPIC"
-export CPPFLAGS="-DNDEBUG"
-
-export FC=${TACC_FC}
-export FFLAGS="-O2 -fPIC -fopenmp -fallow-argument-mismatch"
-
-export F90=${TACC_FC}
-export F90FLAGS="-O2 -fPIC -fopenmp -fallow-argument-mismatch"
-
-export NCARG=$(pwd)
 
 #-----------------------
 %endif # BUILD_PACKAGE |
@@ -148,24 +130,30 @@ module load hdf5/1.10 netcdf/4.9.1 udunits
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
-mount -t tmpfs tmpfs %{INSTALL_DIR}
+## mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ##
-## For once we spell it out
+## For now we spell it out
 ##
 if [ ! -d ngmath ] ; then
     echo "We are not in the source directory" && exit 1
+else
+    echo "Source directory listing:"
+    ls
 fi
-make clean || echo >/dev/null
-source ncl_${TACC_CC}.sh
-export NCARG=${pwd}
+
+## make clean || echo >/dev/null
+tar fxz %{_sourcedir}/ncl_scripts.tgz
+source ./ncl_${TACC_CC}.sh
+export NCARG=$( pwd )
+
 echo "Creating local configuration"
-./nclncarg_configure.sh
+./nclncarg_configure.sh -i %{INSTALL_DIR}
+
 echo "Making"
 make Everything
 
-
-popd
+## popd
 
 ################ end of new stuff
 

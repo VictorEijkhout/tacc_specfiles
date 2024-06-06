@@ -182,6 +182,38 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << 'EOF'
+local help_message = [[
+The %{name} module file defines the following environment variables:
+  TACC_NCLNCARG_BIN, TACC_NCLNCARG_INC, TACC_NCLNCARG_LIB
+
+Version %{version}
+]]
+help(help_message,"\n")
+
+whatis("Nclncarg: NCL NCARG")
+whatis("Version: %{version}")
+whatis("Category: application, data")
+whatis("Keywords: data")
+whatis("Description: nclncarg")
+whatis("URL: http://nclncarg/")
+
+-- Prerequisites
+-- depends_on("hdf5")
+
+--Prepend paths
+prepend_path("LD_LIBRARY_PATH","%{INSTALL_DIR}/lib")
+prepend_path("PATH",           "%{INSTALL_DIR}/bin")
+-- prepend_path("MANPATH",        "%{INSTALL_DIR}/share/man")
+
+--Env variables
+setenv("TACC_NCLNCARG_DIR", "%{INSTALL_DIR}")
+setenv("TACC_NCLNCARG_INC", "%{INSTALL_DIR}/include")
+setenv("TACC_NCLNCARG_LIB", "%{INSTALL_DIR}/lib")
+setenv("TACC_NCLNCARG_BIN", "%{INSTALL_DIR}/bin")
+
+EOF
+
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##

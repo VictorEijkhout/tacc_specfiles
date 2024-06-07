@@ -10,6 +10,7 @@ automake 1.16.5 1
 
 boost 1.85.0 6
 nclncarg git2024 1
+cmake 3.29.5 1
 cxxopts 3.2.0 4
 
 dealii 9.5.2 2

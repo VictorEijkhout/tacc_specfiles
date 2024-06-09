@@ -107,7 +107,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake 
+module load cmake/3
 module load hdf5/1.10.11
 
 ## get rid of that PACKAGEROOT

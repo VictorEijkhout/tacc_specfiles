@@ -161,7 +161,7 @@ make Everything
   ls %{INSTALL_DIR}
   cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-umount %{INSTALL_DIR}
+## umount %{INSTALL_DIR}
   
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 

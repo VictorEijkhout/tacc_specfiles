@@ -131,7 +131,7 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ## no prereqs
-#frontera: module load cmake
+#frontera: module load cmake/3.20
 
 ################ new stuff
 

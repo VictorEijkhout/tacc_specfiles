@@ -131,7 +131,6 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ## no prereqs
-#frontera: module load cmake/3.20
 
 ################ new stuff
 
@@ -144,7 +143,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 ## we only install with gcc
 module load gcc
 ## need newer version than the system
-module load cmake
+#frontera: module load cmake/3.20
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

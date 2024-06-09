@@ -142,14 +142,19 @@ else
     ls
 fi
 
-## make clean || echo >/dev/null
-tar fxz %{_sourcedir}/ncl_scripts.tgz
-source ./ncl_${TACC_CC}.sh
-export NCARG=$( pwd )
 
 echo "Creating local configuration"
-./nclncarg_configure.sh -i %{INSTALL_DIR}
+export NCARG=$( pwd )
 
+# where are the ncl customization scripts
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export NCLSCRIPTS=${VICTOR}/makefiles/%{pkg_base_name}
+
+# run the scripts
+source ${NCLSCRIPTS}/ncl_${TACC_CC}.sh
+${NCLSCRIPTS}/nclncarg_configure.sh -i %{INSTALL_DIR}
+
+# make...
 echo "Making"
 make Everything
 
@@ -157,9 +162,9 @@ make Everything
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 ## umount %{INSTALL_DIR}
   

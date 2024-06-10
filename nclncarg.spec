@@ -220,6 +220,10 @@ setenv("TACC_NCLNCARG_INC", "%{INSTALL_DIR}/include")
 setenv("TACC_NCLNCARG_LIB", "%{INSTALL_DIR}/lib")
 setenv("TACC_NCLNCARG_BIN", "%{INSTALL_DIR}/bin")
 
+depends_on( "hdf5/1.10" )
+depends_on( "netcdf" )
+depends_on( "udunits" )
+
 EOF
 
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'

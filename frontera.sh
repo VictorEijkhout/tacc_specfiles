@@ -3,12 +3,12 @@
 mkdir -p frontera_specfiles
 for s in *.spec ; do
     cat $s \
+        | sed -e '/FRONTERA/s/FRONTERA //' \
 	> frontera_specfiles/$s
 done
 
 cat install.sh \
     | sed -e 's/COMPILERS/i191,j19_9 i231,j21_9 g91,j19_9 g132,j21_9/' \
-    | sed -e '/FRONTERA/s/FRONTERA *//' \
     > frontera_specfiles/install.sh
 
 cd frontera_specfiles

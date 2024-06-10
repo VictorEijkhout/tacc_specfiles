@@ -7,12 +7,12 @@ for s in *.spec ; do
 	    -e 's/frontera/stampede3/' \
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc.inc/' \
 	    -e '/module load python3/d' \
+	    -e '/FRONTERA/d' \
 	> stampede3_specfiles/$s
 done
 
 cat install.sh \
     | sed -e 's/frontera/stampede3/' -e 's/COMPILERS/i240,j21_11 g132,j21_11/' \
-    | sed -e '/FRONTERA/d' \
     > stampede3_specfiles/install.sh
 
 cd stampede3_specfiles

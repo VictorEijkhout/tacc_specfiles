@@ -104,9 +104,6 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
-mkdir -p %{INSTALL_DIR}
-mount -t tmpfs tmpfs %{INSTALL_DIR}
-
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
@@ -115,7 +112,10 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load cmake 
 # module load python3
-pip install numpy
+pip3 install numpy
+
+mkdir -p %{INSTALL_DIR}
+mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 

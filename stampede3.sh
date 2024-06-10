@@ -11,8 +11,9 @@ for s in *.spec ; do
 done
 
 cat install.sh \
-| sed -e 's/frontera/stampede3/' -e 's/COMPILERS/i240,j21_11 g132,j21_11/' \
-> stampede3_specfiles/install.sh
+    | sed -e 's/frontera/stampede3/' -e 's/COMPILERS/i240,j21_11 g132,j21_11/' \
+    | sed -e '/FRONTERA/d' \
+    > stampede3_specfiles/install.sh
 
 cd stampede3_specfiles
 chmod +x install.sh

@@ -8,7 +8,7 @@ done
 
 cat install.sh \
     | sed -e 's/COMPILERS/i191,j19_9 i231,j21_9 g91,j19_9 g132,j21_9/' \
-    | sed -e 's/#frontera:/s/#frontera: //' \
+    | sed -e '/FRONTERA/s/FRONTERA *//' \
     > frontera_specfiles/install.sh
 
 cd frontera_specfiles

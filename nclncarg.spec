@@ -206,9 +206,6 @@ whatis("Keywords: data")
 whatis("Description: nclncarg")
 whatis("URL: http://nclncarg/")
 
--- Prerequisites
--- depends_on("hdf5")
-
 --Prepend paths
 prepend_path("LD_LIBRARY_PATH","%{INSTALL_DIR}/lib")
 prepend_path("PATH",           "%{INSTALL_DIR}/bin")
@@ -220,9 +217,11 @@ setenv("TACC_NCLNCARG_INC", "%{INSTALL_DIR}/include")
 setenv("TACC_NCLNCARG_LIB", "%{INSTALL_DIR}/lib")
 setenv("TACC_NCLNCARG_BIN", "%{INSTALL_DIR}/bin")
 
+-- Prerequisites
 depends_on( "hdf5/1.10" )
 depends_on( "netcdf" )
 depends_on( "udunits" )
+depends_on( "sz" )
 
 EOF
 

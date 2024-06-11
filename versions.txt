@@ -9,7 +9,6 @@ autoconf 2.72 1
 automake 1.16.5 1
 
 boost 1.85.0 6
-nclncarg git2024 1
 cmake 3.29.5 1
 cxxopts 3.2.0 4
 
@@ -37,6 +36,7 @@ mdspan git20240209 2
 metis 5.1.0.3 1
 mpl 0.3.0 5
 ncview 2.1.9 3
+nclncarg git2024 2
 
 netcdf 4.9.2 3
 netcdf-seq 4.9.2 3

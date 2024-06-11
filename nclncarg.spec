@@ -128,7 +128,7 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load hdf5/1.10 netcdf/4.9.1 udunits
+module load hdf5/1.10 netcdf/4.9.1 udunits sz 
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*

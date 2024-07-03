@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 21
-%define micro_version 1
+%define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -149,6 +149,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jul 03 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: mumps works with complex after all
 * Thu May 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: python3 fix
 * Fri Apr 26 2024 eijkhout <eijkhout@tacc.utexas.edu>

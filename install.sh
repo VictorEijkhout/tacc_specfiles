@@ -5,6 +5,7 @@ function usage() {
     echo "    [ -c g/i : limit to one family ] [ -v 123 : compiler specific version ]"
     echo "    [ -j jcount] [ -m (for mpi) ]"
     echo "    [ -p installed_package_name ] [ -q other_than_default_version ]"
+    echo "    [ -r (rpm install only) ]"
     echo "    specname"
 }
 
@@ -18,6 +19,7 @@ version=
 compfamily=
 compversion=
 jcount=8
+rpmonly=
 while [ $# -gt 1 ] ; do
     if [ $1 = "-h" ] ; then
         usage && return 0;
@@ -39,6 +41,8 @@ while [ $# -gt 1 ] ; do
     elif [ $1 = "-q" ] ; then
         shift && version=$1 && shift
         echo "Install for package version <<$version>>"
+    elif [ $1 = "-r" ] ; then
+	rpmonly=1 && shift
     else
 	echo "ERROR unrecognized option $1" && exit 1
     fi
@@ -96,26 +100,28 @@ fi
 ##
 ## build the rpm for all available compiler
 ##
-for config in COMPILERS ; do
-    cmp=${config%%,*}
-    cmpfam=${cmp%%[0-9]*} # single letter!
-    cmpver=${cmp##*[a-z]}
-    echo "compiler: $cmpfam+$cmpver"
-    mpi=${config##*,}
-    cdo=1 && cvr=1
-    if [ ! -z "${compfamily}" ] ; then
-        if [[ ! ${compfamily} =~ ${cmpfam} ]] ; then cdo=0; fi ; fi
-    if [ ! -z "${compversion}" ] ; then
-        if [[ ! ${cmpver} =~ ${compversion} ]] ; then cvr=0; fi ; fi
-    if [ $cdo -eq 1 -a $cvr -eq 1 ] ; then
-        echo "building ${packagename}/${version} with compiler=${cmp}"
-        ./build_rpm.sh -${cmp} -l \
-            $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
-            ${specfile}
-    else
-        echo "Skip compiler/version <<$compfamily/$compversion>>"
-    fi
-done
+if [ -z "${rpmonly}" ] ; then 
+    for config in COMPILERS ; do
+	cmp=${config%%,*}
+	cmpfam=${cmp%%[0-9]*} # single letter!
+	cmpver=${cmp##*[a-z]}
+	echo "compiler: $cmpfam+$cmpver"
+	mpi=${config##*,}
+	cdo=1 && cvr=1
+	if [ ! -z "${compfamily}" ] ; then
+            if [[ ! ${compfamily} =~ ${cmpfam} ]] ; then cdo=0; fi ; fi
+	if [ ! -z "${compversion}" ] ; then
+            if [[ ! ${cmpver} =~ ${compversion} ]] ; then cvr=0; fi ; fi
+	if [ $cdo -eq 1 -a $cvr -eq 1 ] ; then
+            echo "building ${packagename}/${version} with compiler=${cmp}"
+            ./build_rpm.sh -${cmp} -l \
+			   $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
+			   ${specfile}
+	else
+            echo "Skip compiler/version <<$compfamily/$compversion>>"
+	fi
+    done
+fi
 
 for p in ../RPMS/x86_64/tacc-${packagename}-*package-${version}-${release}* ; do
     rpm -i --force --nodeps $p

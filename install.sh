@@ -123,6 +123,7 @@ if [ -z "${rpmonly}" ] ; then
     done
 fi
 
+echo "Installing rpms"
 for p in ../RPMS/x86_64/tacc-${packagename}-*package-${version}-${release}* ; do
     rpm -i --force --nodeps $p
 done

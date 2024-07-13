@@ -47,6 +47,7 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %define debug_package %{nil}
 %define dbg           %{nil}
 %define _build_id_links none
+%global _python_bytecompile_errors_terminate_build 0
 
 %package %{PACKAGE}
 Summary: Pylauncher

@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -149,6 +149,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jul 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: no fftw with single, no hypre with complex
 * Wed Jul 03 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: mumps works with complex after all
 * Thu May 09 2024 eijkhout <eijkhout@tacc.utexas.edu>

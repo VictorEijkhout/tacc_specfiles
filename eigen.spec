@@ -303,9 +303,9 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Wed Jul 24 2024 eijkhout
+* Wed Jul 24 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: cmake discoverability
-* Mon Nov 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Mon Nov 14 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - relase 3: 3.4.0 and pkgconfig support
 * Fri Jun 07 2019 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : removing the bin directory definition

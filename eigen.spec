@@ -210,34 +210,6 @@ umount %{INSTALL_DIR}
   ########### Do Not Remove #############
   #######################################
   
-# Write out the modulefile associated with the application
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << EOF
-help( [[
-Module %{name} loads environmental variables defining
-the location of EIGEN directory, libraries, and binaries:
-TACC_EIGEN_DIR, TACC_EIGEN_INC, TACC_EIGEN_SHARE
-
-Version: %{version}
-]] )
-
-whatis( "EIGEN" )
-whatis( "Version: %{version}" )
-whatis( "Category: system, development" )
-whatis( "Keywords: Linear Algebra, C++" )
-whatis( "Description: C++ template library for linear algebra" )
-whatis( "URL: http://eigen.tuxfamily.org/" )
-
-local version =  "%{version}"
-local eigen_dir =  "%{INSTALL_DIR}"
-
-setenv("TACC_EIGEN_DIR",eigen_dir)
-setenv("TACC_EIGEN_INC",pathJoin( eigen_dir,"include","eigen3" ) )
-setenv("TACC_EIGEN_SHARE",pathJoin( eigen_dir,"share" ) )
-
-prepend_path( "PATH",pathJoin( eigen_dir,"share" ) )
-prepend_path( "PKG_CONFIG_PATH",pathJoin( eigen_dir,"share","pkgconfig" ) )
-EOF
-
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module1.0####################################################################
 ##

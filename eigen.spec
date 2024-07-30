@@ -59,7 +59,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4%{?dist}
+Release:   5%{?dist}
 License:   GNU
 Group:     Development/Tools
 Vendor:     Tuxfamily
@@ -275,6 +275,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jul 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: include path fix
 * Wed Jul 24 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: cmake discoverability
 * Mon Nov 14 2023 eijkhout <eijkhout@tacc.utexas.edu>

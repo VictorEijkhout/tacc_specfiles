@@ -221,61 +221,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-# Write out the modulefile associated with the application
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-local help_message=[[
-The FFTW 3.3 modulefile defines the following environment variables:
-TACC_FFTW3_DIR, TACC_FFTW3_LIB, and TACC_FFTW3_INC
-for the location of the FFTW %{version} distribution,
-libraries, and include files, respectively.
-
-To use the FFTW3 library, compile your source code with:
-
-	-I$TACC_FFTW3_INC
-
-and add the following options to the link step for serial codes:
-
-	-Wl,-rpath,$TACC_FFTW3_LIB  -L$TACC_FFTW3_LIB -lfftw3
-
-for MPI codes:
-
-	-Wl,-rpath,$TACC_FFTW3_LIB -L$TACC_FFTW3_LIB -lfftw3_mpi -lfftw3
-
-In addition, a single-precision fftw library is also available
-by adding an 'f' suffix to the library names above:
-
-(serial):	-L$TACC_FFTW3_LIB -lfftw3f
-(mpi): 		-L$TACC_FFTW3_LIB -lfftw3f_mpi -lfftw3f
-
-
-Version %{version}
-]]
-
-help(help_message,"\n")
-
-whatis("Name: FFTW 3.3")
-whatis("Version: %{version}")
-whatis("Category: library, mathematics")
-whatis("Keywords: Library, Mathematics, FFT, Parallel")
-whatis("URL: http://www.fftw.org")
-whatis("Description: Numerical library, contains discrete Fourier transformation")
-
-local fftw_dir="%{INSTALL_DIR}"
-
-setenv("TACC_FFTW3_DIR",fftw_dir)
-setenv("TACC_FFTW3_LIB",pathJoin(fftw_dir,"lib"))
-setenv("TACC_FFTW3_INC",pathJoin(fftw_dir,"include"))
-
---
--- Prepend paths
---
-prepend_path("LD_LIBRARY_PATH",pathJoin(fftw_dir,"lib"))
-prepend_path("PATH",pathJoin(fftw_dir,"bin"))
-prepend_path("MANPATH",pathJoin(fftw_dir,"man"))
-prepend_path("PKG_CONFIG_PATH",pathJoin(fftw_dir,"lib/pkgconfig"))
-
-EOF
-
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##

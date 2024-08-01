@@ -57,7 +57,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6%{?dist}
+Release:   7%{?dist}
 License:   GPL
 Group:     System Environment/Base
 URL:       http://www.fftw.org
@@ -336,6 +336,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Aut 01 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: cmake prefix path
 * Wed Oct 04 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: adding single precision
 * Thu Sep 28 2023 eijkhout <eijkhout@tacc.utexas.edu>

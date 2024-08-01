@@ -49,6 +49,7 @@ parmetis 4.0.3 2
 pcre2 10.43 2
 pylauncher 4.3 1
 
+siesta 5.0.1 1
 silo git2024 1
 swig 4.1.1 1
 sz 2.1.12 1

@@ -1,27 +1,6 @@
 #
 # Victor Eijkhout
-# took this over in July 2020
 #
-# ./build_rpm.sh -g91 -j19_9 -l fftw3-new
-# ./build_rpm.sh -g132 -j21_9 -l fftw3-new
-# ./build_rpm.sh -i191 -j19_9 -l fftw3-new
-# ./build_rpm.sh -i231 -j21_9 -l fftw3-new
-#
-
-# Important Build-Time Environment Variables (see name-defines.inc)
-# NO_PACKAGE=1    -> Do Not Build/Rebuild Package RPM
-# NO_MODULEFILE=1 -> Do Not Build/Rebuild Modulefile RPM
-#
-# Important Install-Time Environment Variables (see post-defines.inc)
-# VERBOSE=1       -> Print detailed information at install time
-# RPM_DBPATH      -> Path To Non-Standard RPM Database Location
-#
-# Typical Command-Line Example:
-# ./build_rpm.sh Bar.spec
-# cd ../RPMS/x86_64
-# rpm -i --relocate /tmprpm=/opt/apps Bar-package-1.1-1.x86_64.rpm
-# rpm -i --relocate /tmpmod=/opt/apps Bar-modulefile-1.1-1.x86_64.rpm
-# rpm -e Bar-package-1.1-1.x86_64 Bar-modulefile-1.1-1.x86_64
 
 Summary: A Nice little relocatable skeleton spec file example.
 
@@ -57,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   7%{?dist}
+Release:   8%{?dist}
 License:   GPL
 Group:     System Environment/Base
 URL:       http://www.fftw.org
@@ -287,6 +266,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Aug 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: restore singl
 * Thu Aug 01 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: cmake prefix path
 * Wed Oct 04 2023 eijkhout <eijkhout@tacc.utexas.edu>

@@ -106,7 +106,10 @@ if [ -z "${rpmonly}" ] ; then
 	cmpfam=${cmp%%[0-9]*} # single letter!
 	cmpver=${cmp##*[a-z]}
 	echo "compiler: $cmpfam+$cmpver"
-	mpi=${config##*,}
+	if [ ! -z "${mpi}" ] ; then
+	    mpi=${config##*,}
+	    echo "mpi: ${mpi}"	    
+	fi
 	cdo=1 && cvr=1
 	if [ ! -z "${compfamily}" ] ; then
             if [[ ! ${compfamily} =~ ${cmpfam} ]] ; then cdo=0; fi ; fi

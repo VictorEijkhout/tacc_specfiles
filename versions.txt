@@ -17,7 +17,7 @@ dealii-real 9.5.2 2
 
 eigen 3.4.0 5
 fftw2 2.1.5 1
-fftw3 3.3.10 8
+fftw3 3.3.10 9
 gklib git20240111 2
 
 hdf5 1.14.4 5

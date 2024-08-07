@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   8%{?dist}
+Release:   9%{?dist}
 License:   GPL
 Group:     System Environment/Base
 URL:       http://www.fftw.org
@@ -266,8 +266,10 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Aug 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: single really fixed.
 * Mon Aug 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 8: restore singl
+- release 8: restore single
 * Thu Aug 01 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: cmake prefix path
 * Wed Oct 04 2023 eijkhout <eijkhout@tacc.utexas.edu>

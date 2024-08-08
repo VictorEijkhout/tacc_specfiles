@@ -113,7 +113,8 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/hdf5
 
-module load cmake zlib
+module load cmake
+module load zlib
 
 ## get rid of that PACKAGEROOT
 make par JCOUNT=20 \

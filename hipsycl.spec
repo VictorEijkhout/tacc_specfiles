@@ -164,7 +164,8 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 module load python3
-module load boost cmake
+module load cmake
+module load boost
 rm -rf /tmp/hipsycl-build
 mkdir -p /tmp/hipsycl-build
 export HIPSYCL_SRC=`pwd`

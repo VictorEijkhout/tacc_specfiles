@@ -128,7 +128,8 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 module load python%{python_version}/%{python_module}
 
 module list
-for m in boost cmake \
+module load boost
+for m in cmake \
     gsl \
     p4est \
     ; do

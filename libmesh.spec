@@ -95,7 +95,8 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export COPTFLAGS="-g %{TACC_OPT} -O2"
 
-module load boost python%{python_version}
+module load boost
+module load python%{python_version}
 %if "%{use_petsc}" == "1"
 module load petsc/%{petscversion}
 %endif

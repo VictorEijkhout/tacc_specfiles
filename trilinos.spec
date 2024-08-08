@@ -129,7 +129,8 @@ module purge
   #========================================
   
 module load cmake 
-module load boost swig
+module load boost
+module load swig
 module load phdf5 pnetcdf
 %if "%{comp_fam}" == "gcc"
   module load mkl

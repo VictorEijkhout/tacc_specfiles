@@ -40,7 +40,7 @@ Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: %{pkg_base_name}-%{pkg_version}.tar.gz
+Source0: %{pkg_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none

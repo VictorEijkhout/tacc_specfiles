@@ -117,9 +117,11 @@ if [ -z "${rpmonly}" ] ; then
             if [[ ! ${cmpver} =~ ${compversion} ]] ; then cvr=0; fi ; fi
 	if [ $cdo -eq 1 -a $cvr -eq 1 ] ; then
             echo "building ${packagename}/${version} with compiler=${cmp}"
-            ./build_rpm.sh -${cmp} -l \
-			   $( if [ ! -z "$mpi" ] ; then echo -${mpi} ; fi ) \
-			   ${specfile}
+            cmdline="./build_rpm.sh -${cmp} -l \
+                           $( if [ ! -z ${mpi} ] ; then echo -${mpi} ; fi ) \
+                           ${specfile}"
+            echo "build command: ${cmdline}"
+            eval ${cmdline}
 	else
             echo "Skip compiler/version <<$compfamily/$compversion>>"
 	fi

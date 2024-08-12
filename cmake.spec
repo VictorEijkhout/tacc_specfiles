@@ -2,8 +2,6 @@
 # cmake.spec
 # Victor Eijkhout
 #
-# ./build_rpm.sh -i231 -l cmake.spec
-#
 
 Summary: Cmake
 

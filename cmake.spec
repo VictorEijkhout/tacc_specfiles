@@ -37,7 +37,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -149,6 +149,9 @@ FRONTERA module load cmake/3.20
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
+     $( if [ "${TACC_SYSTEM}" = "vista" ] ; then \
+            echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
+            ; fi ) \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -259,5 +262,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon Aug 12 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: extra ld path for vista
 * Fri Jun 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

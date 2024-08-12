@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -148,6 +148,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Aug 12 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: parallel includes fortran
 * Sat May 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5 : 1.14.4
 * Mon Aug 07 2023 eijkhout <eijkhout@tacc.utexas.edu>

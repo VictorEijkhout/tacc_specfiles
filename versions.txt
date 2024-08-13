@@ -8,7 +8,7 @@ aspect 2.5.0 2
 autoconf 2.72 1
 automake 1.16.5 1
 
-boost 1.85.0 6
+boost 1.85.0 7
 cmake 3.29.5 2
 cxxopts 3.2.0 4
 

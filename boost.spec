@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -110,12 +110,11 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/boost
-
-## module load petsc/3.18
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
+    $( if [ "${TACC_SYSTEM}" = "vista" ] ; then echo TOOLSET=nvidia ; fi ) \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -131,36 +130,6 @@ cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc example src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
-
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << EOF
-# help( [[
-# The BOOST modulefile defines the following environment variables:
-# TACC_BOOST_DIR, TACC_BOOST_LIB, and TACC_BOOST_INC 
-# for the location of the BOOST %{version} distribution, 
-# libraries, and include files, respectively.
-
-# Version %{pkg_version}
-# ]] )
-
-# whatis( "Name: Boost 'p4-est of octrees'" )
-# whatis( "Version: %{version}-${ext}" )
-# whatis( "Version-notes: ${boostversion}" )
-# whatis( "Category: library, mathematics" )
-# whatis( "URL: https://github.com/cburstedde/boost" )
-# whatis( "Description: octree support for dealii" )
-
-# local             boost_dir =     "%{INSTALL_DIR}"
-
-# prepend_path("LD_LIBRARY_PATH", pathJoin(boost_dir,"lib") )
-# prepend_path("PATH", pathJoin(boost_dir,"bin") )
-
-# setenv(          "BOOST_DIR",             boost_dir)
-# setenv(          "TACC_BOOST_DIR",        boost_dir)
-# setenv(          "TACC_BOOST_BIN",        pathJoin(boost_dir,"bin"))
-# setenv(          "TACC_BOOST_INC",        pathJoin(boost_dir,"include"))
-# setenv(          "TACC_BOOST_LIB",        pathJoin(boost_dir,"lib"))
-
-# EOF
 
 # cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.${version} << EOF
 # #%Module1.0#################################################
@@ -185,6 +154,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Aug 13 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: nvidia uses pgi toolset
 * Mon Apr 15 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: finally using correct compiler
 * Wed Apr 03 2024 eijkhout <eijkhout@tacc.utexas.edu>

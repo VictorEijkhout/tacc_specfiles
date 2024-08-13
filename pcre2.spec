@@ -127,9 +127,6 @@ module purge
   #========================================
   
 module load cmake
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*

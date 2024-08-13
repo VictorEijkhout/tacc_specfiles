@@ -82,7 +82,8 @@ ICL wrapper for C++ around BLAS
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif 
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -91,7 +92,8 @@ ICL wrapper for C++ around BLAS
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif 
+# BUILD_MODULEFILE |
 #--------------------------
 
 #---------------------------------------
@@ -166,7 +168,8 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+%endif 
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -197,7 +200,8 @@ EOF
   %endif
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif 
+# BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -211,7 +215,8 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif 
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -224,7 +229,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif 
+# BUILD_MODULEFILE |
 #--------------------------
 
 ########################################

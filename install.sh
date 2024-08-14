@@ -123,7 +123,7 @@ if [ -z "${rpmonly}" ] ; then
             echo "build command: ${cmdline}"
             eval ${cmdline}
 	else
-            echo "Skip compiler/version <<$compfamily/$compversion>>"
+            echo "Skip compiler/version <<$cmpfam/$cmpver>>"
 	fi
     done
 fi

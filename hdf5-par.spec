@@ -117,6 +117,10 @@ module load cmake
 module load zlib
 
 ## get rid of that PACKAGEROOT
+##
+## Vista nvidia has a problem with Fortran:
+## HDFFORTRAN=off
+##
 make par JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \

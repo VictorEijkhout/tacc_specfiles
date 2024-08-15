@@ -50,7 +50,8 @@ pcre2 10.43 2
 pylauncher 4.4 2
 
 siesta 5.0.1 1
-silo git2024 1
+# silo git2024 1
+silo 4.11.1 2
 swig 4.2.1 2
 sz 2.1.12 1
 szip 2.1.1 1

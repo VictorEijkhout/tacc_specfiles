@@ -9,8 +9,8 @@ Summary: Trilinos
 %define MODULE_VAR    TRILINOS
 
 # Create some macros (spec file variables)
-%define major_version 15
-%define minor_version 1
+%define major_version 16
+%define minor_version 0
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/trilinos/Trilinos
@@ -132,9 +132,15 @@ module load cmake
 module load boost
 module load swig
 module load phdf5 pnetcdf
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILHY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
+fi
 
 ################ new stuff
 
@@ -293,6 +299,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Aug 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: v16
 * Tue Mar 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: finally figured out netcdf
 * Tue Feb 06 2024 eijkhout <eijkhout@tacc.utexas.edu>

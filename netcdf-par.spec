@@ -107,7 +107,8 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/netcdf
 
-module load cmake phdf5
+module load cmake
+module load phdf5
 
 ## get rid of that PACKAGEROOT
 make par JCOUNT=20 \

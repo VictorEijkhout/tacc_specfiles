@@ -107,7 +107,8 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/netcdf-fortran
 
-module load cmake phdf5 pnetcdf
+module load cmake
+module load phdf5 pnetcdf
 
 ## get rid of that PACKAGEROOT
 make par JCOUNT=20 \

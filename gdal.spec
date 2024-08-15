@@ -130,7 +130,8 @@ mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-module load cmake jsonc proj swig zlib
+module load cmake
+module load jsonc proj swig zlib
 
 ################ new stuff
 

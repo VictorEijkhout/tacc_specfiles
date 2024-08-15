@@ -129,7 +129,8 @@ module load python%{python_version}/%{python_module}
 
 module list
 module load boost
-for m in cmake \
+module load cmake
+for m in \
     gsl \
     p4est \
     ; do

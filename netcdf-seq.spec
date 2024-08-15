@@ -107,7 +107,8 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake hdf5
+module load cmake
+module load hdf5
 
 ## get rid of that PACKAGEROOT
 make seq JCOUNT=20 \

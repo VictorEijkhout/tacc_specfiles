@@ -127,7 +127,8 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake mpfr
+module load cmake
+module load mpfr
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*

@@ -117,7 +117,8 @@ module purge
 # Load Compiler
 %include compiler-load.inc
 
-module load cmake antlr netcdf udunits
+module load cmake
+module load antlr netcdf udunits
 
 #------------------------
 %if %{?BUILD_PACKAGE}

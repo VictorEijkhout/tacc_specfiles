@@ -15,8 +15,8 @@ Summary: Unit testing framework for C++
 %define micro_version 1
 ## %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
-%define major_version git
-%define pkg_version %{major_version}
+## define major_version git
+## define pkg_version %{major_version}
 
 
 ### Toggle On/Off ###

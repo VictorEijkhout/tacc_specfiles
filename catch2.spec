@@ -40,13 +40,13 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/catchorg/Catch2/releases
 Group: TACC
 Packager: eijkhout@tacc.utexas.edu 
-Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
+Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
@@ -88,7 +88,8 @@ rpm -qi <rpm-name>
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -97,7 +98,8 @@ rpm -qi <rpm-name>
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -146,23 +148,35 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 module load cmake
-rm -rf /tmp/catch2-build
-mkdir -p /tmp/catch2-build
-export CATCH2_SRC=`pwd`
-pushd  /tmp/catch2-build
-cmake \
-    -D CMAKE_INSTALL_PREFIX::PATH=%{INSTALL_DIR} \
-    ${CATCH2_SRC}
-make
-make install
+
+################ new stuff
+
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## get rid of that PACKAGEROOT
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
 popd
+
+################ end of new stuff
 
   # Copy everything from tarball over to the installation directory
   cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   umount %{INSTALL_DIR}
   
 #-----------------------  
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 
 
@@ -180,44 +194,6 @@ popd
   ########### Do Not Remove #############
   #######################################
   
-# Write out the modulefile associated with the application
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-local help_msg=[[
-The %{MODULE_VAR} module defines the following environment variables:
-TACC_%{MODULE_VAR}_DIR, TACC_%{MODULE_VAR}_INC, TACC_%{MODULE_VAR}_BIN, 
-for the location of the %{MODULE_VAR} distribution, and include/binary files
-respectively.
-
-Usage:
-  module import catch2
-and use
-  #include "catch2/catch_all.hpp"
-in your code; compile with
-  ${CXX} -o yourprog yourprogr.cxx 
-    -I${TACC_CATCH2_INC} 
-    -L${TACC_CATCH2_LIB} -lCatch2Main -lCatch2
-]]
-
---help(help_msg)
-help(help_msg)
-
-whatis("Name: %{pkg_base_name}")
-whatis("Version: %{pkg_version}%{dbg}")
-whatis("URL:  https://github.com/catchorg/Catch2/releases")
-%if "%{is_debug}" == "1"
-setenv("TACC_%{MODULE_VAR}_DEBUG","1")
-%endif
-
--- Create environment variables.
-local catch2_dir           = "%{INSTALL_DIR}"
-
-setenv( "TACC_%{MODULE_VAR}_DIR",       catch2_dir)
-setenv( "TACC_%{MODULE_VAR}_INC",       pathJoin( catch2_dir,"include") )
-setenv( "TACC_%{MODULE_VAR}_LIB",       pathJoin( catch2_dir,"lib64") )
-
-prepend_path("LD_LIBRARY_PATH", pathJoin(catch2_dir,"lib64") )
-EOF
-  
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##
@@ -232,7 +208,8 @@ EOF
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
   %endif
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -246,7 +223,8 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 #---------------------------
 %if %{?BUILD_MODULEFILE}
@@ -258,7 +236,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################
@@ -283,6 +262,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Aug 15 2024 eijkhout <eijkhout@tacc.utexas.edu>u
+- release 3: back git -> 3.3.1
 * Tue Nov 15 2022 eijkhout <eijkhout@tacc.utexas.edu>u
 - release 2: 3.1.1 CANNOT BE BUILT WITH INTEL 19
 * Fri May 29 2020 eijkhout <eijkhout@tacc.utexas.edu>u

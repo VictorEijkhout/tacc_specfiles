@@ -147,11 +147,15 @@ module list
 ####
 #### MKL
 ####
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%else
-  export MKLFLAG="-mkl"
-%endif
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILHY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
+fi
 
 ##
 ## TBBROOT

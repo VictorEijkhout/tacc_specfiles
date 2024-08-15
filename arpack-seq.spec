@@ -112,9 +112,13 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/arpack
 
 module load cmake eigen
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILHY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    fi
+fi
 
 ## get rid of that PACKAGEROOT
 make seq JCOUNT=20 \

@@ -145,9 +145,15 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 ################ new stuff
 
 module load cmake
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILHY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
+fi
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts

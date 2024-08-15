@@ -98,9 +98,15 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load fftw3
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILHY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
+fi
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

@@ -11,8 +11,8 @@ Summary: Unit testing framework for C++
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 1
-%define micro_version 1
+%define minor_version 5
+%define micro_version 4
 ## %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ## define major_version git
@@ -263,7 +263,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Thu Aug 15 2024 eijkhout <eijkhout@tacc.utexas.edu>u
-- release 3: back git -> 3.3.1
+- release 3: back git -> 3.5.4
 * Tue Nov 15 2022 eijkhout <eijkhout@tacc.utexas.edu>u
 - release 2: 3.1.1 CANNOT BE BUILT WITH INTEL 19
 * Fri May 29 2020 eijkhout <eijkhout@tacc.utexas.edu>u

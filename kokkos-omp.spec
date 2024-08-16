@@ -9,7 +9,7 @@ Summary: Kokkos install, new setup
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 2
+%define minor_version 4
 %define micro_version 00
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -169,6 +169,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Aug 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 4.4.00
 * Mon Jan 29 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3 : omp & cuda versions
 * Tue Oct 03 2023 eijkhout <eijkhout@tacc.utexas.edu>

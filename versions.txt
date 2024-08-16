@@ -30,9 +30,9 @@ hdf5-1.10.11-seq 1.10.11 1
 
 hypre 2.30.0 2
 
-kokkos 4.2.00 3
-kokkos-omp 4.2.00 3
-kokkos-cuda 4.2.00 3
+kokkos 4.4.00 4
+kokkos-omp 4.4.00 4
+kokkos-cuda 4.4.00 4
 
 mdspan git20240209 2
 metis 5.1.0.3 1

@@ -44,7 +44,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jarro2783/silo/releases
@@ -267,6 +267,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Aug 20 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: shared libs & hdf5 support
 * Thu Aug 15 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: let's try 4.11.1
 * Fri Jun 07 2024 eijkhout <eijkhout@tacc.utexas.edu>

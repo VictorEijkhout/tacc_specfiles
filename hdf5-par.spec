@@ -123,6 +123,7 @@ module load zlib
 ##
 make par JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TESTING=OFF ; fi ) \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \

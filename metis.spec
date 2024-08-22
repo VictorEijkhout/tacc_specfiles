@@ -180,37 +180,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the METIS environment variables:
-# TACC_METIS_DIR, TACC_METIS_LIB, TACC_METIS_INC
-
-# There are examples programs in \$TACC_METIS_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: METIS")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/metis")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local metis_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_METIS_DIR",metis_dir)
-# setenv("TACC_METIS_LIB",pathJoin(metis_dir,"lib"))
-# setenv("TACC_METIS_INC",pathJoin(metis_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(metis_dir,"lib"))
-
-# EOF
-  
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##

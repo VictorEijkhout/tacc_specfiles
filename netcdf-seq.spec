@@ -40,7 +40,7 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
-## %global _missing_build_ids_terminate_build 0
+## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
 
@@ -105,15 +105,36 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+##
+## first install the C version
+##
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load cmake
 module load hdf5
+#/1.14
 
 ## get rid of that PACKAGEROOT
-make seq JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
+popd
+
+##
+## now install the Fortran version
+##
+pushd ${VICTOR}/makefiles/netcdf-fortran
+
+module load netcdf
+
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
+    PACKAGE=netcdf-fortran PACKAGEVERSION=4.6.1 \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \

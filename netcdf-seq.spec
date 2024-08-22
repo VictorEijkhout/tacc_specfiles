@@ -115,7 +115,8 @@ module load hdf5
 #/1.14
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
+make \
+    seq JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -132,7 +133,8 @@ pushd ${VICTOR}/makefiles/netcdf-fortran
 
 module load netcdf
 
-make configure build JCOUNT=10 \
+make \
+    seq JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     PACKAGE=netcdf-fortran PACKAGEVERSION=4.6.1 \
     PACKAGEROOT=/tmp \

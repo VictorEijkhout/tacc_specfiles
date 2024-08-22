@@ -129,6 +129,7 @@ popd
 ##
 ## now install the Fortran version
 ##
+tar fxz /admin/build/admin/rpms/stampede3/SOURCES/netcdf-fortran-4.6.1.tgz
 pushd ${VICTOR}/makefiles/netcdf-fortran
 
 module load netcdf
@@ -136,9 +137,9 @@ module load netcdf
 make \
     seq JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
-    PACKAGE=netcdf-fortran PACKAGEVERSION=4.6.1 \
+    PACKAGE=netcdf-fortran PACKAGEVERSION=4.6.1 NOMODULE=1 \
     PACKAGEROOT=/tmp \
-    SRCPATH=${SRCPATH} \
+    SRCPATH=${SRCPATH}/netcdf-fortran-4.6.1 \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 

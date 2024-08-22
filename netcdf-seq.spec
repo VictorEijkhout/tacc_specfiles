@@ -117,7 +117,7 @@ module load hdf5
 ## get rid of that PACKAGEROOT
 make \
     seq JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \
@@ -129,14 +129,14 @@ popd
 ##
 ## now install the Fortran version
 ##
-tar fxz /admin/build/admin/rpms/stampede3/SOURCES/netcdf-fortran-4.6.1.tgz
+tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-4.6.1.tgz
 pushd ${VICTOR}/makefiles/netcdf-fortran
 
 module load netcdf
 
 make \
     seq JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGE=netcdf-fortran PACKAGEVERSION=4.6.1 NOMODULE=1 \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH}/netcdf-fortran-4.6.1 \

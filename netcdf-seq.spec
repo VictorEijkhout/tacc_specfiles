@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -166,6 +166,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Aug 22 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: C and Fortran versions
 * Wed Jan 13 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: hdf5 version is going up
 * Tue Jan 09 2024 eijkhout <eijkhout@tacc.utexas.edu>

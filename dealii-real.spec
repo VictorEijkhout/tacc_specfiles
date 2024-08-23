@@ -13,17 +13,23 @@ Summary: Dealii install
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
+##
+## petsc handling
+##
 %define use_petsc 1
-## petsc 3.11 has been compiled with impi: release instead of release_mt
 %define dealiipetscversion 3.21
 ## as of petsc 3.15 slepc is rolled into petsc
 %define explicit_slepc 0
+
+##
+## python can be a problem
+##
 %define python_version 3
 # for gcc explicit python
 %define python_module 3.8.2
 
 %define use_trilinos 1
-%define dealiitrilinosversion 15.1.0
+%define dealiitrilinosversion 16.0.0
 
 %include rpm-dir.inc
 %include compiler-defines.inc

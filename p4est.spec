@@ -99,6 +99,10 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load petsc
 
+if [ "${TACC_SYSTEM}" = "vista" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
+    export LDFLAGS=-lm
+fi
+
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \

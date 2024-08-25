@@ -113,9 +113,12 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/pnetcdf
 
-## ls6 only?
-# module load autoconf/2.72
-# module load automake/1.16.5
+case ${TACC_SYSTEM} in
+    ( ls6 | stampede3 ) 
+      module load autoconf/2.72
+      module load automake/1.16.5
+    ;;
+esac
 
 # needed? netcdf 4.9.2 3
 

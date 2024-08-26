@@ -101,7 +101,7 @@ module load fftw3
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
 else
-    if [ "${TACC_FAMILHY_COMPILER}" = "gcc" ] ; then 
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
 	module load mkl
     else
 	export MKLFLAG="-mkl"

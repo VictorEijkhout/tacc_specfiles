@@ -124,7 +124,7 @@ export    SRCPATH=${SRCPATH}
 export     INSTALLPATH=%{INSTALL_DIR} 
 export    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}
-./install_all.sh -j 20 -v %{pkg_version} 
+./install_all.sh -4 -j 20 -v %{pkg_version} 
 popd
 
 ################ end of new stuff

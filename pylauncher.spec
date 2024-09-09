@@ -11,7 +11,7 @@ Summary: Pylauncher
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 5
+%define minor_version 6
 ## define micro_version 13
 
 %define pkg_version %{major_version}.%{minor_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/TACC/pylauncher
@@ -249,6 +249,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon Sep 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: core count detection
 * Fri Sep 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: fix ibrun launcher
 * Thu Aug 01 2024 eijkhout <eijkhout@tacc.utexas.edu>

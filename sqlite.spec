@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.sqlite.org/
@@ -279,5 +279,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: just because
 * Mon Jun 12 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

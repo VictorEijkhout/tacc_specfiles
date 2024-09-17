@@ -42,6 +42,7 @@ nclncarg git2024 2
 
 netcdf 4.9.2 4
 netcdf-seq 4.9.2 4
+netcdf-par 4.9.2 4
 netcdf-4.9.1-seq 4.9.1 1
 pnetcdf 1.13.0 1
 

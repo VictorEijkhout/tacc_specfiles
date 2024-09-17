@@ -11,8 +11,8 @@ Summary: Interface Generator
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 43
-%define micro_version 0
+%define minor_version 46
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 ## .%{minor_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.sqlite.org/
@@ -279,6 +279,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 17 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 3.46.1
 * Tue Sep 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: just because
 * Mon Jun 12 2023 eijkhout <eijkhout@tacc.utexas.edu>

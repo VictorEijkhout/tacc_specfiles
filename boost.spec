@@ -9,7 +9,7 @@ Summary: Boost install
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 85
+%define minor_version 86
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -154,6 +154,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Sep 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: 1.86
 * Tue Aug 13 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: nvidia uses pgi toolset
 * Mon Apr 15 2024 eijkhout <eijkhout@tacc.utexas.edu>

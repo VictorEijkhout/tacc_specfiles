@@ -107,14 +107,14 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+module load cmake
+module load hdf5
+#/1.14
+
 ##
 ## first install the C version
 ##
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
-
-module load cmake
-module load hdf5
-#/1.14
 
 ## get rid of that PACKAGEROOT
 make \

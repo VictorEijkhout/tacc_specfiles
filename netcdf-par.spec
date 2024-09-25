@@ -107,7 +107,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 module load cmake
-module load phdf5
+module load phdf5 pnetcdf
 
 ##
 ## first install the C version

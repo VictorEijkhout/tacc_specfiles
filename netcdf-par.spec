@@ -10,6 +10,7 @@ Summary: Netcdf install
 %define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+%define pkgf_version 4.6.1
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -116,6 +117,26 @@ make par JCOUNT=20 \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
+popd
+
+##
+## now install the Fortran version
+##
+tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.tgz
+pushd ${VICTOR}/makefiles/netcdf-fortran
+
+module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
+module load netcdf
+
+make \
+    seq JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGE=netcdf-fortran PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
+    PACKAGEROOT=/tmp \
+    SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 

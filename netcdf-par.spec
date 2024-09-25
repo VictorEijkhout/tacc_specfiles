@@ -106,10 +106,13 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/netcdf
-
 module load cmake
 module load phdf5
+
+##
+## first install the C version
+##
+pushd ${VICTOR}/makefiles/netcdf
 
 ## get rid of that PACKAGEROOT
 make par JCOUNT=20 \

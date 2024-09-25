@@ -40,10 +40,15 @@ mpl 0.3.0 5
 ncview 2.1.9 3
 nclncarg git2024 2
 
+# sequential
 netcdf 4.9.2 4
 netcdf-seq 4.9.2 4
+# parallel
+parallelnetcdf 4.9.2 4
 netcdf-par 4.9.2 4
+# legacy version
 netcdf-4.9.1-seq 4.9.1 1
+# pnetcdf is something else entirely
 pnetcdf 1.13.0 1
 
 p4est 2.8.6 4

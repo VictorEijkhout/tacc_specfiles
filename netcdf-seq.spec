@@ -139,7 +139,7 @@ echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
 ls ${NETCDF_MODDIR}
 ls ${NETCDF_MODDIR}/netcdf
 module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
-module load netcdf
+module load netcdf/%{pkg_version}
 
 make \
     seq JCOUNT=10 \

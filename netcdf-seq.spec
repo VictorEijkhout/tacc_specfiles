@@ -138,6 +138,7 @@ NETCDF_MODDIR=%{MODULE_DIR}/../
 echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
 ls ${NETCDF_MODDIR}
 ls ${NETCDF_MODDIR}/netcdf
+# should we use the module dir, not in build root?
 module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
 module load netcdf/%{pkg_version}
 

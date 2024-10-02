@@ -1,8 +1,8 @@
 Summary: Netcdf install
 
 # Give the package a base name
-%define pkg_base_name pnetcdf
-%define MODULE_VAR    PNETCDF
+%define pkg_base_name parallelnetcdf
+%define MODULE_VAR    PARALLELNETCDF
 
 # Create some macros (spec file variables)
 %define major_version 4
@@ -121,7 +121,7 @@ make par JCOUNT=20 \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIRSET=%{MODULE_DIR}
 
 popd
 
@@ -131,8 +131,12 @@ popd
 tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.tgz
 pushd ${VICTOR}/makefiles/netcdf-fortran
 
-module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
-module load netcdf
+NETCDF_MODDIR=%{MODULE_DIR}/../
+echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
+ls ${NETCDF_MODDIR}
+ls ${NETCDF_MODDIR}/%{pkg_base_name}
+module use %{MODULE_DIR}/../
+module load parallelnetcdf/%{pkg_version}
 
 make \
     par JCOUNT=10 \
@@ -149,6 +153,7 @@ popd
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+cp -r %{MODULE_DIR}/* $RPM_BUILD_ROOT/%{MODULE_DIR}/
 
 umount %{INSTALL_DIR}
 

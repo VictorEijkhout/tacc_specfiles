@@ -124,7 +124,7 @@ make \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIRSET=%{MODULE_DIR}
 
 popd
 
@@ -134,6 +134,10 @@ popd
 tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.tgz
 pushd ${VICTOR}/makefiles/netcdf-fortran
 
+NETCDF_MODDIR=%{MODULE_DIR}/../
+echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
+ls ${NETCDF_MODDIR}
+ls ${NETCDF_MODDIR}/netcdf
 module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
 module load netcdf
 
@@ -144,12 +148,13 @@ make \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIRSET=%{MODULE_DIR}
 
 popd
 
 ################ end of new stuff
 
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 

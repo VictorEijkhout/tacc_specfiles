@@ -114,7 +114,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
-    $( if [ "${TACC_SYSTEM}" = "vista" ] ; then echo TOOLSET=pgi ; fi ) \
+    $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TOOLSET=pgi ; fi ) \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

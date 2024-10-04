@@ -135,7 +135,7 @@ NETCDF_MODDIR=%{MODULE_DIR}/../
 echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
 ls ${NETCDF_MODDIR}
 ls ${NETCDF_MODDIR}/%{pkg_base_name}
-module use %{MODULE_DIR}/../
+module use ${RPM_MODULE_ROO}/%{MODULE_DIR}/../
 module load parallelnetcdf/%{pkg_version}
 
 make \

@@ -10,7 +10,7 @@ Summary: Interface Generator
 %define MODULE_VAR    JSONC
 
 # Create some macros (spec file variables)
-%define major_version git20240209
+%define major_version git20241004
 # define minor_version 2
 # define micro_version 1
 

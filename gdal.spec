@@ -11,8 +11,8 @@ Summary: Interface Generator
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 7
-%define micro_version 0
+%define minor_version 9
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 ## .%{minor_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.gdal.org/
@@ -132,6 +132,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module load cmake
 module load jsonc proj swig zlib
+module load swig
 
 ################ new stuff
 
@@ -280,5 +281,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Oct 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 3.9.2
 * Mon Jun 12 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

@@ -10,9 +10,9 @@ Summary: Interface Generator
 %define MODULE_VAR    JSONC
 
 # Create some macros (spec file variables)
-%define major_version git
-%define minor_version 2
-%define micro_version 1
+%define major_version git20240209
+# define minor_version 2
+# define micro_version 1
 
 %define pkg_version %{major_version}
 ## .%{minor_version}.%{micro_version}
@@ -280,5 +280,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Oct 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: git pull
 * Mon Jun 12 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

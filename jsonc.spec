@@ -10,13 +10,12 @@ Summary: Interface Generator
 %define MODULE_VAR    JSONC
 
 # Create some macros (spec file variables)
-%define major_version git20241004
-# define minor_version 2
+%define major_version 0
+%define minor_version 18
 # define micro_version 1
 
-%define pkg_version %{major_version}
-## .%{minor_version}.%{micro_version}
-## .%{minor_version}
+%define pkg_version %{major_version}.%{minor_version}
+## {micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -37,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.jsonc.org/
@@ -179,37 +178,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the JSONC environment variables:
-# TACC_JSONC_DIR, TACC_JSONC_LIB, TACC_JSONC_INC
-
-# There are examples programs in \$TACC_JSONC_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: JSONC")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/jsonc")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local jsonc_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_JSONC_DIR",jsonc_dir)
-# setenv("TACC_JSONC_LIB",pathJoin(jsonc_dir,"lib"))
-# setenv("TACC_JSONC_INC",pathJoin(jsonc_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(jsonc_dir,"lib"))
-
-# EOF
-  
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##
@@ -280,6 +248,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Oct 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 0.18 version, fixed for intel23
 * Fri Oct 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: git pull
 * Mon Jun 12 2023 eijkhout <eijkhout@tacc.utexas.edu>

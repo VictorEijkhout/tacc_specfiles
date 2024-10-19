@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/siesta
 #Source1: siesta-setup.sh
@@ -142,5 +142,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat Oct 19 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: added bin dir
 * Thu Aug 01 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

@@ -33,7 +33,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -132,7 +132,7 @@ popd
 ## now install the Fortran version
 ##
 tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.tgz
-pushd ${VICTOR}/makefiles/netcdf-fortran
+pushd ${VICTOR}/makefiles/netcdff
 
 NETCDF_MODDIR=%{MODULE_DIR}/../
 echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
@@ -175,6 +175,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Oct 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: trying to fix fortran
 * Thu Aug 22 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: C and Fortran versions
 * Wed Jan 13 2024 eijkhout <eijkhout@tacc.utexas.edu>

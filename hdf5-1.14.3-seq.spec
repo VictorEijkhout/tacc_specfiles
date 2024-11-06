@@ -1,6 +1,15 @@
 # HDF5 sequential sepcfile
 # Victor Eijkhout
 
+####
+#### spec file for 1.14.3
+#### as a non-default version
+#### while we are up to 1.14.4
+#### already
+####
+#### DO NOT UPDATE THIS SPEC FILE; WORK WITH hdf5-seq.spec FOR FUTURE UPDATES
+####
+
 Summary: Hdf5 install
 
 # Give the package a base name

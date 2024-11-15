@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Vendor: https://github.com/ornladios/MFEM
 Group: Development/Numerical-Libraries
@@ -154,5 +154,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Nov 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: remake for hdf5 dependency
 * Thu Sep 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1 : first release 

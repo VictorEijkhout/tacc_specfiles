@@ -7,6 +7,8 @@
 #### while we are up to 1.14.4
 #### already
 ####
+#### install.sh -p hdf5 -q 1.14.3 hdf5-1.14.3-seq
+####
 #### DO NOT UPDATE THIS SPEC FILE; WORK WITH hdf5-seq.spec FOR FUTURE UPDATES
 ####
 
@@ -136,6 +138,16 @@ make seq JCOUNT=20 \
 popd
 
 ################ end of new stuff
+
+#
+# weird fix for difference between
+# autotools and cmake install
+#
+pushd %{INSTALL_DIR}/lib
+  ls
+  ln -s libhdf_5hl_fortran.so libhdf5hl_fortran.so
+  ln -s libhdf_5hl_fortran.so.310 libhdf5hl_fortran.so.310
+popd
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/

@@ -126,6 +126,7 @@ if [ -z "${rpmonly}" ] ; then
 	    # CUDA:
 	    # strip compiler and mpi
 	    cuda=${config##*,}
+	    cuda=${cuda#k}
 	    echo "cuda: ${cuda}"
 	fi
 	
@@ -138,7 +139,7 @@ if [ -z "${rpmonly}" ] ; then
             echo "building ${packagename}/${version} with compiler=${cmp}"
             cmdline="./build_rpm.sh -${cmp} -l \
                            $( if [ ! -z ${mpi} ] ; then echo -${mpi} ; fi ) \
-                           $( if [ ! -z ${cuda} ] ; then echo -${cuda} ; fi ) \
+                           $( if [ ! -z ${cuda} ] ; then echo --cuda=${cuda} ; fi ) \
                            ${specfile}"
             echo "build command: ${cmdline}"
             eval ${cmdline}

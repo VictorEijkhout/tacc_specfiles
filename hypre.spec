@@ -6,7 +6,7 @@ Summary: Hypre install
 
 # Create some macros (spec file variables)
 %define major_version 2
-%define minor_version 30
+%define minor_version 31
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Vendor: https://github.com/hypre-space/hypre
 #Source1: hypre-setup.sh
@@ -144,6 +144,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 2.31.0
 * Mon Mar 18 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: because 1 is already somehow on ls6
 * Tue Jan 02 2024 eijkhout <eijkhout@tacc.utexas.edu>

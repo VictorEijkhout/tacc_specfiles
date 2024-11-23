@@ -6,8 +6,8 @@ Summary: Adios2 install
 
 # Create some macros (spec file variables)
 %define major_version 2
-%define minor_version 9
-%define micro_version 1
+%define minor_version 10
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Vendor: https://github.com/ornladios/ADIOS2
 Group: Development/Numerical-Libraries
@@ -144,6 +144,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 2.10.2
 * Thu Sep 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1 : first release 
 

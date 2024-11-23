@@ -3,7 +3,7 @@
 function usage() {
     echo "Usage: $0 "
     echo "    [ -c g/i : limit to one family ] [ -v 123 : compiler specific version ]"
-    echo "    [ -j jcount] [ -m (for mpi) ]"
+    echo "    [ -j jcount] [ -m (for mpi) ] [ -u (for cuda) ]"
     echo "    [ -p installed_package_name ] [ -q other_than_default_version ]"
     echo "    [ -r (rpm install only) ]"
     echo "    specname"
@@ -13,6 +13,7 @@ if [ $# -eq 0 -o $1 = "-h" ] ; then
     usage && exit 0
 fi
 
+cuda=
 mpi=
 packagename=
 version=
@@ -35,6 +36,9 @@ while [ $# -gt 1 ] ; do
     elif [ $1 = "-m" ] ; then
         mpi=1 && shift
         echo "Install with MPI"
+    elif [ $1 = "-u" ] ; then
+        cuda=1 && shift
+        echo "Install with CUDA"
     elif [ $1 = "-p" ] ; then
         shift && packagename=$1 && shift
         echo "Install for package name <<$packagename>>"
@@ -102,12 +106,19 @@ fi
 ##
 if [ -z "${rpmonly}" ] ; then 
     for config in COMPILERS ; do
+
+	# compiler:
+	# strip mpi and cuda
 	cmp=${config%%,*}
 	cmpfam=${cmp%%[0-9]*} # single letter!
 	cmpver=${cmp##*[a-z]}
 	echo "compiler: $cmpfam+$cmpver"
+
 	if [ ! -z "${mpi}" ] ; then
-	    mpi=${config##*,}
+	    # MPI:
+	    # strip compiler and cuda
+	    mpi=${config#*,}
+	    mpi=${config%%,*}
 	    echo "mpi: ${mpi}"	    
 	fi
 	cdo=1 && cvr=1

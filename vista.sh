@@ -12,7 +12,9 @@ for s in *.spec ; do
 done
 
 cat install.sh \
-    | sed -e 's/frontera/vista/' -e 's/COMPILERS/n247,o5_05 g142,o5_05/' -e 's/x86_64/aarch64/' \
+    | sed -e 's/frontera/vista/' \
+	  -e 's/COMPILERS/n247,o5_05,k126 g142,o5_05,k126/' \
+	  -e 's/x86_64/aarch64/' \
     > vista_specfiles/install.sh
 
 cd vista_specfiles

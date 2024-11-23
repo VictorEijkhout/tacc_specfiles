@@ -126,7 +126,7 @@ module load phdf5
     ################ end of new stuff
 
     cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-    cp -r data examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+    cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 umount %{INSTALL_DIR}
 

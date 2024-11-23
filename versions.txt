@@ -45,6 +45,7 @@ kokkos-cuda 4.4.00 4
 
 mdspan git20240209 2
 metis 5.1.0.3 1
+mfem 4.7 3
 mfem-cpu 4.7 3
 mfem-gpu 4.7 3
 mpl 0.3.0 5

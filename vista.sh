@@ -5,7 +5,7 @@ for s in *.spec ; do
     cat $s \
 	| sed \
 	    -e 's/frontera/vista/' \
-	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-home1.inc/' \
+	    -e '/noreloc/s/name-defines.*$/name-defines-cuda-noreloc-home1.inc/' \
 	    -e '/module load python3/d' \
 	    -e '/FRONTERA/d' \
 	> vista_specfiles/$s

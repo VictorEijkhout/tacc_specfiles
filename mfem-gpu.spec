@@ -16,9 +16,6 @@ Summary: Mfem install
 %include compiler-defines.inc
 %include mpi-defines.inc
 
-%define cuda_major_version 12
-%define cuda_minor_version 6
-%define cuda_version       %{cuda_major_version}.%{cuda_minor_version}
 %include cuda-defines.inc
 
 ########################################

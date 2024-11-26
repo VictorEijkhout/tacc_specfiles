@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Vendor: https://github.com/ornladios/MFEM
 Group: Development/Numerical-Libraries
@@ -154,6 +154,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: install mishap
 * Sat Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: keep in sync cpu/gpu
 * Thu Nov 14 2024 eijkhout <eijkhout@tacc.utexas.edu>

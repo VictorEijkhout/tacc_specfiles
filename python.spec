@@ -1,4 +1,4 @@
-Summary: Siesta install
+Summary: Python install
 
 # Give the package a base name
 %define pkg_base_name python

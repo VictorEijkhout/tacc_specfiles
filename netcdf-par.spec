@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -171,6 +171,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Now 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: rebuild for fortran module name
 * Wed Oct 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: trying to fix fortran
 * Wed Jan 13 2024 eijkhout <eijkhout@tacc.utexas.edu>

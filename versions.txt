@@ -53,11 +53,11 @@ ncview 2.1.9 3
 nclncarg git2024 2
 
 # sequential
-netcdf 4.9.2 5
-netcdf-seq 4.9.2 5
+netcdf 4.9.2 6
+netcdf-seq 4.9.2 6
 # parallel
-parallelnetcdf 4.9.2 5
-netcdf-par 4.9.2 5
+parallelnetcdf 4.9.2 6
+netcdf-par 4.9.2 6
 # legacy version
 netcdf-4.9.1-seq 4.9.1 1
 # pnetcdf is something else entirely

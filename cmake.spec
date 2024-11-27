@@ -11,8 +11,8 @@ Summary: Cmake
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 29
-%define micro_version 5
+%define minor_version 30
+%define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -260,6 +260,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 3.30
 * Mon Aug 12 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: extra ld path for vista
 * Fri Jun 07 2024 eijkhout <eijkhout@tacc.utexas.edu>

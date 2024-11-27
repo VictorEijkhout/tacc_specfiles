@@ -175,7 +175,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Now 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: rebuild for fortran module name
 * Wed Oct 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: trying to fix fortran

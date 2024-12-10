@@ -48,6 +48,7 @@ metis 5.1.0.3 1
 mfem 4.7 4
 mfem-cpu 4.7 4
 mfem-gpu 4.7 4
+mpfr 4.2.1 2
 mpl 0.3.0 5
 ncview 2.1.9 3
 nclncarg git2024 2
@@ -56,8 +57,9 @@ nclncarg git2024 2
 netcdf 4.9.2 6
 netcdf-seq 4.9.2 6
 # parallel
-parallelnetcdf 4.9.2 6
 netcdf-par 4.9.2 6
+parallelnetcdf 4.9.2 6
+parallel-netcdf 4.9.2 6
 # legacy version
 netcdf-4.9.1-seq 4.9.1 1
 # pnetcdf is something else entirely

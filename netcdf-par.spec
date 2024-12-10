@@ -131,21 +131,21 @@ popd
 tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.tgz
 pushd ${VICTOR}/makefiles/netcdff
 
-NETCDF_MODDIR=%{MODULE_DIR}/../
-echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
-ls ${NETCDF_MODDIR}
-ls ${NETCDF_MODDIR}/%{pkg_base_name}
-module use ${RPM_MODULE_ROO}/%{MODULE_DIR}/../
-module load parallelnetcdf/%{pkg_version}
+    NETCDF_MODDIR=%{MODULE_DIR}/../
+    # echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
+    # ls ${NETCDF_MODDIR}
+    # ls ${NETCDF_MODDIR}/%{pkg_base_name}
+    module use ${RPM_MODULE_ROO}/%{MODULE_DIR}/../
+    module load parallel-netcdf/%{pkg_version}
 
-make \
-    par JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
-    PACKAGEROOT=/tmp \
-    SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
-    INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    make \
+	par JCOUNT=10 \
+	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
+	PACKAGEROOT=/tmp \
+	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
+	INSTALLPATH=%{INSTALL_DIR} \
+	MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 
 popd
 

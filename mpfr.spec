@@ -12,7 +12,7 @@ Summary: Prereq for MPFR
 # Create some macros (spec file variables)
 %define major_version 4
 %define minor_version 2
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/mpfr
@@ -278,5 +278,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Dec 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 4.2.1
 * Fri May 26 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 22
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -149,7 +149,9 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Oct 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Tue Dec 17 https://julialang.org/2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 14 up to 3.22.1
+* Mon Oct 07 https://julialang.org/2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 13 up to 3.22.0
 * Fri Sep 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 12 UNRELEASED up to 3.21.5

@@ -38,6 +38,7 @@ hdf5-1.14.3-seq 1.14.3 5
 hypre 2.31.0 3
 jsonc 0.18 3
 #git20241004 2
+julia git2024 1
 
 kokkos 4.4.00 4
 kokkos-omp 4.4.00 4
@@ -66,7 +67,7 @@ netcdf-4.9.1-seq 4.9.1 1
 pnetcdf 1.13.0 1
 
 p4est 2.8.6 4
-petsc 3.22.0 13
+petsc 3.22.1 14
 parmetis 4.0.3 2
 pcre2 10.43 2
 pgplot 5.2 1

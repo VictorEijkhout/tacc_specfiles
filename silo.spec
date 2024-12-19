@@ -161,6 +161,14 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+%if "%{comp_fam}" == "intel"
+  echo "WARNING"
+  echo "WARNING Intel Fortran set hard to ifort"
+  echo "WARNING"
+  export FC=ifort
+  export TACC_FC=ifort
+%endif
+
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \

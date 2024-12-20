@@ -149,9 +149,9 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Dec 17 https://julialang.org/2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Tue Dec 17 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 14 up to 3.22.1
-* Mon Oct 07 https://julialang.org/2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Mon Oct 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 13 up to 3.22.0
 * Fri Sep 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 12 UNRELEASED up to 3.21.5

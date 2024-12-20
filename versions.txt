@@ -44,7 +44,7 @@ kokkos 4.4.00 4
 kokkos-omp 4.4.00 4
 kokkos-cuda 4.4.00 4
 
-libmesh 1.8.0-rc1 2
+libmesh 1.8.0 2
 mdspan git20240209 2
 metis 5.1.0.3 1
 mfem 4.7 4

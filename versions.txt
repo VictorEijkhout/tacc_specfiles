@@ -75,6 +75,8 @@ pgplot 5.2 1
 proj 9.3.1 2
 pylauncher 4.6 4
 python 3.12.4 1
+rangev3 0.12.0 1
+
 siesta 5.0.1 2
 siesta-git git20241011 1
 # silo git2024 1

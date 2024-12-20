@@ -39,7 +39,7 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release: 2
 License: GPLv2
 Group: Development/Numerical-Libraries
-Source: %{pkg_base_name}-%{pkg_version}.tar.gz
+Source: %{pkg_base_name}-%{pkg_version}.tgz
 URL: https://github.com/libMesh
 Vendor: CFDlab UT Austin
 Packager: TACC -- eijkhout@tacc.utexas.edu
@@ -127,10 +127,6 @@ umount %{INSTALL_DIR}
 
 
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
-
-#--------------------------
-%endif # BUILD_MODULEFILE |
-#--------------------------
 
 #------------------------
 %if %{?BUILD_PACKAGE}

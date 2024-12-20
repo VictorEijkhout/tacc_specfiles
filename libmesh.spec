@@ -46,7 +46,7 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 
 %define debug_package %{nil}
 %define _build_id_links none
-## %global _missing_build_ids_terminate_build 0
+## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
 %package %{PACKAGE}
@@ -137,7 +137,8 @@ umount %{INSTALL_DIR}
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -149,7 +150,8 @@ umount %{INSTALL_DIR}
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 %clean

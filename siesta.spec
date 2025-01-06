@@ -1,14 +1,12 @@
 Summary: Siesta install
 
-# ./build_rpm.sh -i231 -j21_9 -l siesta-new
-
 # Give the package a base name
 %define pkg_base_name siesta
 %define MODULE_VAR    SIESTA
 
 # Create some macros (spec file variables)
 %define major_version 5
-%define minor_version 0
+%define minor_version 2
 %define micro_version 1
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -32,7 +30,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Vendor: https://github.com/cburstedde/siesta
 #Source1: siesta-setup.sh
@@ -142,6 +140,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jan 06 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 5.2.1 with wannier
 * Sat Oct 19 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: added bin dir
 * Thu Aug 01 2024 eijkhout <eijkhout@tacc.utexas.edu>

@@ -10,10 +10,6 @@ Summary: Libmesh install
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
-%define use_petsc 1
-%define petscversion 3.22
-%define use_trilinos 0
-%define trilinosversion 12.18.1
 %define python_version 3
 
 %include rpm-dir.inc

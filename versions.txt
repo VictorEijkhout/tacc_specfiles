@@ -77,7 +77,7 @@ pylauncher 4.6 4
 python 3.12.4 1
 rangev3 0.12.0 1
 
-siesta 5.0.1 2
+siesta 5.2.1 3
 siesta-git git20241011 1
 # silo git2024 1
 silo 4.11.1 3

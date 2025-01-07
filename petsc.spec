@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 22
-%define micro_version 1
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 14%{?dist}
+Release: 15%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -124,7 +124,7 @@ export    SRCPATH=${SRCPATH}
 export     INSTALLPATH=%{INSTALL_DIR} 
 export    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}
-./install_all.sh -4 -j 20 -v %{pkg_version} 
+./install_all.sh PETSCCUDAFLAG -4 -j 20 -v %{pkg_version} 
 popd
 
 ################ end of new stuff
@@ -149,6 +149,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jan 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 15 to 3.22.2, cuda install
 * Tue Dec 17 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 14 up to 3.22.1
 * Mon Oct 07 2024 eijkhout <eijkhout@tacc.utexas.edu>

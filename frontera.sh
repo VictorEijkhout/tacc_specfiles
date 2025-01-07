@@ -4,6 +4,7 @@ mkdir -p frontera_specfiles
 for s in *.spec ; do
     cat $s \
         | sed -e '/FRONTERA/s/FRONTERA //' \
+	    -e 's/PETSCCUDAFLAG/-c/'
 	> frontera_specfiles/$s
 done
 

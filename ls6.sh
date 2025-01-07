@@ -5,6 +5,7 @@ for s in *.spec ; do
     cat $s \
 	| sed \
 	    -e 's/frontera/ls6/' \
+	    -e 's/PETSCCUDAFLAG/-c/'
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-scratch.inc/' \
 	    -e '/FRONTERA/d' \
 	> ls6_specfiles/$s

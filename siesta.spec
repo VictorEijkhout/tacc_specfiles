@@ -93,6 +93,26 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+##
+## the follwing edits are needed for Frontera
+## I'm guessing they don't hurt to apply in general
+##
+  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libfdf"
+sed -i ./Config/cmake/Modules/FindCustomlibfdf.cmake \
+    -e '/REPOSITORY/s?libfdf?libfdf.git?'
+
+  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/xmlf90"
+sed -i ./Config/cmake/Modules/FindCustomxmlf90.cmake \
+    -e '/REPOSITORY/s?xmlf90?xmlf90.git?'
+
+  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libpsml"
+sed -i ./Config/cmake/Modules/FindCustomlibpsml.cmake \
+    -e '/REPOSITORY/s?libpsml?libpsml.git?'
+
+  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libgridxc"
+sed -i ./Config/cmake/Modules/FindCustomLibGridxc.cmake \
+    -e '/REPOSITORY/s?libgridxc?libgridxc.git?'
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load cmake

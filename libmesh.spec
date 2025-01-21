@@ -116,7 +116,7 @@ popd
 ################ end of new stuff
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-cp -r doc example src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+cp -r doc examples src tests $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 # popd
 
 umount %{INSTALL_DIR}

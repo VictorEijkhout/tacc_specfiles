@@ -69,7 +69,7 @@ netcdf-4.9.1-seq 4.9.1 1
 pnetcdf 1.13.0 1
 
 p4est 2.8.6 4
-petsc 3.22.2 15
+petsc 3.22.2 16
 parmetis 4.0.3 2
 pcre2 10.43 2
 pgplot 5.2 1

@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 15%{?dist}
+Release: 16%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -149,6 +149,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jan 29 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 16 just for a S3 rebuild
 * Tue Jan 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 15 to 3.22.2, cuda install
 * Tue Dec 17 2024 eijkhout <eijkhout@tacc.utexas.edu>

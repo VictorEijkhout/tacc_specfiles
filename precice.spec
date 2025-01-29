@@ -9,7 +9,7 @@ Summary: Precice install
 %define minor_version 1
 %define micro_version 2
 
-%%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %include rpm-dir.inc
 %include compiler-defines.inc

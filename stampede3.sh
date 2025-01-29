@@ -6,7 +6,7 @@ for s in *.spec ; do
 	| sed \
 	    -e 's/frontera/stampede3/' \
 	    -e 's/PETSCCUDAFLAG//' \
-	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc.inc/' \
+	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-home1.inc/' \
 	    -e '/module load python3/d' \
 	    -e '/FRONTERA/d' \
 	> stampede3_specfiles/$s

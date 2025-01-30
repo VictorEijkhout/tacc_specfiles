@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2
+Release: 3
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -153,7 +153,9 @@ umount %{INSTALL_DIR}
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
-* Thu Dec 19 2021 eijkhout <eijkhout@tacc.utexas.edu>
+* Wed Jan 29 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 1.8.0-rc2
+* Thu Dec 19 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 1.8.0-rc1
 * Tue Mar 09 2021 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

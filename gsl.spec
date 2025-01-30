@@ -18,7 +18,7 @@ Summary: Gsl
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
-# include compiler-defines.inc
+%include compiler-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -100,7 +100,7 @@ Gsl
 %include system-load.inc
 module purge
 # Load Compiler
-# %include compiler-load.inc
+%include compiler-load.inc
 
 # Insert further module commands
 

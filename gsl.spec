@@ -12,7 +12,6 @@ Summary: Gsl
 # Create some macros (spec file variables)
 %define major_version 2
 %define minor_version 8
-# define micro_version 5
 
 %define pkg_version %{major_version}.%{minor_version}
 
@@ -35,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/gsl
@@ -76,7 +75,8 @@ Gsl
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -85,7 +85,8 @@ Gsl
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 #---------------------------------------
@@ -161,7 +162,8 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -192,7 +194,8 @@ EOF
   %endif
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -206,7 +209,8 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -219,7 +223,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################
@@ -247,5 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Jan 30 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: just to force a rebuild on vista
 * Wed Jan 29 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

@@ -97,10 +97,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load gsl fftw3
-
-if [ "${TACC_SYSTEM}" = "vista" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
-    export LDFLAGS=-lm
-fi
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

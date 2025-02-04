@@ -102,7 +102,7 @@ module load gsl fftw3
 %endif
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
+make default_install JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

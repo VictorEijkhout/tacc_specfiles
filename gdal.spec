@@ -15,7 +15,6 @@ Summary: Interface Generator
 %define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
-## .%{minor_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -172,54 +171,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
-  #######################################
-  ##### Create TACC Canary Files ########
-  #######################################
-  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
-  #######################################
-  ########### Do Not Remove #############
-  #######################################
-  
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the GDAL environment variables:
-# TACC_GDAL_DIR, TACC_GDAL_LIB, TACC_GDAL_INC
-
-# There are examples programs in \$TACC_GDAL_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: GDAL")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/gdal")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local gdal_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_GDAL_DIR",gdal_dir)
-# setenv("TACC_GDAL_LIB",pathJoin(gdal_dir,"lib"))
-# setenv("TACC_GDAL_INC",pathJoin(gdal_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(gdal_dir,"lib"))
-
-# EOF
-  
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
-#%Module3.1.1#################################################
-##
-## version file for %{BASENAME}%{version}
-##
-
-set     ModulesVersion      "%{version}"
-EOF
-  
   # Check the syntax of the generated lua modulefile only if a visible module
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}

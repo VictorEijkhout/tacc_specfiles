@@ -16,7 +16,7 @@ boost 1.86.0 8
 catch2 3.5.4 3
 cfitsio 4.2.0 1
 charmpp 8.0.1 1
-cmake 3.30.3 3
+cmake 3.31.5 4
 cxxopts 3.2.0 4
 
 dealii 9.5.2 2

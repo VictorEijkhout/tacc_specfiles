@@ -38,7 +38,7 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release:   2
 License:   BSD
 Group:     Development/Tools
-URL:       https://github.com/flame/mpfr
+URL:       https://www.mpfr.org/
 Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 

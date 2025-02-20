@@ -11,8 +11,8 @@ Summary: Prereq for SUITESPARSE
 
 # Create some macros (spec file variables)
 %define major_version 7
-%define minor_version 0
-%define micro_version 1
+%define minor_version 8
+%define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/suitesparse
@@ -128,7 +128,7 @@ module purge
   #========================================
   
 module load cmake
-module load mpfr
+module load gmp mpfr
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
@@ -140,7 +140,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/suitesparse
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
@@ -179,37 +179,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   #######################################
   ########### Do Not Remove #############
   #######################################
-  
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the SUITESPARSE environment variables:
-# TACC_SUITESPARSE_DIR, TACC_SUITESPARSE_LIB, TACC_SUITESPARSE_INC
-
-# There are examples programs in \$TACC_SUITESPARSE_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: SUITESPARSE")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/suitesparse")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local suitesparse_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_SUITESPARSE_DIR",suitesparse_dir)
-# setenv("TACC_SUITESPARSE_LIB",pathJoin(suitesparse_dir,"lib"))
-# setenv("TACC_SUITESPARSE_INC",pathJoin(suitesparse_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(suitesparse_dir,"lib"))
-
-# EOF
   
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
@@ -281,5 +250,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Feb 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: up to 7.8.3
 * Fri May 26 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

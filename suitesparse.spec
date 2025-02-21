@@ -129,6 +129,15 @@ module purge
   
 module load cmake
 module load gmp mpfr
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
+        module load mkl
+    else
+        export MKLFLAG="-mkl"
+    fi
+fi
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
@@ -147,6 +156,7 @@ make configure build JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
@@ -158,6 +168,7 @@ popd
   # Copy installation from tmpfs to RPM directory
   ls %{INSTALL_DIR}
   cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+  rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   

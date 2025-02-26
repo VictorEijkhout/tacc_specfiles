@@ -107,6 +107,7 @@ make default_install JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
@@ -116,6 +117,7 @@ popd
 ################ end of new stuff
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

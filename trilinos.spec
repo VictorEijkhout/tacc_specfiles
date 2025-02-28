@@ -47,6 +47,8 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %define _build_id_links none
 %define dbg           %{nil}
 
+# Turn off the brp-python-bytecompile script
+%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-pytho\n-bytecompile[[:space:]].*$!!g')
 
 %package %{PACKAGE}
 Summary: Blas alternative

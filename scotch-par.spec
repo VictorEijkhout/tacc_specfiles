@@ -4,8 +4,8 @@
 Summary: Scotch install
 
 # Give the package a base name
-%define pkg_base_name pscotch
-%define MODULE_VAR    PSCOTCH
+%define pkg_base_name ptscotch
+%define MODULE_VAR    PTSCOTCH
 
 # Create some macros (spec file variables)
 %define major_version 7

@@ -10,8 +10,8 @@ Summary: Pylauncher
 %define MODULE_VAR    PYLAUNCHER
 
 # Create some macros (spec file variables)
-%define major_version 4
-%define minor_version 7
+%define major_version 5
+%define minor_version 0
 
 %define pkg_version %{major_version}.%{minor_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   6
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/TACC/pylauncher
@@ -247,6 +247,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon Mar 03 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: gpu launcher
 * Tue Jan 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: no longer testing node type
 * Mon Sep 09 2024 eijkhout <eijkhout@tacc.utexas.edu>

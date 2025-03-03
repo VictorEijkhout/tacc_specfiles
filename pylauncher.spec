@@ -12,8 +12,9 @@ Summary: Pylauncher
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 0
+%define micro_version 1
 
-%define pkg_version %{major_version}.%{minor_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -34,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6
+Release:   7
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/TACC/pylauncher
@@ -250,6 +251,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon Mar 03 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: repo mixup
 * Mon Mar 03 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: gpu launcher
 * Tue Jan 07 2025 eijkhout <eijkhout@tacc.utexas.edu>

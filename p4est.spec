@@ -1,4 +1,5 @@
 Summary: P4est install
+    BUILDDIRROOT=/tmp \
 
 # ./build_rpm.sh -i231 -j21_9 -l p4est-new
 
@@ -119,6 +120,8 @@ popd
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r doc example src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 # popd
+
+  rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

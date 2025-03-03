@@ -215,6 +215,8 @@ make && make install
 
 popd # from /tmp back to BUILD
 cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
+  rm -rf /tmp/build-${pkg_version}*
+
 umount %{INSTALL_DIR}
 
 #/opt/apps/gcc/7.1.0/bin/gcc  -DUSE_VENDOR_BLAS -DPRNTlevel=0 -DAdd_ -g -std=c99 -DNDEBUG -fPIC -O3 -DNDEBUG    CMakeFiles/z_test.dir/sp_ienv.c.o CMakeFiles/z_test.dir/zdrive.c.o CMakeFiles/z_test.dir/sp_zconvert.c.o CMakeFiles/z_test.dir/zgst01.c.o CMakeFiles/z_test.dir/zgst02.c.o CMakeFiles/z_test.dir/zgst04.c.o CMakeFiles/z_test.dir/zgst07.c.o  -o z_test  -L"/opt/intel/compilers_and_libraries_2017.4.196/linux/mkl/lib/intel64/libmkl_sequential.so /opt/intel/compilers_and_libraries_2017.4.196/linux/mkl/lib/intel64" -rdynamic ../SRC/libsuperlu.a MATGEN/libmatgen.a -lmkl_core -lm -Wl,-rpath,"/opt/intel/compilers_and_libraries_2017.4.196/linux/mkl/lib/intel64/libmkl_sequential.so /opt/intel/compilers_and_libraries_2017.4.196/linux/mkl/lib/intel64"

@@ -120,6 +120,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 
 export     PACKAGEROOT=/tmp 
+export    BUILDDIRROOT=/tmp
 export    SRCPATH=${SRCPATH} 
 export     INSTALLPATH=%{INSTALL_DIR} 
 export    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
@@ -132,6 +133,8 @@ popd
 find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \; -print
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+  rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

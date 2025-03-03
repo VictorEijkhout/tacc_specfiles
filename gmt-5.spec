@@ -223,6 +223,8 @@ EOF
 popd
   
 cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
+  rm -rf /tmp/build-${pkg_version}*
+
 umount tmpfs
 
 #-----------------------  

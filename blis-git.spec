@@ -160,6 +160,8 @@ make install
   cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
+  rm -rf /tmp/build-${pkg_version}*
+
 umount %{INSTALL_DIR}
   
 cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/

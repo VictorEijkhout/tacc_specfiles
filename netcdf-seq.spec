@@ -159,6 +159,8 @@ cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r %{MODULE_DIR}/* $RPM_BUILD_ROOT/%{MODULE_DIR}/
 
+  rm -rf /tmp/build-${pkg_version}*
+
 umount %{INSTALL_DIR}
 
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 

@@ -171,6 +171,8 @@ make all install
 mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}
 
+  rm -rf /tmp/build-${pkg_version}*
+
 umount %{INSTALL_DIR}
 
 # make test

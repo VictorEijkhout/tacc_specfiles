@@ -96,7 +96,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake
+module load cmake git
 module load gsl fftw3
 %if "%{comp_fam}" == "gcc"
   module load mkl

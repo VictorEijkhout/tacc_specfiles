@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   8
+Release:   9
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/TACC/pylauncher
@@ -252,6 +252,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon Mar 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: file core mode fixed
 * Fri Mar 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: file core handling fixed
 * Mon Mar 03 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -12,10 +12,9 @@ Summary: Pylauncher
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 1
-## define micro_version 1
+%define micro_version 1
 
-%define pkg_version %{major_version}.%{minor_version}
-#{micro_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -253,7 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 #---------------------------------------
 #
 * Mon Mar 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 9: file core mode fixed
+- release 9: file core mode fixed in 5.1.1
 * Fri Mar 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: file core handling fixed
 * Mon Mar 03 2025 eijkhout <eijkhout@tacc.utexas.edu>

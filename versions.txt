@@ -43,9 +43,10 @@ jsonc 0.18 3
 #git20241004 2
 julia git2024 1
 
-kokkos 4.4.00 4
-kokkos-omp 4.4.00 4
-kokkos-cuda 4.4.00 4
+kokkos 4.5.01 5
+kokkos-omp 4.5.01 5
+kokkos-cuda 4.5.01 5
+kokkos-sycl 4.5.01 5
 
 libmesh 1.8.0 3
 libxc 7.0.0 1

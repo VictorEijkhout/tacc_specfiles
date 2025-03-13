@@ -17,7 +17,7 @@ Summary: Kokkos, piggybacking on the PETSc install
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-%include mpi-defines.inc
+# include mpi-defines.inc
 ########################################
 ### Construct name based on includes ###
 ########################################

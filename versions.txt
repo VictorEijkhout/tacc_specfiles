@@ -1,3 +1,10 @@
+##
+## list of:
+## rpm name (not necessarily the same as package name, see hdf5)
+## version as declared in makefiles & spec file
+## release as used in spec file.
+##
+
 adios2 2.10.2 2
 
 arpack 3.9.1 1
@@ -31,8 +38,10 @@ gmp 6.3.0 1
 gsl 2.8 2
 
 hdf5 1.14.4 5
+# install.sh -p hdf5 hdf5-seq
 hdf5-seq 1.14.4 5
 phdf5 1.14.4 8
+# install.sh -p phdf5 hdf5-par
 hdf5-par 1.14.4 8
 # old versions
 hdf5-1.10.11-seq 1.10.11 1
@@ -44,8 +53,11 @@ jsonc 0.18 3
 julia git2024 1
 
 kokkos 4.5.01 5
+# build omp version if you have no accelerators
 kokkos-omp 4.5.01 5
+# build cuda version if you have omp & nvidia gpu
 kokkos-cuda 4.5.01 5
+# build sycl version if you have omp & intel sycl/pvc
 kokkos-sycl 4.5.01 5
 
 libmesh 1.8.0 3

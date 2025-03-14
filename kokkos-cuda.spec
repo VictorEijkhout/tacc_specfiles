@@ -194,13 +194,13 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ########################################
 ## Fix Modulefile During Post Install ##
 ########################################
-# post %{PACKAGE}
+# post {PACKAGE}
 # export PACKAGE_POST=1
 # include post-defines.inc
-# post %{MODULEFILE}
+# post {MODULEFILE}
 # export MODULEFILE_POST=1
 # include post-defines.inc
-# preun %{PACKAGE}
+# preun {PACKAGE}
 # export PACKAGE_PREUN=1
 # include post-defines.inc
 ########################################

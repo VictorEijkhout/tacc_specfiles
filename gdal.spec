@@ -132,6 +132,16 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 module load cmake
 module load jsonc proj swig zlib
 module load swig
+if [ "${TACC_SYSTEM}" = "ls6" ] ; then
+    ## this doesn't even work
+    export PATH=/opt/apps/gcc11_2/python3/3.9.7/bin:${PATH}
+    export LD_LIBRARY_PATH=/opt/apps/gcc11_2/python3/3.9.7/lib:${LD_LIBRARY_PATH}
+    ## module load python3
+    pip install setuptools
+    pip install numpy
+else
+    module load python3
+fi
 
 ################ new stuff
 

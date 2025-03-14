@@ -41,7 +41,7 @@ License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
 Packager:  TACC - eijkhout@tacc.utexas.edu
-#Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
+Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
@@ -68,13 +68,16 @@ Kokkos is a portal CPU/GPU programming model
 %prep
 #---------------------------------------
 
+%setup %{pgk_base_name}-%{pkg_version}
+
 #---------------------------
 %if %{?BUILD_MODULEFILE}
 #---------------------------
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 #---------------------------------------
@@ -155,7 +158,8 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -174,35 +178,31 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   #######################################
   
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-%files modulefile 
-#---------------------------
-
+%files %{PACKAGE}
   %defattr(-,root,install,)
-  # RPM modulefile contains files within these directories
-  %{MODULE_DIR}
+  %{INSTALL_DIR}
 
-#--------------------------
-%endif # BUILD_MODULEFILE |
-#--------------------------
+%files %{MODULEFILE}
+  %defattr(-,root,install,)
+  %{MODULE_DIR}
 
 ########################################
 ## Fix Modulefile During Post Install ##
 ########################################
-%post %{PACKAGE}
-export PACKAGE_POST=1
-%include post-defines.inc
-%post %{MODULEFILE}
-export MODULEFILE_POST=1
-%include post-defines.inc
-%preun %{PACKAGE}
-export PACKAGE_PREUN=1
-%include post-defines.inc
+# post %{PACKAGE}
+# export PACKAGE_POST=1
+# include post-defines.inc
+# post %{MODULEFILE}
+# export MODULEFILE_POST=1
+# include post-defines.inc
+# preun %{PACKAGE}
+# export PACKAGE_PREUN=1
+# include post-defines.inc
 ########################################
 ############ Do Not Remove #############
 ########################################

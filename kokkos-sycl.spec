@@ -68,7 +68,7 @@ Kokkos is a portal CPU/GPU programming model
 %prep
 #---------------------------------------
 
-%setup %{pgk_base_name}-%{pkg_version}
+%setup -n %{pkg_base_name}-%{pkg_version}
 
 #---------------------------
 %if %{?BUILD_MODULEFILE}
@@ -182,19 +182,13 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 #--------------------------
 
 
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-%files modulefile 
-#---------------------------
-
+%files %{PACKAGE}
   %defattr(-,root,install,)
-  # RPM modulefile contains files within these directories
-  %{MODULE_DIR}
+  %{INSTALL_DIR}
 
-#--------------------------
-  %endif
-  # BUILD_MODULEFILE |
-#--------------------------
+%files %{MODULEFILE}
+  %defattr(-,root,install,)
+  %{MODULE_DIR}
 
 ########################################
 ## Fix Modulefile During Post Install ##

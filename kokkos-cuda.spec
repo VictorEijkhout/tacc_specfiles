@@ -68,7 +68,7 @@ Kokkos is a portal CPU/GPU programming model
 %prep
 #---------------------------------------
 
-%setup %{pgk_base_name}-%{pkg_version}
+%setup -n %{pkg_base_name}-%{pkg_version}
 
 #---------------------------
 %if %{?BUILD_MODULEFILE}

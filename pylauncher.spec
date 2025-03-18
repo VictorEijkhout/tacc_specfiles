@@ -12,10 +12,9 @@ Summary: Pylauncher
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 2
-#define micro_version 1
+%define micro_version 1
 
-%define pkg_version %{major_version}.%{minor_version}
-#{micro_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -36,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   10
+Release:   11
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/TACC/pylauncher
@@ -252,6 +251,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Mar 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: 5.2.1 fixes internal version
 * Mon Mar 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: 5.2 fixes the submitlauncher
 * Mon Mar 10 2025 eijkhout <eijkhout@tacc.utexas.edu>

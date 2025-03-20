@@ -10,7 +10,7 @@ Summary: Scotch install
 # Create some macros (spec file variables)
 %define major_version 7
 %define minor_version 0
-%define micro_version 6
+%define micro_version 7
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: scotch-setup.sh
@@ -116,7 +116,7 @@ pushd ${VICTOR}/makefiles/scotch
 module load cmake
 
 ## get rid of that PACKAGEROOT
-make par JCOUNT=20 \
+make par32 par64 JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -149,5 +149,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Mar 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 32/64 bit
 * Fri Feb 28 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1 : initial release

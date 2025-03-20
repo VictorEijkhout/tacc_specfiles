@@ -134,7 +134,8 @@ rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
-%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}-i32.lua 
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}-i64.lua 
 
 %files %{PACKAGE}
   %defattr(-,root,install,)

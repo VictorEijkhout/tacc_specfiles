@@ -64,9 +64,9 @@ libmesh 1.8.0 3
 libxc 7.0.0 1
 mdspan git20240209 2
 metis 5.1.0.3 1
-mfem 4.7 4
-mfem-cpu 4.7 4
-mfem-gpu 4.7 4
+mfem 4.8 5
+mfem-cpu 4.8 5
+mfem-gpu 4.8 5
 mpfr 4.2.1 2
 mpl 0.3.0 5
 ncview 2.1.9 3

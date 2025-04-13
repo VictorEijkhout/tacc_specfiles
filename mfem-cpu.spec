@@ -6,7 +6,7 @@ Summary: Mfem install
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 7
+%define minor_version 8
 # define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}
@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4%{?dist}
+Release: 5
 License: GPL
 Vendor: https://github.com/ornladios/MFEM
 Group: Development/Numerical-Libraries
@@ -157,6 +157,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun Apr 13 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: 4.8
 * Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: install mishap
 * Sat Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>

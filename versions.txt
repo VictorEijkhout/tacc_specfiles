@@ -47,7 +47,9 @@ hdf5-par 1.14.4 8
 hdf5-1.10.11-seq 1.10.11 1
 hdf5-1.14.3-seq 1.14.3 5
 
+# installs 32 & 64 bit versions
 hypre 2.31.0 3
+
 jsonc 0.18 3
 #git20241004 2
 julia git2024 1

@@ -100,7 +100,7 @@ pcre2 10.43 2
 pgplot 5.2 1
 precice 3.1.2 1
 proj 9.3.1 2
-pylauncher 5.2.2 12
+pylauncher 5.3 13
 python 3.12.4 1
 rangev3 0.12.0 1
 

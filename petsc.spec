@@ -6,8 +6,8 @@ Summary: Petsc install
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 22
-%define micro_version 4
+%define minor_version 23
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 17%{?dist}
+Release: 18
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -152,6 +152,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Apr 15 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 18: 3.23
 * Wed Mar 05 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 17 adding superlu & strumpack
 * Wed Jan 29 2025 eijkhout <eijkhout@tacc.utexas.edu>

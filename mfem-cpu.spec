@@ -45,17 +45,17 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 %global _python_bytecompile_errors_terminate_build 0
 
 
-%package %{PACKAGE}
+%package %{PACKAGE}-cpu
 Summary: Mfem local binary install
 Group: System Environment/Base
-%package %{MODULEFILE}
+%package %{MODULEFILE}-cpu
 Summary: Mfem local binary install
 Group: System Environment/Base
 
 %description
-%description %{PACKAGE}
+%description %{PACKAGE}-cpu
 Forest support library
-%description %{MODULEFILE}
+%description %{MODULEFILE}-cpu
 Forest support library
 
 %prep
@@ -145,11 +145,11 @@ umount %{INSTALL_DIR}
 
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
-%files %{PACKAGE}
+%files %{PACKAGE}-cpu
   %defattr(-,root,install,)
   %{INSTALL_DIR}
 
-%files %{MODULEFILE}
+%files %{MODULEFILE}-cpu
   %defattr(-,root,install,)
   %{MODULE_DIR}
 

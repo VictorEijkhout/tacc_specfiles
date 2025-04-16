@@ -47,17 +47,17 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 %global _python_bytecompile_errors_terminate_build 0
 
 
-%package %{PACKAGE}
+%package %{PACKAGE}-gpu
 Summary: Mfem local binary install
 Group: System Environment/Base
-%package %{MODULEFILE}
+%package %{MODULEFILE}-gpu
 Summary: Mfem local binary install
 Group: System Environment/Base
 
 %description
-%description %{PACKAGE}
+%description %{PACKAGE}-gpu
 Forest support library
-%description %{MODULEFILE}
+%description %{MODULEFILE}-gpu
 Forest support library
 
 %prep
@@ -148,11 +148,11 @@ umount %{INSTALL_DIR}
 
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
-%files %{PACKAGE}
+%files %{PACKAGE}-gpu
   %defattr(-,root,install,)
   %{INSTALL_DIR}
 
-%files %{MODULEFILE}
+%files %{MODULEFILE}-gpu
   %defattr(-,root,install,)
   %{MODULE_DIR}
 

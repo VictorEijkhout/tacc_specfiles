@@ -150,13 +150,13 @@ if [ -z "${rpmonly}" ] ; then
 fi
 
 echo "Installing rpms for packagename=${packagename}, version=${version}, release=${release}"
-for p in ../RPMS/x86_64/tacc-${packagename}-*package-${version}-${release}* ; do
+for p in ../RPMS/x86_64/tacc-${packagename}-*package*-${version}-${release}* ; do
     rpm -i --force --nodeps $p
 done
-for p in ../RPMS/x86_64/tacc-${packagename}-*modulefile-${version}-${release}* ; do
+for p in ../RPMS/x86_64/tacc-${packagename}-*modulefile*-${version}-${release}* ; do
     rpm -i --force --nodeps $p
 done
 
 ls -l \
-  ../RPMS/x86_64/tacc-${packagename}-*package-${version}-${release}* \
-  ../RPMS/x86_64/tacc-${packagename}-*modulefile-${version}-${release}*
+  ../RPMS/x86_64/tacc-${packagename}-*package*-${version}-${release}* \
+  ../RPMS/x86_64/tacc-${packagename}-*modulefile*-${version}-${release}*

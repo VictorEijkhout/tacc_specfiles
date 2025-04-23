@@ -104,6 +104,8 @@ pylauncher 5.3.1 14
 python 3.12.4 1
 rangev3 0.12.0 1
 
+# install.sh    -p scotch scotch-seq
+# install.sh -m -p ptscotch scotch-par
 scotch 7.0.7 2
 scotch-seq 7.0.7 2
 ptscotch 7.0.7 2

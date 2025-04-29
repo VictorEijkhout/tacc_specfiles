@@ -7,7 +7,7 @@ Summary: Siesta install
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 2
-%define micro_version 1
+%define micro_version 2
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %include rpm-dir.inc
@@ -30,7 +30,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3%{?dist}
+Release: 4
 License: GPL
 Vendor: https://github.com/cburstedde/siesta
 #Source1: siesta-setup.sh
@@ -163,6 +163,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Apr 29 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 5.2.2 and fix ilp
 * Mon Jan 06 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 5.2.1 with wannier
 * Sat Oct 19 2024 eijkhout <eijkhout@tacc.utexas.edu>

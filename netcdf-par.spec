@@ -41,7 +41,7 @@ Source0: netcdf-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
-## %global _missing_build_ids_terminate_build 0
+## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
 
@@ -178,7 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 - release 6: rebuild for fortran module name
 * Wed Oct 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: trying to fix fortran
-* Wed Jan 13 2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Wed Jan 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: hdf5 version is going up
 * Tue Jan 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : seq and par separated out

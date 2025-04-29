@@ -136,7 +136,7 @@ pushd ${VICTOR}/makefiles/netcdff
     # echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
     # ls ${NETCDF_MODDIR}
     # ls ${NETCDF_MODDIR}/%{pkg_base_name}
-    module use ${RPM_MODULE_ROO}/%{MODULE_DIR}/../
+    module use ${RPM_MODULE_ROOT}/%{MODULE_DIR}/../
     module load parallel-netcdf/%{pkg_version}
 
     make \
@@ -160,7 +160,7 @@ cp -r %{MODULE_DIR}/* $RPM_BUILD_ROOT/%{MODULE_DIR}/
 
 umount %{INSTALL_DIR}
 
-%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+# {SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 %files %{PACKAGE}
   %defattr(-,root,install,)

@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -263,6 +263,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed May 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: frontera path fix
 * Wed Feb 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: 3.31
 * Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>

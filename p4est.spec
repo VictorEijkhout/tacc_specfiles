@@ -10,7 +10,7 @@ Summary: P4est install
 # Create some macros (spec file variables)
 %define major_version 2
 %define minor_version 8
-%define micro_version 6
+%define micro_version 7
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %include rpm-dir.inc
@@ -33,7 +33,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4%{?dist}
+Release: 5
 License: GPL
 Vendor: https://github.com/cburstedde/p4est
 #Source1: p4est-setup.sh
@@ -98,8 +98,6 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load petsc
-
 if [ "${TACC_SYSTEM}" = "vista" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
     export LDFLAGS=-lm
 fi
@@ -139,6 +137,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon May 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: 2.8.7, no petsc dependence
 * Wed Mar 27 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: up to 2.8.6
 * Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>

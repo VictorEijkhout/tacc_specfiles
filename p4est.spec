@@ -1,5 +1,4 @@
 Summary: P4est install
-    BUILDDIRROOT=/tmp \
 
 # ./build_rpm.sh -i231 -j21_9 -l p4est-new
 

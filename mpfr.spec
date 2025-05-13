@@ -125,7 +125,7 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake
+module --latest load cmake
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*

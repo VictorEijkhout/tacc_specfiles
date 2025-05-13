@@ -112,7 +112,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/scotch
 
-module load cmake
+module --latest load cmake
 
 ## get rid of that PACKAGEROOT
 make seq32 seq64 JCOUNT=20 \

@@ -143,7 +143,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 ## we only install with gcc
 module load gcc
 ## need newer version than the system
-FRONTERA module load cmake/3.20
+module --latest load cmake
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

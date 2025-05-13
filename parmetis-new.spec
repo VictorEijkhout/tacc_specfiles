@@ -114,7 +114,8 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake zlib
+module --latest load cmake
+module load zlib
 
 ## get rid of that PACKAGEROOT
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}

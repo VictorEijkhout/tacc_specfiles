@@ -118,7 +118,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/kokkos
 
-module load cmake
+module --latest load cmake
 
 ## get rid of that PACKAGEROOT
 make cpu JCOUNT=10 \

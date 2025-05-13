@@ -107,7 +107,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-module load cmake
+module --latest load cmake
 module load hdf5
 #/1.14
 

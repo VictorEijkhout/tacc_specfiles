@@ -150,7 +150,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mkdir -p %{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
-module load cmake
+module --latest load cmake
 module load hdf5/1.14
 
 ################ new stuff

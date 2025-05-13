@@ -134,7 +134,7 @@ PYBIND11 exposes C++11 functionality to Python
 # Load MPI Library
 #%include mpi-load.inc
 
-module load cmake 
+module --latest load cmake 
 module load python3
 
 #------------------------

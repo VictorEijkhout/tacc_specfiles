@@ -143,7 +143,7 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake
+module --latest load cmake
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
 else

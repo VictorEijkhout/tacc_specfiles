@@ -127,7 +127,7 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake
+module --latest load cmake
 module load gmp mpfr
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl

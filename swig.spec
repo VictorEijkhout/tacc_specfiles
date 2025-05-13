@@ -135,7 +135,7 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 # Insert further module commands
-module load cmake
+module --latest load cmake
 module load pcre2
 module load bison
 

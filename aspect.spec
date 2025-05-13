@@ -100,7 +100,7 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   #========================================
   
 module list
-module load cmake 
+module --latest load cmake 
 module load dealii/%{aspectdealversion}
 module load metis
 module load trilinos/%{aspecttrilinosversion}

@@ -130,7 +130,7 @@ mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-module load cmake
+module --latest load cmake
 
 ################ new stuff
 

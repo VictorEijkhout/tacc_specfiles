@@ -130,7 +130,7 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load cmake 
+module --latest load cmake 
 module load boost
 module load swig
 module load phdf5 pnetcdf

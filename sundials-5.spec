@@ -126,7 +126,7 @@ This is the long description for the modulefile RPM...
 %include mpi-load.inc
 
 # Insert further module commands
-module load cmake
+module --latest load cmake
 
 echo "Building the package?:    %{BUILD_PACKAGE}"
 echo "Building the modulefile?: %{BUILD_MODULEFILE}"

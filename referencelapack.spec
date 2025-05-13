@@ -160,7 +160,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 # config/make:
 #
 
-module load cmake
+module --latest load cmake
 
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR} 

@@ -161,7 +161,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 #module load python3/3.8.2 # just for boost
-module load cmake
+module --latest load cmake
 rm -rf /tmp/yamlcpp-build
 mkdir -p /tmp/yamlcpp-build
 export YAMLCPP_SRC=`pwd`

@@ -112,7 +112,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake 
+module --latest load cmake 
 module load petsc phdf5 hypre metis adios2
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl

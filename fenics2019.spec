@@ -95,7 +95,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 pushd %{INSTALL_DIR}
 export FENICS_DIR=`pwd`
 
-module load cmake
+module --latest load cmake
 %if "%{comp_fam}" == "gcc"
   module load mkl
 %endif

@@ -109,7 +109,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake 
+module --latest load cmake 
 module load phdf5
 
     ## get rid of that PACKAGEROOT

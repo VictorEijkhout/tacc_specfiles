@@ -113,7 +113,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/arpack
 
-module load cmake
+module --latest load cmake
 module load eigen
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl

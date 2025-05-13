@@ -131,7 +131,7 @@ module purge
 #%include mpi-load.inc
 
 # Insert further module commands
-module load cmake
+module --latest load cmake
 echo $MODULEPATH
 module load python3
 module load boost

@@ -144,7 +144,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ################ new stuff
 
-module load cmake
+module --latest load cmake
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
 else

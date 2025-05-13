@@ -197,7 +197,7 @@ pushd %{INSTALL_DIR}
 ( cd share ; tar fxz %{_topdir}/SOURCES/gshhg-gmt-%{gshhg_version}.tar.gz )
 
 # recent versions use cmake instead of configure
-module load cmake
+module --latest load cmake
 
 # use icc not gcc
  export CC=`which icc`

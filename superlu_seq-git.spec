@@ -191,7 +191,7 @@ cd build
 %endif
 
 ls $PKG_CONFIG_PATH
-module load cmake
+module --latest load cmake
 cmake \
     -D CMAKE_INSTALL_PREFIX:PATH="${SLU_INSTALLATION}" \
     -D TPL_BLAS_LIBRARIES="-mkl" \

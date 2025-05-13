@@ -112,7 +112,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/hdf5
 
-module load cmake
+module --latest load cmake
 module load zlib
 
 ## get rid of that PACKAGEROOT

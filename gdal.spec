@@ -129,7 +129,7 @@ mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-module load cmake
+module --latest load cmake
 module load jsonc proj swig zlib
 module load swig
 if [ "${TACC_SYSTEM}" = "ls6" ] ; then

@@ -110,7 +110,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load cmake 
+module --latest load cmake
 # module load python3
 pip3 install numpy
 

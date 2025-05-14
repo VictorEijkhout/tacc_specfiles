@@ -146,6 +146,7 @@ module load python3
 module load boost
 module load gsl metis p4est
 module load pnetcdf phdf5
+module load sundials
 module load petsc/%{dealiipetscversion}
 module load trilinos/%{dealiitrilinosversion}
 module list

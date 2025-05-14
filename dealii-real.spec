@@ -17,16 +17,16 @@ Summary: Dealii install
 ## petsc handling
 ##
 %define use_petsc 1
-%define dealiipetscversion 3.21
+%define dealiipetscversion 3.23
 ## as of petsc 3.15 slepc is rolled into petsc
 %define explicit_slepc 0
 
 ##
 ## python can be a problem
 ##
-%define python_version 3
+## define python_version 3
 # for gcc explicit python
-%define python_module 3.8.2
+# define python_module 3.8.2
 
 %define use_trilinos 1
 %define dealiitrilinosversion 16.1.0
@@ -142,7 +142,6 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   
 module --latest load cmake
 module load python3
-## %{python_version}/%{python_module}
 module load boost
 module load gsl metis p4est
 module load pnetcdf phdf5

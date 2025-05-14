@@ -26,8 +26,8 @@ charmpp 8.0.1 1
 cmake 3.31.5 5
 cxxopts 3.2.0 4
 
-dealii 9.5.2 2
-dealii-real 9.5.2 2
+dealii 9.6.2 3
+dealii-real 9.6.2 3
 
 eigen 3.4.0 5
 fftw2 2.1.5 1

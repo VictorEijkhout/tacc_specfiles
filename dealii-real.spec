@@ -8,7 +8,7 @@ Summary: Dealii install
 
 # Create some macros (spec file variables)
 %define major_version 9
-%define minor_version 5
+%define minor_version 6
 %define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -29,7 +29,7 @@ Summary: Dealii install
 %define python_module 3.8.2
 
 %define use_trilinos 1
-%define dealiitrilinosversion 16.0.0
+%define dealiitrilinosversion 16.1.0
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -51,7 +51,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -213,6 +213,8 @@ umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 rm -rf $RPM_BUILD_ROOT
 %changelog
 # release 4: adding boost-mpi dependency
+* Wed May 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 9.6.2, use trilinos 16.1.0
 * Wed Mar 27 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 9.5.2, using trilinos 15.1
 * Tue Feb 06 2024 eijkhout <eijkhout@tacc.utexas.edu>

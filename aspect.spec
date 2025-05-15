@@ -5,14 +5,14 @@ Summary: Aspect install
 %define MODULE_VAR    ASPECT
 
 # Create some macros (spec file variables)
-%define major_version 2
-%define minor_version 5
+%define major_version 3
+%define minor_version 0
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
-%define aspectdealversion 9.5.2
-%define aspecttrilinosversion 15.1.0
+#define aspectdealversion 9.5.2
+#define aspecttrilinosversion 15.1.0
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -101,9 +101,11 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   
 module list
 module --latest load cmake 
-module load dealii/%{aspectdealversion}
+module load dealii
+#{aspectdealversion}
 module load metis
-module load trilinos/%{aspecttrilinosversion}
+module load trilinos
+#{aspecttrilinosversion}
 module load netcdf phdf5
 
 mkdir -p %{INSTALL_DIR}
@@ -156,6 +158,8 @@ umount %{INSTALL_DIR}
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
+* Thu May 15 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 3.0.0
 * Mon Feb 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : new setup, 2.5 0
 * Fri Jul 30 2021 eijkhout <eijkhout@tacc.utexas.edu>

@@ -88,7 +88,7 @@ parallel-netcdf 4.9.2 6
 # legacy version
 netcdf-4.9.1-seq 4.9.1 1
 # pnetcdf is something else entirely
-pnetcdf 1.13.0 1
+pnetcdf 1.14.0 2
 
 openblas 0.3.29 1
 octopus 15.1 1

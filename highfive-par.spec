@@ -1,11 +1,11 @@
-# HIGHFIVE sequential sepcfile
+# PHIGHFIVE sequential sepcfile
 # Victor Eijkhout
 
-Summary: Highfive install
+Summary: Phighfive install
 
 # Give the package a base name
-%define pkg_base_name highfive
-%define MODULE_VAR    HIGHFIVE
+%define pkg_base_name phighfive
+%define MODULE_VAR    PHIGHFIVE
 
 # Create some macros (spec file variables)
 %define major_version 2
@@ -47,10 +47,10 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 %global _python_bytecompile_errors_terminate_build 0
 
 %package %{PACKAGE}
-Summary: Highfive local binary install
+Summary: Phighfive local binary install
 Group: System Environment/Base
 %package %{MODULEFILE}
-Summary: Highfive local binary install
+Summary: Phighfive local binary install
 Group: System Environment/Base
 
 %description
@@ -61,7 +61,7 @@ Forest support library
 
 %prep
 
-%setup -n highfive-%{version}
+%setup -n phighfive-%{version}
 
 #---------------------------------------
 %build
@@ -80,7 +80,7 @@ module purge
 %include compiler-load.inc
 %include mpi-load.inc
 
-export HIGHFIVE_DIR=`pwd`
+export PHIGHFIVE_DIR=`pwd`
 
 #
 # Set Up Installation Directory and tmp file system

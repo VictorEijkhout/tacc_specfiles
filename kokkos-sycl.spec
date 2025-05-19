@@ -212,8 +212,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Sun Mar 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 6:4.6
+* Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: 4.6
 * Thu Mar 13 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: adding sycl
 * Mon Jan 29 2024 eijkhout <eijkhout@tacc.utexas.edu>

@@ -9,7 +9,7 @@ Summary: Kokkos, piggybacking on the PETSc install
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 5
+%define minor_version 6
 %define micro_version 01
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5%{?dist}
+Release:   6
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -213,6 +213,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun Mar 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6:4.6
 * Thu Mar 13 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: adding sycl
 * Mon Jan 29 2024 eijkhout <eijkhout@tacc.utexas.edu>

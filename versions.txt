@@ -59,13 +59,13 @@ jsonc 0.18 3
 #git20241004 2
 julia git2024 1
 
-kokkos 4.5.01 5
+kokkos 4.6.01 6
 # build omp version if you have no accelerators
-kokkos-omp 4.5.01 5
+kokkos-omp 4.6.01 6
 # build cuda version if you have omp & nvidia gpu
-kokkos-cuda 4.5.01 5
+kokkos-cuda 4.6.01 6
 # build sycl version if you have omp & intel sycl/pvc
-kokkos-sycl 4.5.01 5
+kokkos-sycl 4.6.01 6
 
 libmesh 1.8.0 3
 libxc 7.0.0 1

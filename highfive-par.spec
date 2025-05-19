@@ -116,7 +116,7 @@ module load boost eigen
 module load phdf5
 
 ## get rid of that PACKAGEROOT
-make seq JCOUNT=20 \
+make par JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

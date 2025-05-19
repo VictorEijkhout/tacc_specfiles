@@ -2,25 +2,6 @@
 # blis.spec
 # Victor Eijkhout
 #
-# based on Bar.spec
-# W. Cyrus Proctor
-# Antonio Gomez
-# 2015-08-25
-#
-# Important Build-Time Environment Variables (see name-defines.inc)
-# NO_PACKAGE=1    -> Do Not Build/Rebuild Package RPM
-# NO_MODULEFILE=1 -> Do Not Build/Rebuild Modulefile RPM
-#
-# Important Install-Time Environment Variables (see post-defines.inc)
-# VERBOSE=1       -> Print detailed information at install time
-# RPM_DBPATH      -> Path To Non-Standard RPM Database Location
-#
-# Typical Command-Line Example:
-# ./build_rpm.sh Bar.spec
-# cd ../RPMS/x86_64
-# rpm -i --relocate /tmprpm=/opt/apps Bar-package-1.1-1.x86_64.rpm
-# rpm -i --relocate /tmpmod=/opt/apps Bar-modulefile-1.1-1.x86_64.rpm
-# rpm -e Bar-package-1.1-1.x86_64 Bar-modulefile-1.1-1.x86_64
 
 Summary: Blas-Like Instantiation Subprograms
 
@@ -30,7 +11,7 @@ Summary: Blas-Like Instantiation Subprograms
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 0
+%define minor_version 1
 
 %define pkg_version %{major_version}.%{minor_version}
 
@@ -53,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/blis
@@ -306,5 +287,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 1.1
 * Wed Jan 15 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release of 1.0 version

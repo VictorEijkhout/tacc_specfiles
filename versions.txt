@@ -49,6 +49,7 @@ hdf5-1.14.3-seq 1.14.3 5
 
 highfive 2.10.1 1
 highfive-seq 2.10.1 1
+phighfive 2.10.1 1
 highfive-par 2.10.1 1
 
 # installs 32 & 64 bit versions

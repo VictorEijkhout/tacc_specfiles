@@ -11,8 +11,8 @@ Summary: Interface Generator
 
 # Create some macros (spec file variables)
 %define major_version 9
-%define minor_version 3
-%define micro_version 1
+%define minor_version 6
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.proj.org/
@@ -288,6 +288,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 9.6.0
 * Tue Sep 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: up to 9.3.1
 * Mon Jun 12 2023 eijkhout <eijkhout@tacc.utexas.edu>

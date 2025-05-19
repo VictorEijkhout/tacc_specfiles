@@ -39,7 +39,7 @@ License: GPL
 Vendor: https://github.com/BlueBrain/HighFive
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: %{pkg_base_name}-%{pkg_version}.tgz
+Source0: highfive-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
@@ -61,7 +61,7 @@ Forest support library
 
 %prep
 
-%setup -n phighfive-%{version}
+%setup -n highfive-%{version}
 
 #---------------------------------------
 %build
@@ -109,7 +109,7 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
+pushd ${VICTOR}/makefiles/highfive
 
 module --latest load cmake
 module load boost eigen

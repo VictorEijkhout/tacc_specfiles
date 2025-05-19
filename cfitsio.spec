@@ -2,11 +2,6 @@
 # cfitsio.spec
 # Victor Eijkhout
 #
-# ./build_rpm.sh -g91 cfitsio.spec
-# ./build_rpm.sh --gcc=132 cfitsio.spec
-# ./build_rpm.sh -i191 cfitsio.spec
-# ./build_rpm.sh -i231 -l cfitsio.spec
-#
 
 Summary: Cfitsio
 
@@ -16,8 +11,8 @@ Summary: Cfitsio
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 2
-%define micro_version 0
+%define minor_version 6
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 ## .%{minor_version}
@@ -41,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/cfitsio
@@ -263,5 +258,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 4.6.2
 * Wed Oct 11 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

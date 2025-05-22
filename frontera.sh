@@ -6,7 +6,7 @@ for s in *.spec ; do
         | sed \
 	      -e '/FRONTERA/s/FRONTERA //' \
 	      -e 's/PETSCCUDAFLAG/-c/' \
-	      -e 's/GCC/13/' \	
+	      -e 's/GCC/13/' \
 > frontera_specfiles/$s
 done
 

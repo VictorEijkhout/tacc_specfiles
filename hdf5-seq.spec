@@ -110,6 +110,10 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    ${VICTOR}/makefiles/hdf5/vista_fix.sh
+fi
+
 pushd ${VICTOR}/makefiles/hdf5
 
 module --latest load cmake

@@ -138,7 +138,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-module load gcc/13
+module load gcc/GCC
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

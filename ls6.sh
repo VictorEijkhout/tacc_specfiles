@@ -9,6 +9,7 @@ for s in *.spec ; do
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-scratch.inc/' \
 	    -e '/FRONTERA/d' \
 	    -e /cuda-defines/d \
+	    -e 's/GCC/13/' \
 	> ls6_specfiles/$s
 done
 

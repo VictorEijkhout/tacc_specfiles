@@ -9,6 +9,7 @@ for s in *.spec ; do
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-home1.inc/' \
 	    -e '/module load python3/d' \
 	    -e '/FRONTERA/d' \
+	      -e 's/GCC/13/' \
 	> stampede3_specfiles/$s
 done
 

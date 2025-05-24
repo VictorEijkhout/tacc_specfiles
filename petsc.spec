@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 20
+Release: 21
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -152,6 +152,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sat May 24 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 21: gcc 15 fix
 * Tue May 13 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 20: 3.23.2
 * Mon May 12 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -137,7 +137,7 @@ pushd ${VICTOR}/makefiles/netcdff
     # ls ${NETCDF_MODDIR}
     # ls ${NETCDF_MODDIR}/%{pkg_base_name}
     module use ${RPM_MODULE_ROOT}/%{MODULE_DIR}/../
-    module load parallel-netcdf/%{pkg_version}
+    module load parallelnetcdf/%{pkg_version}
 
     make \
 	par JCOUNT=10 \

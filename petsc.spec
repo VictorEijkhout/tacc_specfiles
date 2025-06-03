@@ -111,6 +111,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module --latest load cmake
+if [ "${TACC_SYSTEM}" = "ls6" -o "${TACC_SYSTEM}" = "vista" ] ; then
+    module load cuda
+fi
 # module load python3
 pip3 install numpy
 
@@ -119,7 +122,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 
-export     PACKAGEROOT=/tmp 
+export    PACKAGEROOT=/tmp 
 export    BUILDDIRROOT=/tmp
 export    SRCPATH=${SRCPATH} 
 export     INSTALLPATH=%{INSTALL_DIR} 

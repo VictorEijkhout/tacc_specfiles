@@ -149,7 +149,8 @@ echo "Creating local configuration"
 export NCARG=$( pwd )
 
 # where are the ncl customization scripts
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export NCLSCRIPTS=${VICTOR}/makefiles/%{pkg_base_name}
 
 # run the scripts

@@ -68,7 +68,7 @@ if [ ! -d "${specdir}" ] ; then
     echo "ERROR no specfile dir <<${specdir}>>" && exit 1
 fi
 cd ${specdir}
-taccfiles=${specdir}/victor_scripts/tacc_specfiles/
+taccfiles=${specdir}/rpmtng/tacc_specfiles/
 
 ##
 ## determine version and release frm the versions.txt file

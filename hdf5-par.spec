@@ -108,7 +108,8 @@ mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/victor_scripts
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 if [ "${TACC_SYSTEM}" = "vista" ] ; then

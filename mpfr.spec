@@ -12,7 +12,7 @@ Summary: Prereq for MPFR
 # Create some macros (spec file variables)
 %define major_version 4
 %define minor_version 2
-%define micro_version 1
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.mpfr.org/
@@ -77,7 +77,8 @@ ICL wrapper for C++ around BLAS
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -86,7 +87,8 @@ ICL wrapper for C++ around BLAS
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 #---------------------------------------
@@ -165,7 +167,8 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -227,7 +230,8 @@ EOF
   %endif
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -241,7 +245,8 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -254,7 +259,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################
@@ -282,6 +288,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 4.2.2
 * Tue Dec 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 4.2.1
 * Fri May 26 2023 eijkhout <eijkhout@tacc.utexas.edu>

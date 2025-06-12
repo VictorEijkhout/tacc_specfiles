@@ -77,7 +77,7 @@ metis 5.1.0.3 2
 mfem 4.8 5
 mfem-cpu 4.8 5
 mfem-gpu 4.8 5
-mpfr 4.2.1 2
+mpfr 4.2.2 3
 
 mpl 0.3.0 5
 ncview 2.1.9 3

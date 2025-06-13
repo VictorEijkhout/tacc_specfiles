@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6
+Release:   7
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -173,6 +173,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: split off omp, more env variables.
 * Sun Mar 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6:4.6
 * Thu Mar 13 2025 eijkhout <eijkhout@tacc.utexas.edu>

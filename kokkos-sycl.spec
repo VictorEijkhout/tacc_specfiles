@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6
+Release:   7
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -134,7 +134,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
-make cpu sycl JCOUNT=10 \
+make sycl JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -213,6 +213,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: split off omp, more env variables.
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 4.6
 * Thu Mar 13 2025 eijkhout <eijkhout@tacc.utexas.edu>

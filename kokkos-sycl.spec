@@ -29,7 +29,7 @@ Summary: Kokkos, piggybacking on the PETSc install
 ########################################
 
 ############ Do Not Change #############
-Name:      %{pkg_name}
+Name:      %{pkg_name}-sycl
 Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################

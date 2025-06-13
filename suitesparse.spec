@@ -131,7 +131,7 @@ module purge
   
 module --latest load cmake
 module load gmp mpfr
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
+if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
     module load nvpl
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then

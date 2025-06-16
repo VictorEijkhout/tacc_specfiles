@@ -118,8 +118,7 @@ fi
 
 pushd ${VICTOR}/makefiles/mumps
 
-module --latest load cmake
-module load zlib
+module load metis parmetis ptscotch
 
 ## get rid of that PACKAGEROOT
 ##

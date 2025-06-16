@@ -78,8 +78,14 @@ mfem 4.8 5
 mfem-cpu 4.8 5
 mfem-gpu 4.8 5
 mpfr 4.2.2 3
-
 mpl 0.3.0 5
+
+# install.sh    -p mumps  mumps-seq
+# install.sh -m -p pmumps mumps-par
+mumps 5.8.0 1
+mumps-seq 5.8.0 1
+mumps-par 5.8.0 1
+
 ncview 2.1.9 3
 nclncarg git2024 2
 ninja 1.12.1 1

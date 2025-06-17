@@ -103,7 +103,7 @@ netcdf-4.9.1-seq 4.9.1 1
 pnetcdf 1.14.0 2
 
 openblas 0.3.29 1
-octopus 15.1 1
+octopus 16.0 2
 
 p4est 2.8.7 5
 petsc 3.23.2 21

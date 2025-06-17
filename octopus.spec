@@ -7,8 +7,8 @@ Summary: Octopus install
 %define MODULE_VAR    OCTOPUS
 
 # Create some macros (spec file variables)
-%define major_version 15
-%define minor_version 1
+%define major_version 16
+%define minor_version 0
 
 %define pkg_version %{major_version}.%{minor_version}
 
@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2
 License: GPL
 Vendor: https://gitlab.com/octopus-code/octopus
 Group: Development/Numerical-Libraries
@@ -137,5 +137,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jun 16 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 16.0
 * Mon Feb 03 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

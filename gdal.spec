@@ -136,6 +136,7 @@ module --latest load cmake
 module load jsonc netcdf proj zlib
 module load swig
 if [ "${TACC_SYSTEM}" = "ls6" ] ; then
+    echo "python fix"
     ## this doesn't even work
     export PATH=/opt/apps/gcc11_2/python3/3.9.7/bin:${PATH}
     export LD_LIBRARY_PATH=/opt/apps/gcc11_2/python3/3.9.7/lib:${LD_LIBRARY_PATH}
@@ -143,6 +144,7 @@ if [ "${TACC_SYSTEM}" = "ls6" ] ; then
     pip install setuptools
     pip install numpy
 else
+    echo "python as is"
     module load python3
 fi
 module -t list | sort | tr '\n' ' '

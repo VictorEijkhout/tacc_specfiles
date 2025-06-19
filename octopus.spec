@@ -98,7 +98,10 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module --latest load cmake
-module load git
+# this is not for every cluster
+# which ones?
+## module load git
+
 module load gsl fftw3
 %if "%{comp_fam}" == "gcc"
   module load mkl

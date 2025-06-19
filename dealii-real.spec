@@ -51,7 +51,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3
+Release: 4
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -217,6 +217,8 @@ umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 rm -rf $RPM_BUILD_ROOT
 %changelog
 # release 4: adding boost-mpi dependency
+* Thu Jun 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: rebuild for boost in home1
 * Wed May 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 9.6.2, use trilinos 16.1.0
 * Wed Mar 27 2024 eijkhout <eijkhout@tacc.utexas.edu>

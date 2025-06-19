@@ -131,7 +131,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load jsonc proj swig zlib
+module load jsonc netcdf proj zlib
 module load swig
 if [ "${TACC_SYSTEM}" = "ls6" ] ; then
     ## this doesn't even work
@@ -152,7 +152,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/gdal
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=20 \

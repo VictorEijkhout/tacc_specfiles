@@ -142,9 +142,13 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## we only install with gcc
+## module load 
+module -t list | sort | tr '\n' ' '
 module load gcc
 ## need newer version than the system
 module --latest load cmake
+## module load 
+module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

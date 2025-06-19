@@ -152,7 +152,10 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ################ new stuff
 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
+module -t list | sort | tr '\n' ' '
+
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng

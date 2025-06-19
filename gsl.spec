@@ -130,7 +130,7 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ## no prereqs
-## module load 
+module -t list | sort | tr '\n' ' '
 
 ################ new stuff
 

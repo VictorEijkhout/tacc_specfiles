@@ -142,6 +142,7 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
@@ -152,6 +153,7 @@ else
 	export MKLFLAG="-mkl"
     fi
 fi
+module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*

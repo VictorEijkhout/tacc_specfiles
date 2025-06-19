@@ -1,6 +1,5 @@
 # KOKKOS specfile
 
-
 Summary: Kokkos, piggybacking on the PETSc install
 
 # Give the package a base name

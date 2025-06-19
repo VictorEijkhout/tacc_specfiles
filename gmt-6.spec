@@ -141,7 +141,9 @@ module purge
 
 # Insert further module commands
 # need netcdf libs also
+module -t list | sort | tr '\n' ' '
  module load netcdf
+module -t list | sort | tr '\n' ' '
  export NETCDF_INC=${TACC_NETCDF_INC}
  export NETCDF_LIB=${TACC_NETCDF_LIB}
 

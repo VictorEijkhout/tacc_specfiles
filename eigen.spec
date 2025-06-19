@@ -161,11 +161,10 @@ mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
   mkdir -p %{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
-## module use /opt/apps/intel19/python2_7/modulefiles/
-module list
-## module spider boost/1.69
 module load boost
+module -t list | sort | tr '\n' ' '
 
 ################ new stuff
 

@@ -111,6 +111,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake 
 module load petsc phdf5 hypre metis adios2
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
@@ -122,6 +123,7 @@ else
 	export MKLFLAG="-mkl"
     fi
 fi
+module -t list | sort | tr '\n' ' '
 
     ## get rid of that PACKAGEROOT
     make default_install JCOUNT=20 \

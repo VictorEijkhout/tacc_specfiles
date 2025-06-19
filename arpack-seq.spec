@@ -112,6 +112,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/arpack
 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
 module load eigen
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
@@ -121,6 +122,7 @@ else
 	module load mkl
     fi
 fi
+module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
 make seq JCOUNT=20 \

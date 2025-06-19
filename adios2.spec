@@ -110,8 +110,10 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake 
 module load phdf5
+module -t list | sort | tr '\n' ' '
 
     ## get rid of that PACKAGEROOT
     make default_install JCOUNT=20 \

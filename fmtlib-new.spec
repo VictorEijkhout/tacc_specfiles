@@ -146,7 +146,9 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mkdir -p %{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
+module -t list | sort | tr '\n' ' '
 
 ################ new stuff
 

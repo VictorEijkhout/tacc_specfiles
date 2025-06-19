@@ -130,7 +130,9 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
+module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*

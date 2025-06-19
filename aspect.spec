@@ -100,6 +100,7 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   #========================================
   
 module list
+module -t list | sort | tr '\n' ' '
 module --latest load cmake 
 module load dealii
 #{aspectdealversion}
@@ -107,6 +108,7 @@ module load metis
 module load trilinos
 #{aspecttrilinosversion}
 module load netcdf phdf5
+module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}

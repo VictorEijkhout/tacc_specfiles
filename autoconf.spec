@@ -143,7 +143,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/autoconf
 
+module -t list | sort | tr '\n' ' '
 module load gcc
+module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

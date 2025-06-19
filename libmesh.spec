@@ -97,7 +97,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+module -t list | sort | tr '\n' ' '
 module load boost petsc phdf5
+module -t list | sort | tr '\n' ' '
 
 if [ "${TACC_SYSTEM}" = "vista" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
     export LDFLAGS=-lm

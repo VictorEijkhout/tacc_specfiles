@@ -103,6 +103,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 #   export BLASOPTIONS=
 #   export BLASFLAG=-mkl
 # %endif
+module -t list | sort | tr '\n' ' '
 
 ################ new stuff
 

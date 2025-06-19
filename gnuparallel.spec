@@ -131,10 +131,12 @@ module purge
 #%include mpi-load.inc
 
 # Insert further module commands
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
 echo $MODULEPATH
 module load python3
 module load boost
+module -t list | sort | tr '\n' ' '
 
 echo "Building the package?:    %{BUILD_PACKAGE}"
 echo "Building the modulefile?: %{BUILD_MODULEFILE}"

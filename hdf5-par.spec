@@ -118,8 +118,10 @@ fi
 
 pushd ${VICTOR}/makefiles/hdf5
 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
 module load zlib
+module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
 ##

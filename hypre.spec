@@ -106,7 +106,9 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake 
+module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}

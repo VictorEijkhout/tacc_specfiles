@@ -140,6 +140,8 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
+## module load 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
 module load python3
 module load boost
@@ -162,6 +164,7 @@ else
 	export MKLFLAG="-mkl"
     fi
 fi
+module -t list | sort | tr '\n' ' '
 
 ##
 ## TBBROOT

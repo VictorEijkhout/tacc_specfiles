@@ -24,9 +24,10 @@ catch2 3.8.1 4
 cfitsio 4.6.2 2
 charmpp 8.0.1 1
 cmake 3.31.5 5
-cxxopts 3.2.0 4
+cxxopts 3.3.1 5
 
 dealii 9.6.2 3
+# install.sh -p dealii dealii-real
 dealii-real 9.6.2 3
 
 eigen 3.4.0 5
@@ -83,6 +84,7 @@ mpl 0.3.0 5
 # install.sh    -p mumps  mumps-seq
 # install.sh -m -p pmumps mumps-par
 mumps 5.8.0 1
+pmumps 5.8.0 1
 mumps-seq 5.8.0 1
 mumps-par 5.8.0 1
 

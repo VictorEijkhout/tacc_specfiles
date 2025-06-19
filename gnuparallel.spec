@@ -97,7 +97,8 @@ Summary: GNUPARALLEL is a job launcher
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -106,7 +107,8 @@ Summary: GNUPARALLEL is a job launcher
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -214,7 +216,8 @@ chmod +x ${PARALLEL_INSTALL}/scripts/pass_env
 rm -rf ${PARALLEL_INSTALL}/scripts/.git
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -278,7 +281,8 @@ EOF
   %endif
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -292,7 +296,8 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 #---------------------------
 %if %{?BUILD_MODULEFILE}
@@ -304,7 +309,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################

@@ -76,7 +76,8 @@ Lapack
 %setup -n %{pkg_base_name}-%{pkg_full_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -85,7 +86,8 @@ Lapack
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -128,7 +130,8 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   #========================================
   
 #-----------------------
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -146,7 +149,8 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   #######################################
   
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ##
@@ -178,7 +182,8 @@ umount %{INSTALL_DIR}
 # make test
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -230,7 +235,8 @@ set     ModulesVersion      "%{version}"
 EOF
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 #------------------------
@@ -242,7 +248,8 @@ EOF
 %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 #---------------------------
 %if %{?BUILD_MODULEFILE}
@@ -253,7 +260,8 @@ EOF
 %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 ########################################

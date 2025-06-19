@@ -90,7 +90,8 @@ with examples from the field of climate modeling and analysis.
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -99,7 +100,8 @@ with examples from the field of climate modeling and analysis.
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 #---------------------------------------
@@ -162,7 +164,8 @@ umount %{INSTALL_DIR}/
   #######################################
 
 #-----------------------  
-%endif # BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
 
 
@@ -231,7 +234,8 @@ set     ModulesVersion      "%{version}"
 EOF
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 #------------------------
@@ -243,7 +247,8 @@ EOF
 %{INSTALL_DIR}
 
 #-----------------------
-%endif # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 #---------------------------
@@ -256,7 +261,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 %post

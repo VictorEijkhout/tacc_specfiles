@@ -98,7 +98,8 @@ Elemental is a solver library for distributed sparse linear system.
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 #---------------------------------------
@@ -214,7 +215,8 @@ EOF
 done
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+%endif
+# BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -228,7 +230,8 @@ done
   %{MODULE_DIR}
 
 #--------------------------
-%endif # BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################

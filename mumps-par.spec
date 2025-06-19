@@ -118,7 +118,9 @@ fi
 
 pushd ${VICTOR}/makefiles/mumps
 
+module -t list | sort | tr '\n' ' '
 module load metis parmetis ptscotch
+module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
 ##

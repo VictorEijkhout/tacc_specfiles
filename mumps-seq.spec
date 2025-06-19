@@ -113,7 +113,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/mumps
 
+module -t list | sort | tr '\n' ' '
 module load scotch metis
+module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
 make seq JCOUNT=20 \

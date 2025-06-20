@@ -20,7 +20,7 @@ Summary: Prereq for Metis
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-%include mpi-defines.inc
+##include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -106,7 +106,7 @@ ICL wrapper for C++ around BLAS
 module purge
 # Load Compiler
 %include compiler-load.inc
-%include mpi-load.inc
+##include mpi-load.inc
 
 # Insert further module commands
 

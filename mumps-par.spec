@@ -112,10 +112,6 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
-    ${VICTOR}/makefiles/mumps/vista_fix.sh
-fi
-
 pushd ${VICTOR}/makefiles/mumps
 
 module -t list | sort | tr '\n' ' '

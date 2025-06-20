@@ -11,9 +11,9 @@ Summary: Prereq for Metis
 
 # Create some macros (spec file variables)
 %define major_version 5
-%define minor_version 1
-%define micro_version 0
-%define nano_version 3
+%define minor_version 2
+%define micro_version 1
+%define nano_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}.%{nano_version}
 
@@ -37,7 +37,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/metis
@@ -262,6 +262,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Jun 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 5.2, now seq
 * Wed Apr 16 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: rebuild for shared file system
 * Fri Mar 17 2023 eijkhout <eijkhout@tacc.utexas.edu>

@@ -71,7 +71,7 @@ kokkos-sycl 4.6.01 8
 libmesh 1.8.0 3
 libxc 7.0.0 1
 mdspan git20240209 2
-metis 5.1.0.3 2
+metis 5.2.1.1 3
 
 # install.sh -m -p mfem mfem-cpu
 # install.sh -m -p mfem mfem-gpu

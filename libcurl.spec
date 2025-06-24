@@ -1,26 +1,24 @@
 #
-# Metis.spec
+# libcurl.spec
 # Victor Eijkhout
 #
 
-Summary: Prereq for Metis
+Summary: Libcurl
 
 # Give the package a base name
-%define pkg_base_name metis
-%define MODULE_VAR    METIS
+%define pkg_base_name libcurl
+%define MODULE_VAR    LIBCURL
 
 # Create some macros (spec file variables)
-%define major_version 5
-%define minor_version 2
+%define major_version 8
+%define minor_version 14
 %define micro_version 1
-%define nano_version 1
 
-%define pkg_version %{major_version}.%{minor_version}.%{micro_version}.%{nano_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
-%include compiler-defines.inc
-##include mpi-defines.inc
+# include compiler-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -37,33 +35,32 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   1
 License:   BSD
 Group:     Development/Tools
-URL:       https://github.com/flame/metis
+URL:       https://curl.se/libcurl/
 Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
-%define _build_id_links none
 %define dbg           %{nil}
-
+%define _build_id_links none
 
 %package %{PACKAGE}
-Summary: Blas alternative
-Group: Numerical library
+Summary: Libcurl
+Group: Support
 %description package
 This is the long description for the package RPM...
 
 %package %{MODULEFILE}
-Summary: The modulefile RPM
-Group: Lmod/Modulefiles
+Summary: Libcurl
+Group: Support
 %description modulefile
-ICL wrapper for C++ around BLAS
+Libcurl
 
 %description
-ICL wrapper for C++ around BLAS
+Libcurl
 
 
 #---------------------------------------
@@ -105,8 +102,7 @@ ICL wrapper for C++ around BLAS
 %include system-load.inc
 module purge
 # Load Compiler
-%include compiler-load.inc
-##include mpi-load.inc
+# %include compiler-load.inc
 
 # Insert further module commands
 
@@ -130,13 +126,13 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module -t list | sort | tr '\n' ' '
-module --latest load cmake
-module -t list | sort | tr '\n' ' '
-
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
+
+## no prereqs
+module -t list | sort | tr '\n' ' '
+## module load 
 
 ################ new stuff
 
@@ -147,8 +143,11 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+module load gcc/13
+module -t list | sort | tr '\n' ' '
+
 ## get rid of that PACKAGEROOT
-make i32 i64 JCOUNT=10 \
+make configure build JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -262,11 +261,5 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Mon Jun 23 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: i32 & i64
-* Fri Jun 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: 5.2, now seq
-* Wed Apr 16 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: rebuild for shared file system
-* Fri Mar 17 2023 eijkhout <eijkhout@tacc.utexas.edu>
+* Tue Jun 24 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

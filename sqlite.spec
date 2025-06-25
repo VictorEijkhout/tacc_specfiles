@@ -185,37 +185,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the SQLITE environment variables:
-# TACC_SQLITE_DIR, TACC_SQLITE_LIB, TACC_SQLITE_INC
-
-# There are examples programs in \$TACC_SQLITE_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: SQLITE")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/sqlite")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local sqlite_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_SQLITE_DIR",sqlite_dir)
-# setenv("TACC_SQLITE_LIB",pathJoin(sqlite_dir,"lib"))
-# setenv("TACC_SQLITE_INC",pathJoin(sqlite_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(sqlite_dir,"lib"))
-
-# EOF
-  
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##

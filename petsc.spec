@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 23
-%define micro_version 2
+%define micro_version 4
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 21
+Release: 22
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -163,6 +163,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jul 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 22: debug mode fix
 * Sat May 24 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 21: gcc 15 fix
 * Tue May 13 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -5,7 +5,7 @@
 ## release as used in spec file.
 ##
 
-adios2 2.10.2 2
+adios2 2.10.2 3
 
 arpack 3.9.1 1
 arpack-seq 3.9.1 1

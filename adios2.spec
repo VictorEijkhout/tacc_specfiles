@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3
 License: GPL
 Vendor: https://github.com/ornladios/ADIOS2
 Group: Development/Numerical-Libraries
@@ -150,6 +150,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jul 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: rebuild with fortran enabled
 * Sat Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 2.10.2
 * Thu Sep 26 2024 eijkhout <eijkhout@tacc.utexas.edu>

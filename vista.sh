@@ -15,7 +15,7 @@ done
 
 cat install.sh \
     | sed -e 's/frontera/vista/' \
-	  -e 's/COMPILERS/n249,o5_05,k126 n253,o5_07,k128 g142,o5_07,k126/' \
+	  -e 's/COMPILERS/n249,o5_05,k126 n253,o5_07,k128 g142,o5_07,k126 g151,o5_07,k128/' \
 	  -e 's/x86_64/aarch64/' \
     > vista_specfiles/install.sh
 

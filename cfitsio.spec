@@ -236,6 +236,8 @@ EOF
 ########################################
 ## Fix Modulefile During Post Install ##
 ########################################
+# bizarre hack to prevent rpath checks
+%define buildarch noarch
 %post %{PACKAGE}
 export PACKAGE_POST=1
 %include post-defines.inc

@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 23
-%define micro_version 4
+%define micro_version 5
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 22
+Release: 23
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -145,7 +145,7 @@ find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
@@ -163,6 +163,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Aug 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 23: 3.23.5 and activate p4p
 * Fri Jul 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 22: debug mode fix
 * Sat May 24 2025 eijkhout <eijkhout@tacc.utexas.edu>

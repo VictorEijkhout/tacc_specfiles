@@ -111,9 +111,15 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module -t list | sort | tr '\n' ' '
+if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+    module load mkl
+else
+    export MKLFLAG="-mkl"
+fi
+module -t list | sort | tr '\n' ' '
 
     ## get rid of that PACKAGEROOT
-make default_install JCOUNT=20 \
+make default_install JCOUNT=1 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

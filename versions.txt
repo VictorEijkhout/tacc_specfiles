@@ -6,6 +6,7 @@
 ##
 
 adios2 2.10.2 3
+alps 1.1.1 1
 
 arpack 3.9.1 1
 arpack-seq 3.9.1 1

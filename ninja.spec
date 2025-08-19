@@ -1,4 +1,3 @@
-2#
 # ninja.spec
 # Victor Eijkhout
 #

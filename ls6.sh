@@ -12,6 +12,7 @@ for s in *.spec ; do
 	    -e /cuda-defines/d \
 	    -e 's/GCCDEF/13/' \
 	    -e 's/GCCMIN/9/' \
+	    -e 's/CMAKEMIN/3.21/' \
 	> ls6_specfiles/$s
 done
 

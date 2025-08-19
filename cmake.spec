@@ -144,9 +144,10 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 ## we only install with gcc
 ## module load 
 module -t list | sort | tr '\n' ' '
+## build this only with gcc
 module load gcc/GCCMIN
 ## need newer version than the system
-module --latest load cmake
+module load cmake/CMAKEMIN
 ## module load 
 module -t list | sort | tr '\n' ' '
 

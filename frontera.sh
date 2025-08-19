@@ -7,7 +7,7 @@ for s in *.spec ; do
 	      -e '/FRONTERA/s/FRONTERA //' \
 	      -e 's/PETSCCUDAFLAG/-c/' \
 	      -e 's/GCCDEF/13/' \
-	      -e 's/GCCMIN/9.1.0/' \
+	      -e 's/GCCMIN/8.3.0/' \
 	      -e 's/CMAKEMIN/3.20/' \
 > frontera_specfiles/$s
 done

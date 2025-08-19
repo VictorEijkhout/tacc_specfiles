@@ -1,4 +1,4 @@
-#
+2#
 # ninja.spec
 # Victor Eijkhout
 #
@@ -11,7 +11,7 @@ Summary: Ninja
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 12
+%define minor_version 13
 %define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/ninja-build/ninja
@@ -140,7 +140,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module load --latest cmake
-module load gcc/GCC
+module load gcc/GCCMIN
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
@@ -257,5 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: version 1.13
 * Thu May 22 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

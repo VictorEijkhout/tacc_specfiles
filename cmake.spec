@@ -10,9 +10,9 @@ Summary: Cmake
 %define MODULE_VAR    CMAKE
 
 # Create some macros (spec file variables)
-%define major_version 3
-%define minor_version 31
-%define micro_version 5
+%define major_version 4
+%define minor_version 1
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   6
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -144,7 +144,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 ## we only install with gcc
 ## module load 
 module -t list | sort | tr '\n' ' '
-module load gcc
+module load gcc/GCCMIN
 ## need newer version than the system
 module --latest load cmake
 ## module load 
@@ -268,6 +268,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: 4.1
 * Wed May 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: frontera path fix
 * Wed Feb 12 2025 eijkhout <eijkhout@tacc.utexas.edu>

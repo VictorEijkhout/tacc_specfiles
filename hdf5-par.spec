@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 9
+Release: 10
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -163,6 +163,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Sep 04 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: threadsafe
 * Tue Jul 22 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: same release seq/par, 1.14.6, cpp enabled
 * Fri Sep 27 2024 eijkhout <eijkhout@tacc.utexas.edu>

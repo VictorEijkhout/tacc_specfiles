@@ -150,6 +150,8 @@ module unload gcc
 module unload cmake
 ## module load 
 module -t list | sort | tr '\n' ' '
+export TACC_CC=gcc
+export TACC_CXX=g++
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \

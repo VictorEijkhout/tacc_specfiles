@@ -12,7 +12,7 @@ Summary: Cmake
 # Create some macros (spec file variables)
 %define major_version 4
 %define minor_version 1
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6
+Release:   7
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -145,9 +145,9 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 ## module load 
 module -t list | sort | tr '\n' ' '
 ## build this only with gcc
-module load gcc/GCCMIN
+module unload gcc
 ## need newer version than the system
-module load cmake/CMAKEMIN
+module unload cmake
 ## module load 
 module -t list | sort | tr '\n' ' '
 
@@ -269,6 +269,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Sep 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: 4.1.1 with system gcc
 * Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 4.1
 * Wed May 07 2025 eijkhout <eijkhout@tacc.utexas.edu>

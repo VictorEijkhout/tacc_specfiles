@@ -146,7 +146,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 module -t list | sort | tr '\n' ' '
 ## build this only with gcc
 module unload gcc
-## need newer version than the system
+## system cmake is fine except on Frontera: there load 3.20
 module unload cmake
 ## module load 
 module -t list | sort | tr '\n' ' '

@@ -2,37 +2,23 @@
 # yamlcpp.spec
 # Victor Eijkhout
 #
-# based on
+# INCOMPATIBLE ./build_rpm.sh -i191 yamlcpp.spec
+# ./build_rpm.sh -i231 yamlcpp-new.spec
+# ./build_rpm.sh -g91 yamlcpp-new.spec
+# ./build_rpm.sh -g132 yamlcpp-new.spec
 #
-# Bar.spec
-# W. Cyrus Proctor
-# Antonio Gomez
-# 2015-08-25
-#
-# Important Build-Time Environment Variables (see name-defines.inc)
-# NO_PACKAGE=1    -> Do Not Build/Rebuild Package RPM
-# NO_MODULEFILE=1 -> Do Not Build/Rebuild Modulefile RPM
-#
-# Important Install-Time Environment Variables (see post-defines.inc)
-# VERBOSE=1       -> Print detailed information at install time
-# RPM_DBPATH      -> Path To Non-Standard RPM Database Location
-#
-# Typical Command-Line Example:
-# ./build_rpm.sh Bar.spec
-# cd ../RPMS/x86_64
-# rpm -i --relocate /tmprpm=/opt/apps Bar-package-1.1-1.x86_64.rpm
-# rpm -i --relocate /tmpmod=/opt/apps Bar-modulefile-1.1-1.x86_64.rpm
-# rpm -e Bar-package-1.1-1.x86_64 Bar-modulefile-1.1-1.x86_64
-
-Summary: A Nice little relocatable skeleton spec file example.
+Summary: Commandline options handling
 
 # Give the package a base name
 %define pkg_base_name yamlcpp
 %define MODULE_VAR    YAMLCPP
 
-%define major_version git
-%define pkg_version %{major_version}
+# Create some macros (spec file variables)
+%define major_version 0
+%define minor_version 8
+%define micro_version 0
 
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -59,9 +45,8 @@ Release:   1
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jbeder/yaml-cpp
-Group: TACC
 Packager: eijkhout@tacc.utexas.edu 
-Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
+Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
@@ -162,29 +147,45 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mkdir -p %{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
-#module load python3/3.8.2 # just for boost
+## module load 
+module -t list | sort | tr '\n' ' '
 module --latest load cmake
-rm -rf /tmp/yamlcpp-build
-mkdir -p /tmp/yamlcpp-build
-export YAMLCPP_SRC=`pwd`
-pushd  /tmp/yamlcpp-build
-cmake \
-    -D YAML_BUILD_SHARED_LIBS=ON \
-    -D CMAKE_INSTALL_PREFIX::PATH=%{INSTALL_DIR} \
-    ${YAMLCPP_SRC}
-make
-make install
+## module load 
+module -t list | sort | tr '\n' ' '
+
+################ new stuff
+
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## get rid of that PACKAGEROOT
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+
 popd
 
-  # Copy everything from tarball over to the installation directory
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+################ end of new stuff
+
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   rm -rf /tmp/build-${pkg_version}*
 
-  umount %{INSTALL_DIR}
+umount %{INSTALL_DIR}
   
 #-----------------------  
-  %endif
-  # BUILD_PACKAGE |
+%endif
+# BUILD_PACKAGE |
 #-----------------------
 
 
@@ -202,46 +203,8 @@ popd
   ########### Do Not Remove #############
   #######################################
   
-# Write out the modulefile associated with the application
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-local help_msg=[[
-The %{MODULE_VAR} module defines the following environment variables:
-TACC_%{MODULE_VAR}_DIR, TACC_%{MODULE_VAR}_INC, TACC_%{MODULE_VAR}_BIN, 
-for the location of the %{MODULE_VAR} distribution, and include/binary files
-respectively.
-
-Usage:
-  module import yamlcpp
-and use
-  #include "yamlcpp/catch_all.hpp"
-in your code; compile with
-  ${CXX} -o yourprog yourprogr.cxx 
-    -I${TACC_YAMLCPP_INC} 
-    -L${TACC_YAMLCPP_LIB} -lYamlcppMain -lYamlcpp
-]]
-
---help(help_msg)
-help(help_msg)
-
-whatis("Name: %{pkg_base_name}")
-whatis("Version: %{pkg_version}%{dbg}")
-whatis("URL:  https://github.com/jbeder/yaml-cpp")
-%if "%{is_debug}" == "1"
-setenv("TACC_%{MODULE_VAR}_DEBUG","1")
-%endif
-
--- Create environment variables.
-local yamlcpp_dir           = "%{INSTALL_DIR}"
-
-setenv( "TACC_%{MODULE_VAR}_DIR",       yamlcpp_dir)
-setenv( "TACC_%{MODULE_VAR}_INC",       pathJoin( yamlcpp_dir,"include") )
-setenv( "TACC_%{MODULE_VAR}_LIB",       pathJoin( yamlcpp_dir,"lib64") )
-
-prepend_path("LD_LIBRARY_PATH", pathJoin(yamlcpp_dir,"lib64") )
-EOF
-  
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
-#%Module3.1.1#################################################
+#%Module1.0#################################################
 ##
 ## version file for %{BASENAME}%{version}
 ##
@@ -308,5 +271,5 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Sep 17 2021 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: initial build
+* Mon Sep 15 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial build of 0.8.0

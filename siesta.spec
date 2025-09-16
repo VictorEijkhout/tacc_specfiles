@@ -7,7 +7,7 @@ Summary: Siesta install
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 4
-%define micro_version 0
+%define micro_version 1
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %include rpm-dir.inc
@@ -99,20 +99,20 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 ## I'm guessing they don't hurt to apply in general
 ##
   # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libfdf"
-sed -i ./Config/cmake/Modules/FindCustomlibfdf.cmake \
-    -e '/REPOSITORY/s?libfdf?libfdf.git?'
+# sed -i ./Config/cmake/Modules/FindCustomlibfdf.cmake \
+#     -e '/REPOSITORY/s?libfdf?libfdf.git?'
 
-  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/xmlf90"
-sed -i ./Config/cmake/Modules/FindCustomxmlf90.cmake \
-    -e '/REPOSITORY/s?xmlf90?xmlf90.git?'
+#   # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/xmlf90"
+# sed -i ./Config/cmake/Modules/FindCustomxmlf90.cmake \
+#     -e '/REPOSITORY/s?xmlf90?xmlf90.git?'
 
-  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libpsml"
-sed -i ./Config/cmake/Modules/FindCustomlibpsml.cmake \
-    -e '/REPOSITORY/s?libpsml?libpsml.git?'
+#   # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libpsml"
+# sed -i ./Config/cmake/Modules/FindCustomlibpsml.cmake \
+#     -e '/REPOSITORY/s?libpsml?libpsml.git?'
 
-  # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libgridxc"
-sed -i ./Config/cmake/Modules/FindCustomLibGridxc.cmake \
-    -e '/REPOSITORY/s?libgridxc?libgridxc.git?'
+#   # GIT_REPOSITORY "https://gitlab.com/siesta-project/libraries/libgridxc"
+# sed -i ./Config/cmake/Modules/FindCustomLibGridxc.cmake \
+#     -e '/REPOSITORY/s?libgridxc?libgridxc.git?'
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 

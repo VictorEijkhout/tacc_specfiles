@@ -132,7 +132,7 @@ scotch-seq 7.0.7 2
 ptscotch 7.0.7 2
 scotch-par 7.0.7 2
 
-siesta 5.2.2 4
+siesta 5.4.0 5
 siesta-git git20241011 1
 # silo git2024 1
 silo 4.11.1 3

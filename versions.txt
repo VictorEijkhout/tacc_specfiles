@@ -36,6 +36,8 @@ dealii-real 9.6.2 4
 eigen 3.4.0 5
 fftw2 2.1.5 1
 fftw3 3.3.10 9
+fmtlib 11.1.4 1
+
 gdal 3.11.3 5
 gklib git20240111 2
 gmp 6.3.0 1

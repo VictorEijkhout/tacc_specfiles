@@ -1,13 +1,14 @@
 #
-# Sundials.spec
+# Ssundials.spec
 # Victor Eijkhout
 #
 
-Summary: Prereq for Sundials
+Summary: Sundials
 
 # Give the package a base name
-%define pkg_base_name sundials
-%define MODULE_VAR    SUNDIALS
+%define pkg_base_name ssundials
+%define pkg_base_base_name sundials
+%define MODULE_VAR    SSUNDIALS
 
 # Create some macros (spec file variables)
 %define major_version 7
@@ -40,7 +41,7 @@ License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/sundials
 Packager:  TACC - eijkhout@tacc.utexas.edu
-Source:    %{pkg_base_name}-%{pkg_version}.tgz
+Source:    %{pkg_base_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
@@ -74,7 +75,7 @@ ICL wrapper for C++ around BLAS
   # Delete the package installation directory.
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
 
-%setup -n %{pkg_base_name}-%{pkg_version}
+%setup -n %{pkg_base_base_name}-%{pkg_version}
 
 #-----------------------
 %endif
@@ -140,7 +141,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
+pushd ${VICTOR}/makefiles/%{pkg_base_base_name}
 
 ## get rid of that PACKAGEROOT
 make seq JCOUNT=10 SETX=1 \

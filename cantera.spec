@@ -145,7 +145,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 ## module load 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load boost eigen fmtlib hdf5 highfive sundials yamlcpp
+module load boost eigen fmtlib hdf5 highfive ssundials yamlcpp
 if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
     module load mkl
 fi

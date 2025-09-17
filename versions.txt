@@ -143,6 +143,7 @@ sqlite 3.49.2 4
 suitesparse 7.9.0 3
 
 sundials 7.4.0 2
+ssundials 7.4.0 2
 sundials-seq 7.4.0 2
 sundials-par 7.4.0 2
 

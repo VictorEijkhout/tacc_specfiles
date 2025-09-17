@@ -11,7 +11,7 @@ Summary: Prereq for Sundials
 
 # Create some macros (spec file variables)
 %define major_version 7
-%define minor_version 3
+%define minor_version 4
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -19,7 +19,6 @@ Summary: Prereq for Sundials
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-%include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -36,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/sundials
@@ -105,7 +104,6 @@ ICL wrapper for C++ around BLAS
 module purge
 # Load Compiler
 %include compiler-load.inc
-%include mpi-load.inc
 
 # Insert further module commands
 
@@ -145,7 +143,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 SETX=1 \
+make seq JCOUNT=10 SETX=1 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -259,5 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: 7.4 & seq/par
 * Fri May 02 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

@@ -9,9 +9,9 @@ Summary: Commandline options handling
 %define MODULE_VAR    FMTLIB
 
 # Create some macros (spec file variables)
-%define major_version 11
-%define minor_version 1
-%define micro_version 4
+%define major_version 12
+%define minor_version 0
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/fmtlib/fmt
@@ -266,5 +266,7 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: version 12
 * Tue Sep 16 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial build

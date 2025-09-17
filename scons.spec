@@ -261,5 +261,5 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Wed Sepd 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
+* Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

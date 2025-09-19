@@ -10,9 +10,9 @@ Summary: Nclncarg
 %define MODULE_VAR    NCLNCARG
 
 # Create some macros (spec file variables)
-%define major_version git2024
-## define minor_version 3
-## define micro_version 1
+%define major_version 6
+%define minor_version 6
+%define micro_version 2
 
 %define pkg_version %{major_version}
 ## {minor_version} 
@@ -37,7 +37,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.ncl.ucar.edu/
@@ -128,40 +128,39 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module load hdf5/1.10 netcdf/4.9.1 udunits sz 
+  #========================================
+  # Insert Build/Install Instructions Here
+  #========================================
+  
+  mkdir -p %{INSTALL_DIR}
+  mount -t tmpfs tmpfs %{INSTALL_DIR}
+  
+## module load 
+module -t list | sort | tr '\n' ' '
+module --latest load cmake
+## module load 
+module -t list | sort | tr '\n' ' '
 
-mkdir -p %{INSTALL_DIR}
-rm -rf %{INSTALL_DIR}/*
-## mount -t tmpfs tmpfs %{INSTALL_DIR}
+################ new stuff
 
-##
-## For now we spell it out
-##
-if [ ! -d ngmath ] ; then
-    echo "We are not in the source directory" && exit 1
-else
-    echo "Source directory listing:"
-    ls
-fi
-
-
-echo "Creating local configuration"
-export NCARG=$( pwd )
-
-# where are the ncl customization scripts
+export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export NCLSCRIPTS=${VICTOR}/makefiles/%{pkg_base_name}
+export MAKEINCLUDES=${VICTOR}/make-support-files
 
-# run the scripts
-source ${NCLSCRIPTS}/ncl_${TACC_CC}.sh
-${NCLSCRIPTS}/nclncarg_configure.sh -i %{INSTALL_DIR}
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-# make...
-echo "Making"
-make Everything
+## get rid of that PACKAGEROOT
+make configure build JCOUNT=10 \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 
-## popd
+popd
 
 ################ end of new stuff
 
@@ -169,12 +168,10 @@ make Everything
 ls %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
-## umount %{INSTALL_DIR}
+umount %{INSTALL_DIR}
   
-ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-
 #-----------------------  
 %endif
 # BUILD_PACKAGE |
@@ -193,41 +190,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua << 'EOF'
-local help_message = [[
-The %{name} module file defines the following environment variables:
-  TACC_NCLNCARG_BIN, TACC_NCLNCARG_INC, TACC_NCLNCARG_LIB
-
-Version %{version}
-]]
-help(help_message,"\n")
-
-whatis("Nclncarg: NCL NCARG")
-whatis("Version: %{version}")
-whatis("Category: application, data")
-whatis("Keywords: data")
-whatis("Description: nclncarg")
-whatis("URL: http://nclncarg/")
-
---Prepend paths
-prepend_path("LD_LIBRARY_PATH","%{INSTALL_DIR}/lib")
-prepend_path("PATH",           "%{INSTALL_DIR}/bin")
--- prepend_path("MANPATH",        "%{INSTALL_DIR}/share/man")
-
---Env variables
-setenv("TACC_NCLNCARG_DIR", "%{INSTALL_DIR}")
-setenv("TACC_NCLNCARG_INC", "%{INSTALL_DIR}/include")
-setenv("TACC_NCLNCARG_LIB", "%{INSTALL_DIR}/lib")
-setenv("TACC_NCLNCARG_BIN", "%{INSTALL_DIR}/bin")
-
--- Prerequisites
-depends_on( "hdf5/1.10" )
-depends_on( "netcdf" )
-depends_on( "udunits" )
-depends_on( "sz" )
-
-EOF
-
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##
@@ -301,6 +263,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Sep 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 6.6.2
 * Mon Jun 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: module dependencies
 * Tue May 28 2024 eijkhout <eijkhout@tacc.utexas.edu>

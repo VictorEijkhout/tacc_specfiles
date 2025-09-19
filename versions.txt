@@ -96,7 +96,7 @@ mumps-seq 5.8.0 1
 mumps-par 5.8.0 1
 
 ncview 2.1.9 3
-nclncarg git2024 2
+nclncarg 6.6.2 3
 
 # ls6: install.sh -c g -v94
 ninja 1.13.1 2

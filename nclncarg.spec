@@ -14,9 +14,7 @@ Summary: Nclncarg
 %define minor_version 6
 %define micro_version 2
 
-%define pkg_version %{major_version}
-## {minor_version} 
-## {minor_version}
+%define pkg_version %{major_version}.%{minor_version} .%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -151,7 +149,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
+make default_install JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

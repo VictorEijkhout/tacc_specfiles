@@ -1,24 +1,24 @@
 #
-# nclncarg.spec
+# cmake.spec
 # Victor Eijkhout
 #
 
-Summary: Nclncarg
+Summary: Cmake 3 latest
 
 # Give the package a base name
-%define pkg_base_name nclncarg
-%define MODULE_VAR    NCLNCARG
+%define pkg_base_name cmake
+%define MODULE_VAR    CMAKE
 
 # Create some macros (spec file variables)
-%define major_version 6
-%define minor_version 6
-%define micro_version 2
+%define major_version 3
+%define minor_version 31
+%define micro_version 9
 
-%define pkg_version %{major_version}.%{minor_version} .%{micro_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
-%include compiler-defines.inc
+# include compiler-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -35,10 +35,10 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   7
 License:   BSD
 Group:     Development/Tools
-URL:       https://www.ncl.ucar.edu/
+URL:       https://cmake.org
 Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
@@ -48,19 +48,19 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %define _build_id_links none
 
 %package %{PACKAGE}
-Summary: Nclncarg
+Summary: Cmake
 Group: Support
 %description package
 This is the long description for the package RPM...
 
 %package %{MODULEFILE}
-Summary: Nclncarg
+Summary: Cmake
 Group: Support
 %description modulefile
-Nclncarg
+Cmake
 
 %description
-Nclncarg
+Cmake
 
 
 #---------------------------------------
@@ -102,7 +102,7 @@ Nclncarg
 %include system-load.inc
 module purge
 # Load Compiler
-%include compiler-load.inc
+# %include compiler-load.inc
 
 # Insert further module commands
 
@@ -126,18 +126,11 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-  #========================================
-  # Insert Build/Install Instructions Here
-  #========================================
-  
-  mkdir -p %{INSTALL_DIR}
-  mount -t tmpfs tmpfs %{INSTALL_DIR}
-  
-## module load 
-module -t list | sort | tr '\n' ' '
-module --latest load cmake
-module load netcdf
-module -t list | sort | tr '\n' ' '
+mkdir -p %{INSTALL_DIR}
+rm -rf %{INSTALL_DIR}/*
+mount -t tmpfs tmpfs %{INSTALL_DIR}
+
+## no prereqs
 
 ################ new stuff
 
@@ -148,8 +141,23 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+## we only install with gcc
+## module load 
+module -t list | sort | tr '\n' ' '
+## build this only with gcc
+module unload gcc
+## system cmake is fine except on Frontera: there load 3.20
+module unload cmake
+## module load 
+module -t list | sort | tr '\n' ' '
+export TACC_CC=gcc
+export TACC_CXX=g++
+
 ## get rid of that PACKAGEROOT
-make default_install JCOUNT=10 \
+make configure build JCOUNT=10 \
+     $( if [ "${TACC_SYSTEM}" = "vista" ] ; then \
+            echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
+            ; fi ) \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -162,14 +170,16 @@ popd
 
 ################ end of new stuff
 
-# Copy installation from tmpfs to RPM directory
-ls %{INSTALL_DIR}
-cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+  # Copy installation from tmpfs to RPM directory
+  ls %{INSTALL_DIR}
+  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-rm -rf /tmp/build-${pkg_version}*
+  rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
+ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
 #-----------------------  
 %endif
 # BUILD_PACKAGE |
@@ -261,9 +271,17 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Fri Sep 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: 6.6.2
-* Mon Jun 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: module dependencies
-* Tue May 28 2024 eijkhout <eijkhout@tacc.utexas.edu>
+* Thu Sep 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: 3.31.9 with system gcc
+* Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: 4.1
+* Wed May 07 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: frontera path fix
+* Wed Feb 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 3.31
+* Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 3.30
+* Mon Aug 12 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: extra ld path for vista
+* Fri Jun 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

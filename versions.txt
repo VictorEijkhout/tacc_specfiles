@@ -89,12 +89,12 @@ mfem-gpu 4.8 5
 mpfr 4.2.2 3
 mpl 0.3.0 5
 
-# install.sh    -p mumps  mumps-seq
-# install.sh -m -p pmumps mumps-par
-mumps 5.8.0 1
-pmumps 5.8.0 1
-mumps-seq 5.8.0 1
-mumps-par 5.8.0 1
+# install.sh    -p smumps  mumps-seq
+# install.sh -m -p mumps mumps-par
+smumps 5.8.1 2
+mumps 5.8.1 2
+mumps-seq 5.8.1 2
+mumps-par 5.8.1 2
 
 ncview 2.1.9 3
 nclncarg 6.6.2 3

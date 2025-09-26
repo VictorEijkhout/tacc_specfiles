@@ -5,6 +5,7 @@ Summary: Mumps install
 
 # Give the package a base name
 %define pkg_base_name smumps
+%define pkg_base_base_name smumps
 %define MODULE_VAR    SMUMPS
 
 # Create some macros (spec file variables)
@@ -40,7 +41,7 @@ Vendor: https://portal.hdfgroup.org
 #Source1: mumps-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: %{pkg_base_name}-%{pkg_version}.tgz
+Source0: %{pkg_base_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
@@ -111,7 +112,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/mumps
+pushd ${VICTOR}/makefiles/%{pkg_base_base_name}
 
 module -t list | sort | tr '\n' ' '
 module load scotch metis

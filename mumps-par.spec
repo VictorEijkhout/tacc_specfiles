@@ -116,6 +116,9 @@ pushd ${VICTOR}/makefiles/mumps
 
 module -t list | sort | tr '\n' ' '
 module load metis parmetis ptscotch
+if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+    module load mkl
+fi
 module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT

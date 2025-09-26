@@ -5,7 +5,7 @@ Summary: Mumps install
 
 # Give the package a base name
 %define pkg_base_name smumps
-%define pkg_base_base_name smumps
+%define pkg_base_base_name mumps
 %define MODULE_VAR    SMUMPS
 
 # Create some macros (spec file variables)

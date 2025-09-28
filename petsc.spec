@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 23
-%define micro_version 5
+%define micro_version 6
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 23
+Release: 24
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -163,6 +163,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun Sep 28 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 24: 3.23.6 and activate kokkos
 * Mon Aug 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 23: 3.23.5 and activate p4p
 * Fri Jul 11 2025 eijkhout <eijkhout@tacc.utexas.edu>

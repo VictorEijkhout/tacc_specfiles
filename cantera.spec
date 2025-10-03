@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/Cantera/cantera
@@ -269,5 +269,7 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Oct 03 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: including bindir
 * Mon Sep 15 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial build of 3.1.0

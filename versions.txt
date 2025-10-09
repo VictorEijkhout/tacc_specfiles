@@ -31,9 +31,9 @@ cmake 4.1.1 7
 # 3.31.5 5
 cxxopts 3.3.1 5
 
-dealii 9.6.2 4
+dealii 9.7.1 5
 # install.sh -p dealii dealii-real
-dealii-real 9.6.2 4
+dealii-real 9.7.1 5
 
 eigen 3.4.0 5
 fftw2 2.1.5 1

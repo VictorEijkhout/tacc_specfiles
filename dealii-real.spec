@@ -8,8 +8,8 @@ Summary: Dealii install
 
 # Create some macros (spec file variables)
 %define major_version 9
-%define minor_version 6
-%define micro_version 2
+%define minor_version 7
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -51,7 +51,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4
+Release: 5
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -216,7 +216,8 @@ umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
-# release 4: adding boost-mpi dependency
+* Thu Oct 09 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: 9.7.1
 * Thu Jun 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: rebuild for boost in home1
 * Wed May 14 2025 eijkhout <eijkhout@tacc.utexas.edu>

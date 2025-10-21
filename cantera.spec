@@ -151,6 +151,9 @@ if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
 fi
 module -t list | sort | tr '\n' ' '
 
+FRONTERA module use /opt/apps/intel19/impi19_0/modulefiles
+FRONTERA module load python3/3.9
+
 ################ new stuff
 
 export SRCPATH=`pwd`

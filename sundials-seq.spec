@@ -12,7 +12,7 @@ Summary: Sundials
 
 # Create some macros (spec file variables)
 %define major_version 7
-%define minor_version 4
+%define minor_version 5
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/sundials
@@ -47,6 +47,7 @@ Source:    %{pkg_base_base_name}-%{pkg_version}.tgz
 %define debug_package %{nil}
 %define _build_id_links none
 %define dbg           %{nil}
+%global _python_bytecompile_errors_terminate_build 0
 
 
 %package %{PACKAGE}
@@ -258,6 +259,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Oct 21 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 7.5
 * Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 7.4 & seq/par
 * Fri May 02 2025 eijkhout <eijkhout@tacc.utexas.edu>

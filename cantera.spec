@@ -153,6 +153,7 @@ module -t list | sort | tr '\n' ' '
 
 FRONTERA module use /opt/apps/intel19/impi19_0/modulefiles
 FRONTERA module load python3/3.9
+FRONTERA export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin
 
 ################ new stuff
 

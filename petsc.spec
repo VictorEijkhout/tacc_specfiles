@@ -125,6 +125,12 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
   disablefortran=-f
 fi
+if [ "${TACC_SYSTEM}" = "ls6" ] ; then
+    echo ">>>> LS6 BUILDING WITHOUT PYTHON"
+    export petscpython=
+else
+    export petscpython=-4
+fi
 
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 
@@ -136,7 +142,7 @@ export    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}
 ./install_all.sh \
     -j 16 \
-    PETSCCUDAFLAG -4 ${disablefortran} \
+    PETSCCUDAFLAG ${petscpython} ${disablefortran} \
     -v %{pkg_version} 
 popd
 

@@ -100,6 +100,8 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   #========================================
   
 module list
+module load cmake
+module load python/3.12
 module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}
@@ -126,13 +128,9 @@ popd
 
 ################ end of new stuff
 
-cp -r contrib   data    unit_tests \
-    benchmarks  doc  source    VERSION \
-    CITATION     CODE_OF_CONDUCT.md  cookbooks  LICENSE          tests \
-    %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

@@ -17,7 +17,7 @@ Summary: Dealii install
 ## petsc handling
 ##
 %define use_petsc 1
-%define dealiipetscversion 3.24
+%define dealiipetscversion 3.24-complex
 ## as of petsc 3.15 slepc is rolled into petsc
 %define explicit_slepc 0
 
@@ -177,7 +177,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
     pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
     ## get rid of that PACKAGEROOT
-    make real JCOUNT=20 \
+    make complex JCOUNT=20 \
 	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
 	PACKAGEVERSION=%{pkg_version} \
 	PACKAGEROOT=/tmp \

@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3
+Release: 1
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -46,6 +46,8 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 %define _build_id_links none
 ## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
+# Turn off the brp-python-bytecompile script
+%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-pytho\n-bytecompile[[:space:]].*$!!g')
 
 %package %{PACKAGE}
 Summary: Gmsh is an open source finite element package
@@ -101,7 +103,7 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   
 module list
 module load cmake
-module load python/3.12
+# module load python/3.12
 module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}

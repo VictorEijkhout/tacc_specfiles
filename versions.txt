@@ -35,6 +35,7 @@ dealii96 9.6.2 5
 dealii96-real 9.6.2 5
 dealii 9.7.1 5
 dealii-real 9.7.1 5
+dealii-complex 9.7.1 5
 # install.sh -p dealii dealii-real
 
 eigen 3.4.0 5

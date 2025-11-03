@@ -46,7 +46,7 @@ Summary: Dealii install
 ########################################
 
 ############ Do Not Change #############
-Name:      %{pkg_name}
+Name:      %{pkg_name}-complex
 Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################

@@ -18,7 +18,7 @@ Summary: Gmp
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
-%include compiler-defines.inc
+# include compiler-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://gmplib.org/
@@ -100,9 +100,9 @@ Gmp
 
 # Setup modules
 %include system-load.inc
-%include compiler-defines.inc
+# include compiler-defines.inc
 module purge
-%include compiler-load.inc
+# include compiler-load.inc
 
 # Insert further module commands
 
@@ -141,6 +141,18 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## we only install with system gcc
+## module load 
+module -t list | sort | tr '\n' ' '
+## build this only with gcc
+module unload gcc
+## system cmake is fine except on Frontera: there load 3.20
+module unload cmake
+## module load 
+module -t list | sort | tr '\n' ' '
+export TACC_CC=gcc
+export TACC_CXX=g++
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
@@ -256,5 +268,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Not 05 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: system gcc
 * Thu Feb 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

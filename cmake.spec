@@ -141,7 +141,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## we only install with gcc
+## we only install with system gcc
 ## module load 
 module -t list | sort | tr '\n' ' '
 ## build this only with gcc

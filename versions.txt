@@ -38,7 +38,8 @@ dealii-real 9.7.1 5
 dealii-complex 9.7.1 5
 # install.sh -p dealii dealii-real
 
-eigen 3.4.0 5
+eigen 5.0.0 1
+eigen3 3.4.0 5
 fftw2 2.1.5 1
 fftw3 3.3.10 9
 fmtlib 12.0.0 2

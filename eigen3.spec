@@ -2,6 +2,28 @@
 # Spec file for EIGEN:
 # C++ linear algebra library
 #
+# Victor Eijkhout, 2019
+# based on:
+#
+# Bar.spec, 
+# W. Cyrus Proctor
+# Antonio Gomez
+# 2015-08-25
+#
+# Important Build-Time Environment Variables (see name-defines.inc)
+# NO_PACKAGE=1    -> Do Not Build/Rebuild Package RPM
+# NO_MODULEFILE=1 -> Do Not Build/Rebuild Modulefile RPM
+#
+# Important Install-Time Environment Variables (see post-defines.inc)
+# VERBOSE=1       -> Print detailed information at install time
+# RPM_DBPATH      -> Path To Non-Standard RPM Database Location
+#
+# Typical Command-Line Example:
+# ./build_rpm.sh Bar.spec
+# cd ../RPMS/x86_64
+# rpm -i --relocate /tmprpm=/opt/apps Bar-package-1.1-1.x86_64.rpm
+# rpm -i --relocate /tmpmod=/opt/apps Bar-modulefile-1.1-1.x86_64.rpm
+# rpm -e Bar-package-1.1-1.x86_64 Bar-modulefile-1.1-1.x86_64
 
 Summary:    Set of tools for manipulating geographic and Cartesian data sets
 
@@ -10,8 +32,8 @@ Summary:    Set of tools for manipulating geographic and Cartesian data sets
 %define MODULE_VAR    EIGEN
 
 # Create some macros (spec file variables)
-%define major_version 5
-%define minor_version 0
+%define major_version 3
+%define minor_version 4
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -37,7 +59,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   5%{?dist}
 License:   GNU
 Group:     Development/Tools
 Vendor:     Tuxfamily
@@ -262,5 +284,13 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Nov 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: release reset with 5.0.0
+* Tue Jul 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: include path fix
+* Wed Jul 24 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: cmake discoverability
+* Mon Nov 14 2023 eijkhout <eijkhout@tacc.utexas.edu>
+- relase 3: 3.4.0 and pkgconfig support
+* Fri Jun 07 2019 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2 : removing the bin directory definition
+* Tue Jun 04 2019 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release

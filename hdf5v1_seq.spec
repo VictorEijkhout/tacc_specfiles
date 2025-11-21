@@ -1,22 +1,22 @@
-# HDF5 parallel install
-# Victor Eijkhout 2024
+# HDF5 sequential sepcfile
+# Victor Eijkhout
 
 Summary: Hdf5 install
 
 # Give the package a base name
-%define pkg_base_name phdf5
-%define MODULE_VAR    PHDF5
+%define pkg_base_name hdf5
+%define MODULE_VAR    HDF5
 
 # Create some macros (spec file variables)
-%define major_version 2
-%define minor_version 0
-%define micro_version 0
+%define major_version 1
+%define minor_version 14
+%define micro_version 6
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 %include rpm-dir.inc
 %include compiler-defines.inc
-%include mpi-defines.inc
+## %include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -34,19 +34,18 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1
+Release: 10
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
 Group: Development/Numerical-Libraries
 Packager: TACC -- eijkhout@tacc.utexas.edu
-Source0: hdf5-%{pkg_version}.tgz
+Source0: %{pkg_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
 ## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
-
 
 %package %{PACKAGE}
 Summary: Hdf5 local binary install
@@ -77,10 +76,10 @@ Forest support library
 # Setup modules
 %include system-load.inc
 %include compiler-defines.inc
-%include mpi-defines.inc
+## %include mpi-defines.inc
 module purge
 %include compiler-load.inc
-%include mpi-load.inc
+## %include mpi-load.inc
 
 export HDF5_DIR=`pwd`
 
@@ -125,13 +124,8 @@ module load zlib
 module -t list | sort | tr '\n' ' '
 
 ## get rid of that PACKAGEROOT
-##
-## Vista nvidia has a problem with Fortran:
-## HDFFORTRAN=off
-##
-make par JCOUNT=20 \
+make seq JCOUNT=20 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TESTING=OFF ; fi ) \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
@@ -164,5 +158,13 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Nov 21 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1 : reset to 1 for v2
+* Thu Sep 04 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: threadsafe
+* Tue Jul 22 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: same release seq/par, 1.14.6, cpp enabled
+* Sat May 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5 : 1.14.4
+* Thu Sep 07 2023 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4 : fortran enabled
+* Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3 : using new makefile structure

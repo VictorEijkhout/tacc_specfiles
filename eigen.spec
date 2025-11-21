@@ -140,7 +140,6 @@ mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 module -t list | sort | tr '\n' ' '
-module --latest load cmake
 module load boost
 module load cmake
 module -t list | sort | tr '\n' ' '

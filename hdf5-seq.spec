@@ -8,9 +8,9 @@ Summary: Hdf5 install
 %define MODULE_VAR    HDF5
 
 # Create some macros (spec file variables)
-%define major_version 1
-%define minor_version 14
-%define micro_version 6
+%define major_version 2
+%define minor_version 0
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 10
+Release: 1
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -158,13 +158,5 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Thu Sep 04 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 10: threadsafe
-* Tue Jul 22 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 9: same release seq/par, 1.14.6, cpp enabled
-* Sat May 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 5 : 1.14.4
-* Thu Sep 07 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4 : fortran enabled
-* Tue Mar 21 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3 : using new makefile structure
+* Fri Nov 21 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1 : reset to 1 for v2

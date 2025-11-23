@@ -15,9 +15,8 @@ Summary: Commandline options handling
 
 # Create some macros (spec file variables)
 %define major_version 4
-# git2024
-%define minor_version 11
-%define micro_version 1
+%define minor_version 12
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 # {minor_version}
@@ -44,7 +43,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jarro2783/silo/releases
@@ -279,6 +278,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 4.12
 * Tue Aug 20 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: shared libs & hdf5 support
 * Thu Aug 15 2024 eijkhout <eijkhout@tacc.utexas.edu>

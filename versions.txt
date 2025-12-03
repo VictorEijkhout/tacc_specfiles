@@ -60,7 +60,7 @@ hdf5-par 2.0.0 1
 
 ## backup copies of v1
 hdf5v1 1.14.6 10
-# install.sh -p hdf5 hdf5-seq
+# /install.sh -p hdf5 -q 1.14.6 hdf5v1_seq
 hdf5v1-seq 1.14.6 10
 phdf5v1 1.14.6 10
 # install.sh -p phdf5 hdf5-par
@@ -74,6 +74,8 @@ highfive 2.10.1 1
 highfive-seq 2.10.1 1
 phighfive 2.10.1 1
 highfive-par 2.10.1 1
+
+hmmer 3.4 1
 
 # installs 32 & 64 bit versions
 hypre 2.31.0 3

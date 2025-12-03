@@ -36,8 +36,8 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 
 Release:   1
 License:   BSD
-Group:     Development/Tools
-URL:       https://github.com/madler/hmmer
+Group:     Applications/Bio
+URL:       http://hmmer.org/
 Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
@@ -129,7 +129,15 @@ mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-## no prereqs
+#
+# Get modern python
+#
+py312=/home1/apps/intel23/impi21_9/python/3.12.4
+FRONTERA export PATH=${py312}/bin:${PATH}
+FRONTERA export LD_LIBRARY_PATH=/opt/intel/oneapi/compiler/2023.1.0/linux/compiler/lib/intel64_lin/:${LD_LIBRARY_PATH}
+FRONTERA export PYTHONPATH=${py312}/lib/python3.12/site-packages:${PYTHONPATH}
+
+# no module prereqs
 module -t list | sort | tr '\n' ' '
 ## module load 
 

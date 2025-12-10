@@ -51,20 +51,20 @@ gmsh 4.14.1 1
 gsl 2.8 2
 
 ## hdf5 v2, release reset to 1
-hdf5 2.0.0 1
+hdf5 2.0.0 2
 # install.sh -p hdf5 hdf5-seq
-hdf5-seq 2.0.0 1
-phdf5 2.0.0 1
+hdf5-seq 2.0.0 2
+phdf5 2.0.0 2
 # install.sh -p phdf5 hdf5-par
-hdf5-par 2.0.0 1
+hdf5-par 2.0.0 2
 
 ## backup copies of v1
-hdf5v1 1.14.6 10
+hdf5v1 1.14.6 11
 # /install.sh -p hdf5 -q 1.14.6 hdf5v1_seq
-hdf5v1-seq 1.14.6 10
-phdf5v1 1.14.6 10
+hdf5v1-seq 1.14.6 11
+phdf5v1 1.14.6 11
 # install.sh -p phdf5 hdf5-par
-hdf5v1-par 1.14.6 10
+hdf5v1-par 1.14.6 11
 
 # old versions
 hdf5-1.10.11-seq 1.10.11 1

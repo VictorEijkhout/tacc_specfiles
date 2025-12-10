@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 10
+Release: 11
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -143,7 +143,37 @@ rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
-%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+#---------------------------
+
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+  
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
+#%Module3.1.1#################################################
+##
+## version file for %{BASENAME}%{version}
+##
+
+set     ModulesVersion      "%{version}"
+EOF
+  
+  # Check the syntax of the generated lua modulefile only if a visible module
+  %if %{?VISIBLE}
+    %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+  %endif
+
+#--------------------------
+%endif 
+# BUILD_MODULEFILE |
+#--------------------------
+
 
 %files %{PACKAGE}
   %defattr(-,root,install,)
@@ -157,6 +187,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Dec 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: module version fix
 * Thu Sep 04 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: threadsafe
 * Tue Jul 22 2025 eijkhout <eijkhout@tacc.utexas.edu>

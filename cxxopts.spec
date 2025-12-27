@@ -155,16 +155,16 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 # make configure build JCOUNT=10 
 
-export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
-export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
-
-# export HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES
-PACKAGEVERSION=%{pkg_version} \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+ PACKAGEVERSION=%{pkg_version} \
  PACKAGEROOT=/tmp \
  BUILDDIRROOT=/tmp \
  SRCPATH=${SRCPATH} \

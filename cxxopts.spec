@@ -158,14 +158,19 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGEVERSION=%{pkg_version} \
-    PACKAGEROOT=/tmp \
-    BUILDDIRROOT=/tmp \
-    SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+# make configure build JCOUNT=10 
+
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+export HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES
+export PACKAGEVERSION=%{pkg_version}
+export PACKAGEROOT=/tmp
+export BUILDDIRROOT=/tmp
+export SRCPATH=${SRCPATH}
+export INSTALLPATH=%{INSTALL_DIR}
+export MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+mpm.py -t install
 
 popd
 

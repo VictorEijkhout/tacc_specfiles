@@ -307,7 +307,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Sat Dec 27 2025
+* Sat Dec 27 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 16.2 throughh mpm
 * Wed May 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: 16.1

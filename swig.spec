@@ -2,10 +2,6 @@
 # swig.spec
 # Victor Eijkhout
 #
-# ./build_rpm.sh -i191 -l swig-new
-# ./build_rpm.sh -i231 -l swig-new
-# ./build_rpm.sh -g91 -l swig-new
-# ./build_rpm.sh -g132 -l swig-new
 
 Summary: Interface Generator
 
@@ -15,7 +11,7 @@ Summary: Interface Generator
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 3
+%define minor_version 4
 %define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -40,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.swig.org/
@@ -263,6 +259,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Sun Dec 28 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 4.4.1
 * Fri Jul 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 4.3.1
 * Tue Aug 13 2024 eijkhout <eijkhout@tacc.utexas.edu>

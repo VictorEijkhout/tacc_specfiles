@@ -108,7 +108,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 module --latest load cmake
-module load phdf5 pnetcdf
+module load phdf5/1.14 pnetcdf
 
 ##
 ## first install the C version

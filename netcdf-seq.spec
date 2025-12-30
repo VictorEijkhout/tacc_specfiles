@@ -109,8 +109,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 module --latest load cmake
-module load hdf5
-#/1.14
+module load hdf5/1.14
 
 ##
 ## first install the C version

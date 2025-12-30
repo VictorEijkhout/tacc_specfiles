@@ -10,7 +10,7 @@ Summary: Pnetcdf install
 # Create some macros (spec file variables)
 %define major_version 1
 %define minor_version 14
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2
+Release: 3
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: pnetcdf-setup.sh
@@ -158,6 +158,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Dec 25 2025 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 1.14.1
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 1.14.0
 * Mon May 06 2024 eijkhout <eijkhout@tacc.utexas.edu>

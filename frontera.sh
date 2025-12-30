@@ -4,7 +4,8 @@ mkdir -p frontera_specfiles
 for s in *.spec ; do
     cat $s \
         | sed \
-	      -e '/FRONTERA/s/FRONTERA //' \
+	      -e '/^FRONTERA/s/FRONTERA //' \
+	      -e '/^LS6/d' \
 	      -e 's/PETSCCUDAFLAG/-c/' \
 	      -e 's/GCCDEF/13/' \
 	      -e 's/GCCMIN/8.3.0/' \

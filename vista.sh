@@ -8,8 +8,9 @@ for s in *.spec ; do
 	    -e 's/PETSCCUDAFLAG/-c/' \
 	    -e '/noreloc/s/name-defines.*$/name-defines-cuda-noreloc-home1.inc/' \
 	    -e '/module load python3/d' \
-	    -e '/FRONTERA/d' \
-	      -e 's/GCC/14/' \
+	    -e '/^FRONTERA/d' \
+	    -e '/^LS6/d' \
+	    -e 's/GCC/14/' \
 	> vista_specfiles/$s
 done
 

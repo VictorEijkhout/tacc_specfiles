@@ -8,7 +8,8 @@ for s in *.spec ; do
 	    -e 's/PETSCCUDAFLAG//' \
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-home1.inc/' \
 	    -e '/module load python3/d' \
-	    -e '/FRONTERA/d' \
+	    -e '/^FRONTERA/d' \
+	    -e '/^LS6/d' \
 	    -e 's/GCCDEF/13/' \
 	    -e 's/GCCMIN/13/' \
 	    -e 's/CMAKEMIN/3.28/' \

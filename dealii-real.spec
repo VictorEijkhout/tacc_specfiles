@@ -143,7 +143,6 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 ## module load 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load python3
 module load boost
 module load gsl metis p4est
 module load pnetcdf phdf5

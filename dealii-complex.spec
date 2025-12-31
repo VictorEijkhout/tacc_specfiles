@@ -143,7 +143,6 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 ## module load 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load python3
 module load boost
 module load gsl metis p4est
 module load pnetcdf phdf5
@@ -169,15 +168,19 @@ module -t list | sort | tr '\n' ' '
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-    export SRCPATH=`pwd`
-    export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-    export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-    export MAKEINCLUDES=${VICTOR}/make-support-files
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export MAKEINCLUDES=${VICTOR}/make-support-files
 
-    pushd ${VICTOR}/makefiles/%{pkg_base_name}
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
-    ## get rid of that PACKAGEROOT
-    make complex JCOUNT=20 \
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+## get rid of that PACKAGEROOT
+make complex JCOUNT=20 \
 	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
 	PACKAGEVERSION=%{pkg_version} \
 	PACKAGEROOT=/tmp \

@@ -187,7 +187,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
     HAS_OPENMP=OFF \
-mpm.py -t -c Configuration.real install
+mpm.py -t -j 20 -c Configuration.real install
 
 popd
 

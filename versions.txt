@@ -70,10 +70,10 @@ hdf5v1-par 1.14.6 11
 hdf5-1.10.11-seq 1.10.11 1
 hdf5-1.14.3-seq 1.14.3 5
 
-highfive 2.10.1 1
-highfive-seq 2.10.1 1
-phighfive 2.10.1 1
-highfive-par 2.10.1 1
+highfive 3.2.0 2
+highfive-seq 3.2.0 2
+phighfive 3.2.0 2
+highfive-par 3.2.0 2
 
 hmmer 3.4 1
 

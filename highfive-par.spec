@@ -8,9 +8,9 @@ Summary: Phighfive install
 %define MODULE_VAR    PHIGHFIVE
 
 # Create some macros (spec file variables)
-%define major_version 2
-%define minor_version 10
-%define micro_version 1
+%define major_version 3
+%define minor_version 2
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1
+Release: 2
 License: GPL
 Vendor: https://github.com/BlueBrain/HighFive
 Group: Development/Numerical-Libraries
@@ -107,26 +107,28 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/highfive
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load boost eigen
-module load phdf5
+# module load boost eigen
+# module load phdf5
 module -t list | sort | tr '\n' ' '
 
-## get rid of that PACKAGEROOT
-make par JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 -c Configuration.seq install
 
 popd
 
@@ -153,5 +155,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun Jan 04 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: new repo location
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

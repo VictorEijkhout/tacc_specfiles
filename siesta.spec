@@ -137,6 +137,7 @@ make configure build JCOUNT=10 \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+rm -rf /tmp/%{pkg_base_name}
 
 popd
 

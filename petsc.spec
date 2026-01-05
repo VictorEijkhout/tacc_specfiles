@@ -143,7 +143,9 @@ export    BUILDDIRROOT=/tmp/%{pkg_base_name}
 ./install_all.sh \
     -j 16 \
     PETSCCUDAFLAG ${petscpython} ${disablefortran} \
-    -v %{pkg_version} 
+    -v %{pkg_version}
+rm -rf /tmp/%{pkg_base_name}
+
 popd
 
 ################ end of new stuff

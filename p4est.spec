@@ -137,6 +137,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jan 07 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: add cmake prefix
 * Mon May 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: 2.8.7, no petsc dependence
 * Wed Mar 27 2024 eijkhout <eijkhout@tacc.utexas.edu>

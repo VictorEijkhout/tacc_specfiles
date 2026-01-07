@@ -7,7 +7,7 @@ Summary: Petsc install
 # Create some macros (spec file variables)
 %define major_version 3
 %define minor_version 24
-#define micro_version 0
+#define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}
 #{micro_version}

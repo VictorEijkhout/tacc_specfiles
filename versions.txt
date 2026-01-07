@@ -134,7 +134,7 @@ pnetcdf 1.14.1 3
 
 openblas 0.3.29 1
 octopus 16.0 2
-p4est 2.8.7 5
+p4est 2.8.7 6
 
 # petsc 3.23.6 24
 petsc 3.24 25

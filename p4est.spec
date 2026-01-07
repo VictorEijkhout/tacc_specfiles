@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5
+Release: 6
 License: GPL
 Vendor: https://github.com/cburstedde/p4est
 #Source1: p4est-setup.sh

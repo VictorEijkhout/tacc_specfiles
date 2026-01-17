@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 25
+Release: 26
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -125,8 +125,8 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
   disablefortran=-f
 fi
-if [ "${TACC_SYSTEM}" = "ls6" ] ; then
-    echo ">>>> LS6 BUILDING WITHOUT PYTHON"
+if [ "${TACC_SYSTEM}" = "ls6" -o "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
+    echo ">>>> LS6 & NVidia BUILDING WITHOUT PYTHON"
     export petscpython=
 else
     export petscpython=-4
@@ -137,7 +137,7 @@ export    PACKAGEVERSION=%{pkg_version}
 export    PACKAGEROOT=/tmp 
 export    BUILDDIRROOT=/tmp
 export    SRCPATH=${SRCPATH} 
-export     INSTALLPATH=%{INSTALL_DIR} 
+export    INSTALLPATH=%{INSTALL_DIR} 
 export    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}
 ./install_all.sh \
@@ -172,6 +172,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 16 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 26 UNRELEASED: with cuda
 * Tue Oct 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 25: 3.24.0
 * Sun Sep 28 2025 eijkhout <eijkhout@tacc.utexas.edu>

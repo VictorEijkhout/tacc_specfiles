@@ -137,7 +137,7 @@ octopus 16.0 2
 p4est 2.8.7 6
 
 # petsc 3.23.6 24
-petsc 3.24 25
+petsc 3.24 26
 # old version for nv fortran
 petsc322 3.22.5 25
 

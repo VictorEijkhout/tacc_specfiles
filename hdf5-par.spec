@@ -124,12 +124,15 @@ module --latest load cmake
 module load zlib
 module -t list | sort | tr '\n' ' '
 
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 ## get rid of that PACKAGEROOT
 ##
 ## Vista nvidia has a problem with Fortran:
 ## HDFFORTRAN=off
 ##
-make par JCOUNT=20 \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TESTING=OFF ; fi ) \
     PACKAGEVERSION=%{pkg_version} \
@@ -137,7 +140,8 @@ make par JCOUNT=20 \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 -c Configuration.seq install
 
 popd
 

@@ -132,16 +132,19 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 ## Vista nvidia has a problem with Fortran:
 ## HDFFORTRAN=off
 ##
-HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TESTING=OFF ; fi ) \
+
+
+if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then testing="TESTING=OFF" ; fi
+
+HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -t -j 20 -c Configuration.seq install
+${testing} \
+mpm.py -t -j 20 -c Configuration.par install
 
 popd
 

@@ -131,6 +131,8 @@ if [ "${TACC_SYSTEM}" = "ls6" -o "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
 else
     export petscpython=-4
 fi
+FRONTERA export petscpython=
+FRONTERA sed -i -e 's/PTSCOTCH=1/PTSCOTCH=0/' -e 's/SLEPC=1/SLEPC=0/' big.sh
 
 export    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES 
 export    PACKAGEVERSION=%{pkg_version} 

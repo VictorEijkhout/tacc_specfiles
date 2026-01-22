@@ -11,7 +11,7 @@ Summary: Commandline options handling
 # Create some macros (spec file variables)
 %define major_version 12
 %define minor_version 0
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/fmtlib/fmt
@@ -266,6 +266,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jan 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 12.0.1
 * Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: version 12
 * Tue Sep 16 2025 eijkhout <eijkhout@tacc.utexas.edu>

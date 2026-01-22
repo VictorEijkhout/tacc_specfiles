@@ -10,8 +10,8 @@ Summary: Commandline options handling
 
 # Create some macros (spec file variables)
 %define major_version 12
-%define minor_version 0
-%define micro_version 1
+%define minor_version 1
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -267,7 +267,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Thu Jan 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: 12.0.1
+- release 3: 12.1.0
 * Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: version 12
 * Tue Sep 16 2025 eijkhout <eijkhout@tacc.utexas.edu>

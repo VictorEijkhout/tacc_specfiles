@@ -122,6 +122,7 @@ pushd ${VICTOR}/makefiles/hdf5
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
 module load zlib
+LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}

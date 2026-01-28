@@ -11,8 +11,8 @@ Summary: Cmake
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 1
-%define micro_version 1
+%define minor_version 2
+%define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   7
+Release:   8
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -139,6 +139,10 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## we only install with system gcc
@@ -153,18 +157,19 @@ module -t list | sort | tr '\n' ' '
 export TACC_CC=gcc
 export TACC_CXX=g++
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-     $( if [ "${TACC_SYSTEM}" = "vista" ] ; then \
-            echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
-            ; fi ) \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+# make configure build JCOUNT=10 \
+#      $( if [ "${TACC_SYSTEM}" = "vista" ] ; then \
+#         echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
+#             ; fi )
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
@@ -271,6 +276,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Jan 28 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: 4.2.3 using mpm
 * Thu Sep 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: 4.1.1 with system gcc
 * Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>

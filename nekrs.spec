@@ -42,7 +42,7 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 
 %define debug_package %{nil}
 %define _build_id_links none
-## %global _missing_build_ids_terminate_build 0
+## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
 
@@ -109,6 +109,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake 
+module load adios2
 module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}

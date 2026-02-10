@@ -6,8 +6,8 @@ Summary: Adios2 install
 
 # Create some macros (spec file variables)
 %define major_version 2
-%define minor_version 10
-%define micro_version 2
+%define minor_version 11
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3
+Release: 4
 License: GPL
 Vendor: https://github.com/ornladios/ADIOS2
 Group: Development/Numerical-Libraries
@@ -108,6 +108,10 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module -t list | sort | tr '\n' ' '
@@ -115,15 +119,14 @@ module --latest load cmake
 module load phdf5
 module -t list | sort | tr '\n' ' '
 
-    ## get rid of that PACKAGEROOT
-    make default_install JCOUNT=20 \
-	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-	PACKAGEVERSION=%{pkg_version} \
-	PACKAGEROOT=/tmp \
-    BUILDDIRROOT=/tmp \
-	SRCPATH=${SRCPATH} \
-	INSTALLPATH=%{INSTALL_DIR} \
-	MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+       PACKAGEVERSION=%{pkg_version} \
+       PACKAGEROOT=/tmp \
+       BUILDDIRROOT=/tmp \
+       SRCPATH=${SRCPATH} \
+       INSTALLPATH=%{INSTALL_DIR} \
+       MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -c Configuration.cpu -t -j 20 install
 
     popd
 
@@ -150,6 +153,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Feb 10 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: using mpm
 * Mon Jul 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: rebuild with fortran enabled
 * Sat Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>

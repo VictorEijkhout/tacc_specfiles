@@ -51,7 +51,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5
+Release: 6
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -190,9 +190,10 @@ make complex JCOUNT=20 \
 	MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 rm -rf /tmp/%{pkg_base_name}
 
-    popd
+popd
 
-    cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}/*
+cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
 
   rm -rf /tmp/build-${pkg_version}*
 
@@ -209,6 +210,8 @@ umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
+* Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: just for the heck of it
 * Thu Oct 09 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: 9.7.1
 * Thu Jun 19 2025 eijkhout <eijkhout@tacc.utexas.edu>

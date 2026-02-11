@@ -11,12 +11,8 @@ Summary: Gmsh install
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
-#define gmshdealversion 9.5.2
-#define gmshtrilinosversion 15.1.0
-
 %include rpm-dir.inc
 %include compiler-defines.inc
-## include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -34,7 +30,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1
+Release: 2
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -133,6 +129,8 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+ls -ld %{INSTALL_DIR}/*
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 rm -rf /tmp/build-${pkg_version}*
@@ -156,5 +154,7 @@ umount %{INSTALL_DIR}
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
+* Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: adding API
 * Fri Oct 24 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

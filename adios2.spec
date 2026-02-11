@@ -128,14 +128,15 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
        MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -c Configuration.cpu -t -j 20 install
 
-    popd
+popd
 
-    ################ end of new stuff
+################ end of new stuff
 
-    cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-    cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}/
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

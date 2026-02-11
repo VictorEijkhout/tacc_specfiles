@@ -112,6 +112,10 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/pnetcdf
 
 case ${TACC_SYSTEM} in
@@ -123,15 +127,14 @@ esac
 
 # needed? netcdf 4.9.2 3
 
-## get rid of that PACKAGEROOT
-make default_install JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -c Configuration.cpu -t -j 20 install
 
 popd
 
@@ -158,6 +161,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: using mpm
 * Mon Dec 25 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 1.14.1
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>

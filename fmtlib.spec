@@ -175,7 +175,8 @@ popd
 ################ end of new stuff
 
 # Copy installation from tmpfs to RPM directory
-ls %{INSTALL_DIR}
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+ls -ld %{INSTALL_DIR}/*
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   rm -rf /tmp/build-${pkg_version}*
 

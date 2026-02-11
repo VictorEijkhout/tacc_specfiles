@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/fmtlib/fmt
@@ -270,6 +270,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: file modes fixed
 * Thu Jan 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 12.1.0
 * Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -33,9 +33,9 @@ cxxopts 3.3.1 5
 
 dealii96 9.6.2 5
 dealii96-real 9.6.2 5
-dealii 9.7.1 5
-dealii-real 9.7.1 5
-dealii-complex 9.7.1 5
+dealii 9.7.1 6
+dealii-real 9.7.1 6
+dealii-complex 9.7.1 6
 # install.sh -p dealii dealii-real
 
 eigen 5.0.0 1

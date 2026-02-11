@@ -6,8 +6,8 @@ Summary: Gmsh install
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 14
-%define micro_version 1
+%define minor_version 15
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -155,6 +155,6 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 %changelog
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: adding API
+- release 2: 4.15.0 with API
 * Fri Oct 24 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

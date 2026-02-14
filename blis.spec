@@ -230,7 +230,7 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 find . -name config.mk
 cat ./config.mk | sed 's?INSTALL_PREFIX.*?INSTALL_PREFIX=/opt/apps/blis/%{comp_fam_ver}/%{version}?' \
     > $RPM_BUILD_ROOT/%{INSTALL_DIR}/config.mk
-chmod 644 $RPM_BUILD_ROOT/%{INSTALL_DIR}/config.mk # ?????
+# chmod 644 $RPM_BUILD_ROOT/%{INSTALL_DIR}/config.mk # ?????
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r config testsuite \
   $RPM_BUILD_ROOT/%{INSTALL_DIR}
@@ -248,7 +248,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
+  #defattr(-,root,install,)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -262,7 +263,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
+  #defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 

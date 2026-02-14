@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3
+Release: 4
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: pnetcdf-setup.sh
@@ -134,7 +134,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -c Configuration.cpu -t -j 20 install
+mpm.py -c Configuration -t -j 20 install
 
 popd
 

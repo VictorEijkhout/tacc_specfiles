@@ -132,7 +132,7 @@ popd
 
 ################ end of new stuff
 
-chmod -R g+rX,o+rX %{INSTALL_DIR}/
+#chmod -R g+rX,o+rX %{INSTALL_DIR}/
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
@@ -143,11 +143,13 @@ umount %{INSTALL_DIR}
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 %files %{PACKAGE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
+  #defattr(-,root,install,)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
+  #defattr(-,root,install,)
   %{MODULE_DIR}
 
 %clean

@@ -276,7 +276,13 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
+rm -rf /tmp/build-${pkg_version}*
+
+umount %{INSTALL_DIR}
+
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+
+%files %{PACKAGE}
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -289,7 +295,6 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 

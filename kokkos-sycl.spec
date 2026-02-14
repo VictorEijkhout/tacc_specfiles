@@ -181,11 +181,11 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 
 %files %{PACKAGE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 #---------------------------------------

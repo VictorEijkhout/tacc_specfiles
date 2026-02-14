@@ -141,20 +141,19 @@ popd
 ################ end of new stuff
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 %files %{PACKAGE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 %clean

@@ -242,28 +242,24 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
-  # RPM package contains files within these directories
+rm -rf /tmp/build-${pkg_version}*
+
+umount %{INSTALL_DIR}
+
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+
+%files %{PACKAGE}
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
+
+%files %{MODULEFILE}
+  %defattr(0644,root,root,0755)
+  %{MODULE_DIR}
 
 #-----------------------
   %endif
   # BUILD_PACKAGE |
 #-----------------------
-
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-%files modulefile 
-#---------------------------
-
-  %defattr(-,root,install,)
-  # RPM modulefile contains files within these directories
-  %{MODULE_DIR}
-
-#--------------------------
-  %endif
-  # BUILD_MODULEFILE |
-#--------------------------
 
 ########################################
 ## Fix Modulefile During Post Install ##

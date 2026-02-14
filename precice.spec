@@ -132,29 +132,25 @@ umount %{INSTALL_DIR}
 #------------------------
 
 %files %{PACKAGE}
-  %defattr(-,root,install,)
+rm -rf /tmp/build-${pkg_version}*
+
+umount %{INSTALL_DIR}
+
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+
+%files %{PACKAGE}
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
-#-----------------------
-%endif
-# BUILD_PACKAGE |
-#-----------------------
-
-#---------------------------
-%if %{?BUILD_MODULEFILE}
-#---------------------------
+%files %{MODULEFILE}
 
 %files %{MODULEFILE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
-
-#--------------------------
-%endif
-# BUILD_MODULEFILE |
-#--------------------------
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
 %changelog
 * Tue May 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 3.2.0

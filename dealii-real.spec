@@ -193,7 +193,6 @@ rm -rf /tmp/%{pkg_base_name}
 
 popd
 
-chmod -R g+rX,o+rX %{INSTALL_DIR}/*
 cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
 
 rm -rf /tmp/build-${pkg_version}*
@@ -201,11 +200,11 @@ rm -rf /tmp/build-${pkg_version}*
 umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 
 %files %{PACKAGE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 %clean

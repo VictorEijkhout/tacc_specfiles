@@ -149,11 +149,11 @@ umount %{INSTALL_DIR}
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 %files %{PACKAGE}-cpu
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}-cpu
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 %clean

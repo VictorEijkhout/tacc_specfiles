@@ -132,7 +132,6 @@ popd
 
 ################ end of new stuff
 
-#chmod -R g+rX,o+rX %{INSTALL_DIR}/
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
@@ -144,12 +143,10 @@ umount %{INSTALL_DIR}
 
 %files %{PACKAGE}
   %defattr(0644,root,root,0755)
-  #defattr(-,root,install,)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
   %defattr(0644,root,root,0755)
-  #defattr(-,root,install,)
   %{MODULE_DIR}
 
 %clean

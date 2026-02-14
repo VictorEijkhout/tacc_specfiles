@@ -232,7 +232,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 #-----------------------
@@ -244,7 +244,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 #--------------------------

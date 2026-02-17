@@ -131,8 +131,7 @@ mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-## no prereqs
-## module load 
+module load cmake/3.31
 
 ################ new stuff
 
@@ -140,6 +139,11 @@ export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
+
+FRONTERA export PATH=/opt/apps/intel19/python3/3.9.2/bin/:${PATH}
+FRONTERA export PYTHONPATH=/opt/apps/intel19/impi19_0/python3/3.9.2/lib/python3.9/site-packages:${PYTHONPAT\H}
+FRONTERA export LD_LIBRARY_PATH=/opt/apps/intel19/python3/3.9.2/lib:${LD_LIBRARY_PATH}
+FRONTERA export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_li\n:${LD_LIBRARY_PATH}
 
 LS6 module load python/3.12
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}

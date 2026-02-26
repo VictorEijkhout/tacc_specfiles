@@ -52,7 +52,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 6
+Release: 7
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -189,27 +189,62 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
     HAS_OPENMP=OFF \
 mpm.py -t -j 20 -c Configuration.real install
-rm -rf /tmp/%{pkg_base_name}
 
 popd
 
 cp -r %{INSTALL_DIR}/* ${RPM_BUILD_ROOT}/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR} # tmpfs # $INSTALL_DIR
 
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+#---------------------------
+
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+  
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
+#%Module3.1.1#################################################
+##
+## version file for %{BASENAME}%{version}
+##
+
+set     ModulesVersion      "%{version}"
+EOF
+  
+  # Check the syntax of the generated lua modulefile only if a visible module
+  %if %{?VISIBLE}
+    %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
+  %endif
+
+#--------------------------
+%endif 
+# BUILD_MODULEFILE |
+#--------------------------
+
 %files %{PACKAGE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
+  #defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
+  #defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
+* Thu Feb 26 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: chmod
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: just for the heck of it
 * Thu Oct 09 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -140,8 +140,8 @@ popd
 
 ################ end of new stuff
 
-chmod -R g+rX,o+rX %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 rm -rf /tmp/build-${pkg_version}*
 
@@ -177,7 +177,6 @@ EOF
 %endif 
 # BUILD_MODULEFILE |
 #--------------------------
-
 
 %files %{PACKAGE}
   %defattr(-,root,install,)

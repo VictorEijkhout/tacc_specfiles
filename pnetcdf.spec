@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 4
+Release: 5
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: pnetcdf-setup.sh
@@ -140,26 +140,61 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
-%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+#---------------------------
+
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+  
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
+#%Module3.1.1#################################################
+##
+## version file for %{BASENAME}%{version}
+##
+
+set     ModulesVersion      "%{version}"
+EOF
+  
+  # Check the syntax of the generated lua modulefile only if a visible module
+  %if %{?VISIBLE}
+    %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
+  %endif
+
+#--------------------------
+%endif 
+# BUILD_MODULEFILE |
+#--------------------------
+
 
 %files %{PACKAGE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
+  #defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
+  #defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Feb 25 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: chmod
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: using mpm
 * Mon Dec 25 2025 eijkhout <eijkhout@tacc.utexas.edu>

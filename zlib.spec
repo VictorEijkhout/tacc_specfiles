@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   5
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/zlib
@@ -164,6 +164,8 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 # Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
@@ -184,6 +186,23 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+  
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
+#%Module3.1.1#################################################
+##
+## version file for %{BASENAME}%{version}
+##
+
+set     ModulesVersion      "%{version}"
+EOF
+  
   # Check the syntax of the generated lua modulefile only if a visible module
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
@@ -200,7 +219,7 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %files package
 #------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -214,7 +233,7 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %files modulefile 
 #---------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 
@@ -248,6 +267,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Feb 25 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: chmod and .version
 * Tue Feb 17 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 1.3.2 with mpm
 * Tue May 14 2024 eijkhout <eijkhout@tacc.utexas.edu>

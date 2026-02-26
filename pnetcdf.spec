@@ -194,7 +194,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Wed Feb 25 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 5: chmod
+- release 5: chmod and .version
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: using mpm
 * Mon Dec 25 2025 eijkhout <eijkhout@tacc.utexas.edu>

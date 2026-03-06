@@ -1,0 +1,273 @@
+#
+# tinker.spec
+# Victor Eijkhout
+#
+
+Summary: Tinker
+
+# Give the package a base name
+%define pkg_base_name tinker
+%define MODULE_VAR    TINKER
+
+# Create some macros (spec file variables)
+%define major_version 26
+%define minor_version 1
+%define micro_version 2
+
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+
+### Toggle On/Off ###
+%include rpm-dir.inc                  
+%include compiler-defines.inc
+%include mpi-defines.inc
+
+########################################
+### Construct name based on includes ###
+########################################
+%include name-defines-noreloc-home1.inc
+
+########################################
+############ Do Not Remove #############
+########################################
+
+############ Do Not Change #############
+Name:      %{pkg_name}
+Version:   %{pkg_version}
+BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
+########################################
+
+Release:   1
+License:   BSD
+Group:     Development/Tools
+URL:       https://github.com/madler/tinker
+Packager:  TACC - eijkhout@tacc.utexas.edu
+Source:    %{pkg_base_name}-%{pkg_version}.tgz
+
+# Turn off debug package mode
+%define debug_package %{nil}
+%define dbg           %{nil}
+%define _build_id_links none
+
+%package %{PACKAGE}
+Summary: Tinker
+Group: Support
+%description package
+This is the long description for the package RPM...
+
+%package %{MODULEFILE}
+Summary: Tinker
+Group: Support
+%description modulefile
+Tinker
+
+%description
+Tinker
+
+
+#---------------------------------------
+%prep
+#---------------------------------------
+
+#------------------------
+%if %{?BUILD_PACKAGE}
+#------------------------
+  # Delete the package installation directory.
+  rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
+
+%setup -n %{pkg_base_name}-%{pkg_version}
+
+#-----------------------
+%endif 
+# BUILD_PACKAGE |
+#-----------------------
+
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+#---------------------------
+  #Delete the module installation directory.
+  rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
+#--------------------------
+%endif 
+# BUILD_MODULEFILE |
+#--------------------------
+
+#---------------------------------------
+%build
+#---------------------------------------
+
+#---------------------------------------
+%install
+#---------------------------------------
+
+# Setup modules
+%include system-load.inc
+module purge
+# Load Compiler
+%include compiler-load.inc
+%include mpi-load.inc
+
+# Insert further module commands
+
+#------------------------
+%if %{?BUILD_PACKAGE}
+#------------------------
+
+  rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
+  mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
+  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+  
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{INSTALL_DIR}/.tacc_install_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+
+  #========================================
+  # Insert Build/Install Instructions Here
+  #========================================
+  
+mkdir -p %{INSTALL_DIR}
+rm -rf %{INSTALL_DIR}/*
+mount -t tmpfs tmpfs %{INSTALL_DIR}
+
+module load cmake/3.31
+module load fftw3
+
+################ new stuff
+
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+FRONTERA export PATH=/opt/apps/intel19/python3/3.9.2/bin/:${PATH}
+FRONTERA export PYTHONPATH=/opt/apps/intel19/impi19_0/python3/3.9.2/lib/python3.9/site-packages:${PYTHONPATH}
+FRONTERA export LD_LIBRARY_PATH=/opt/apps/intel19/python3/3.9.2/lib:${LD_LIBRARY_PATH}
+FRONTERA export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin:${LD_LIBRARY_PATH}
+
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/tinker
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -c Configuration -t -j 20 install
+
+popd
+
+################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
+
+umount %{INSTALL_DIR}
+  
+ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+#-----------------------  
+%endif 
+# BUILD_PACKAGE |
+#-----------------------
+
+
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+#---------------------------
+
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{MODULE_DIR}/.tacc_module_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+  
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
+#%Module3.1.1#################################################
+##
+## version file for %{BASENAME}%{version}
+##
+
+set     ModulesVersion      "%{version}"
+EOF
+  
+  # Check the syntax of the generated lua modulefile only if a visible module
+  %if %{?VISIBLE}
+    %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
+  %endif
+
+#--------------------------
+%endif 
+# BUILD_MODULEFILE |
+#--------------------------
+
+
+#------------------------
+%if %{?BUILD_PACKAGE}
+%files package
+#------------------------
+
+  %defattr(-,root,install,)
+  # RPM package contains files within these directories
+  %{INSTALL_DIR}
+
+#-----------------------
+%endif 
+# BUILD_PACKAGE |
+#-----------------------
+
+#---------------------------
+%if %{?BUILD_MODULEFILE}
+%files modulefile 
+#---------------------------
+
+  %defattr(-,root,install,)
+  # RPM modulefile contains files within these directories
+  %{MODULE_DIR}
+
+#--------------------------
+%endif 
+# BUILD_MODULEFILE |
+#--------------------------
+
+########################################
+## Fix Modulefile During Post Install ##
+########################################
+%post %{PACKAGE}
+export PACKAGE_POST=1
+%include post-defines.inc
+%post %{MODULEFILE}
+export MODULEFILE_POST=1
+%include post-defines.inc
+%preun %{PACKAGE}
+export PACKAGE_PREUN=1
+%include post-defines.inc
+########################################
+############ Do Not Remove #############
+########################################
+
+#---------------------------------------
+%clean
+#---------------------------------------
+rm -rf $RPM_BUILD_ROOT
+
+#---------------------------------------
+%changelog
+#---------------------------------------
+#
+* Fri Mar 06 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release

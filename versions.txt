@@ -178,6 +178,7 @@ sundials-par 7.5.0 3
 swig 4.4.1 4
 sz 2.1.12 1
 szip 2.1.1 1
+tinker 26.1.2 1
 
 trilinos 16.2.0 6
 trilinos161 16.1.0 6

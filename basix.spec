@@ -147,7 +147,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 LS6 # load python before packages add to python path
 LS6 module load python/3.12
 module --latest load cmake
-module load nanobind
+module load nanobind robinmap
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff

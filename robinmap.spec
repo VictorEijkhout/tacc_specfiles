@@ -1,17 +1,17 @@
 #
-# nanobind.spec
+# robinmap.spec
 # Victor Eijkhout
 #
 Summary: Commandline options handling
 
 # Give the package a base name
-%define pkg_base_name nanobind
-%define MODULE_VAR    NANOBIND
+%define pkg_base_name robinmap
+%define MODULE_VAR    ROBINMAP
 
 # Create some macros (spec file variables)
-%define major_version 2
-%define minor_version 12
-%define micro_version 0
+%define major_version 1
+%define minor_version 4
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -39,7 +39,7 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release:   1
 Group:     Development/Tools
 License: GPL
-Url: https://github.com/wjakob/nanobind
+Url: https://github.com/Tessil/robin-map
 Packager: eijkhout@tacc.utexas.edu 
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
@@ -145,7 +145,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 ## module load 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load robinmap
+# module load dependencies
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff

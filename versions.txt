@@ -45,6 +45,11 @@ fftw2 2.1.5 1
 fftw3 3.3.10 9
 fmtlib 12.1.0 4
 
+#
+# fenics.....
+#
+nanobind 2.12.0 1
+
 gdal 3.11.3 5
 gklib git20240111 2
 gmp 6.3.0 2

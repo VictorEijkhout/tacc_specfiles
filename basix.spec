@@ -144,7 +144,8 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 ## module load 
-module -t list | sort | tr '\n' ' '
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
 module --latest load cmake
 module load nanobind
 module -t list | sort | tr '\n' ' '
@@ -156,7 +157,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-LS6 module load python/3.12
+# find MrPackMod
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 

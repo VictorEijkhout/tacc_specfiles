@@ -281,7 +281,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Fri Mat 13 2026 eijkhout <eijkhout@tacc.utexas.edu>
+* Fri Mar 13 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: chmod
 * Sat Dec 27 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 16.2 throughh mpm

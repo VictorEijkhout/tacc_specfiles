@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6
+Release:   7
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/trilinos/Trilinos
@@ -177,6 +177,8 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
   # Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
 find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \; -print
@@ -206,37 +208,6 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-# # Write out the modulefile associated with the application
-# cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME} << 'EOF'
-# local help_message = [[
-
-# This module provides the TRILINOS environment variables:
-# TACC_TRILINOS_DIR, TACC_TRILINOS_LIB, TACC_TRILINOS_INC
-
-# There are examples programs in \$TACC_TRILINOS_DIR/examples
-
-# Version %{version}
-# ]]
-
-# help(help_message,"\n")
-
-# whatis("Name: TRILINOS")
-# whatis("Version: %{version}")
-# whatis("Category: ")
-# whatis("Keywords: library, numerics, BLAS")
-# whatis("URL: https://github.com/flame/trilinos")
-# whatis("Description: BLAS-like Library Instantiation Software")
-
-# local trilinos_dir="%{INSTALL_DIR}"
-
-# setenv("TACC_TRILINOS_DIR",trilinos_dir)
-# setenv("TACC_TRILINOS_LIB",pathJoin(trilinos_dir,"lib"))
-# setenv("TACC_TRILINOS_INC",pathJoin(trilinos_dir,"include"))
-
-# append_path("LD_LIBRARY_PATH",pathJoin(trilinos_dir,"lib"))
-
-# EOF
-  
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
 #%Module3.1.1#################################################
 ##
@@ -262,7 +233,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -276,7 +247,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 
@@ -310,6 +281,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Mat 13 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: chmod
 * Sat Dec 27 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 16.2 throughh mpm
 * Wed May 14 2025 eijkhout <eijkhout@tacc.utexas.edu>

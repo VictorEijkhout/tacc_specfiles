@@ -58,6 +58,7 @@ spdlog 1.17.0 1
 dolfinx 0.10.0.post5 1
 
 gdal 3.11.3 5
+ginkgo 1.11.0 1
 gklib git20240111 2
 gmp 6.3.0 2
 gmsh 4.15.0 2

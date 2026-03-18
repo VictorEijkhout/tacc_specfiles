@@ -117,11 +117,17 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
-
 module -t list | sort | tr '\n' ' '
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
 module --latest load cmake
 module -t list | sort | tr '\n' ' '
+
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \

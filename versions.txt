@@ -62,6 +62,7 @@ ginkgo 1.11.0 1
 gklib git20240111 2
 gmp 6.3.0 2
 gmsh 4.15.0 2
+gnuplot 6.0.4 1
 gsl 2.8 2
 
 ## hdf5 v2, release reset to 1

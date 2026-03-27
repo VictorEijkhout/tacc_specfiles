@@ -11,7 +11,7 @@ Summary: Prereq for Sundials
 
 # Create some macros (spec file variables)
 %define major_version 7
-%define minor_version 5
+%define minor_version 6
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/sundials
@@ -130,7 +130,11 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
+## module load 
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
 module --latest load cmake
+module -t list | sort | tr '\n' ' '
 
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
@@ -143,32 +147,34 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make par JCOUNT=10 SETX=1 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+ MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  rm -rf /tmp/build-${pkg_version}*
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
-ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-
 #-----------------------  
 %endif
 # BUILD_PACKAGE |
@@ -179,6 +185,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
+  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -212,7 +220,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -226,7 +234,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 
@@ -260,6 +268,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Mar 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 7.6
 * Tue Oct 21 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 7.5
 * Wed Sep 17 2025 eijkhout <eijkhout@tacc.utexas.edu>

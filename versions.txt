@@ -133,7 +133,7 @@ mumps-par 5.8.1 2
 ncview 2.1.9 3
 nclncarg 6.6.2 3
 
-# installs 32 & 64 bit versions
+# installs cpu & cuda versions
 nekrs 26.0 1
 
 # ls6: install.sh -c g -v94

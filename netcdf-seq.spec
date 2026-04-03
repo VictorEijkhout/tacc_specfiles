@@ -154,7 +154,7 @@ module load netcdf/%{pkg_version}
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGE=netcdff PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
     PACKAGEROOT=/tmp \
-    SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
+    SRCPATH=${SRCPATH}/netcdff-%{pkgf_version} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=%{MODULE_DIR} \
 mpm.py -t -j 20 -c Configuration.seq install

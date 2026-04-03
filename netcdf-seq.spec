@@ -152,7 +152,7 @@ module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
 module load netcdf/%{pkg_version}
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGE=netcdf-fortran PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
+    PACKAGE=netcdff PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
     INSTALLPATH=%{INSTALL_DIR} \

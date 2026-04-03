@@ -136,12 +136,9 @@ nclncarg 6.6.2 3
 # installs cpu & cuda versions
 nekrs 26.0 1
 
-# ls6: install.sh -c g -v94
-ninja 1.13.1 2
-
 # sequential
-netcdf 4.9.2 6
-netcdf-seq 4.9.2 6
+netcdf 4.10.0 7
+netcdf-seq 4.10.0 7
 # parallel
 netcdf-par 4.9.2 6
 parallelnetcdf 4.9.2 6
@@ -150,6 +147,9 @@ parallel-netcdf 4.9.2 6
 netcdf-4.9.1-seq 4.9.1 1
 # pnetcdf is something else entirely
 pnetcdf 1.14.1 5
+
+# ls6: install.sh -c g -v94
+ninja 1.13.1 2
 
 openblas 0.3.29 1
 octopus 16.0 2

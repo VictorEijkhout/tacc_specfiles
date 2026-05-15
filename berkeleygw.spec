@@ -1,31 +1,31 @@
 #
-# cxxopts.spec
+# berkeleygw.spec
 # Victor Eijkhout
 #
-Summary: Commandline options handling
+
+Summary: Interface Generator
 
 # Give the package a base name
-%define pkg_base_name cxxopts
-%define MODULE_VAR    CXXOPTS
+%define pkg_base_name berkeleygw
+%define MODULE_VAR    BERKELEYGW
 
 # Create some macros (spec file variables)
-%define major_version 3
-%define minor_version 3
-%define micro_version 1
+%define major_version 4
+%define minor_version 0
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-#%include mpi-defines.inc
+%include mpi-defines.inc
+
 ########################################
 ### Construct name based on includes ###
 ########################################
-#%include name-defines.inc
 %include name-defines-noreloc-home1.inc
-#%include name-defines-hidden.inc
-#%include name-defines-hidden-noreloc.inc
+
 ########################################
 ############ Do Not Remove #############
 ########################################
@@ -36,25 +36,22 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   1
+License:   BSD
 Group:     Development/Tools
-License: GPL
-Url: https://github.com/jarro2783/cxxopts/releases
-Packager: eijkhout@tacc.utexas.edu 
+URL:       https://www.berkeleygw.org/
+Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 # Turn off debug package mode
 %define debug_package %{nil}
 %define _build_id_links none
 %define dbg           %{nil}
-
-# Turn off the brp-python-bytecompile script
-%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-
+%global _python_bytecompile_errors_terminate_build 0
 
 %package %{PACKAGE}
-Summary: The package RPM
-Group: Development/Tools
+Summary: Blas alternative
+Group: Numerical library
 %description package
 This is the long description for the package RPM...
 
@@ -62,12 +59,10 @@ This is the long description for the package RPM...
 Summary: The modulefile RPM
 Group: Lmod/Modulefiles
 %description modulefile
-This is the long description for the modulefile RPM...
+ICL wrapper for C++ around BLAS
 
 %description
-The longer-winded description of the package that will 
-end in up inside the rpm and is queryable if installed via:
-rpm -qi <rpm-name>
+ICL wrapper for C++ around BLAS
 
 
 #---------------------------------------
@@ -83,7 +78,7 @@ rpm -qi <rpm-name>
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif
+%endif 
 # BUILD_PACKAGE |
 #-----------------------
 
@@ -93,16 +88,13 @@ rpm -qi <rpm-name>
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-  %endif
-  # BUILD_MODULEFILE |
+%endif
+ # BUILD_MODULEFILE |
 #--------------------------
-
-
 
 #---------------------------------------
 %build
 #---------------------------------------
-
 
 #---------------------------------------
 %install
@@ -113,20 +105,17 @@ rpm -qi <rpm-name>
 module purge
 # Load Compiler
 %include compiler-load.inc
-# Load MPI Library
-#%include mpi-load.inc
 
 # Insert further module commands
-
-echo "Building the package?:    %{BUILD_PACKAGE}"
-echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 
 #------------------------
 %if %{?BUILD_PACKAGE}
 #------------------------
 
+  rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
   mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
-
+  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -139,13 +128,13 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   # Insert Build/Install Instructions Here
   #========================================
   
-  mkdir -p %{INSTALL_DIR}
-  mount -t tmpfs tmpfs %{INSTALL_DIR}
-  
-## module load 
+mkdir -p %{INSTALL_DIR}
+rm -rf %{INSTALL_DIR}/*
+mount -t tmpfs tmpfs %{INSTALL_DIR}
+
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-## module load 
+module load hdf5/1.14
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff
@@ -174,6 +163,8 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 # Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
@@ -181,9 +172,11 @@ rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
+ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
 #-----------------------  
 %endif
-# BUILD_PACKAGE |
+ # BUILD_PACKAGE |
 #-----------------------
 
 
@@ -191,8 +184,6 @@ umount %{INSTALL_DIR}
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
-  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
-  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -202,7 +193,7 @@ umount %{INSTALL_DIR}
   #######################################
   
 cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
-#%Module1.0#################################################
+#%Module3.1.1#################################################
 ##
 ## version file for %{BASENAME}%{version}
 ##
@@ -214,9 +205,10 @@ EOF
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
   %endif
+
 #--------------------------
-  %endif
-  # BUILD_MODULEFILE |
+%endif
+ # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -230,9 +222,10 @@ EOF
   %{INSTALL_DIR}
 
 #-----------------------
-  %endif
-  # BUILD_PACKAGE |
+%endif
+ # BUILD_PACKAGE |
 #-----------------------
+
 #---------------------------
 %if %{?BUILD_MODULEFILE}
 %files modulefile 
@@ -243,8 +236,8 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-  %endif
-  # BUILD_MODULEFILE |
+%endif
+ # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################
@@ -268,12 +261,9 @@ export PACKAGE_PREUN=1
 #---------------------------------------
 rm -rf $RPM_BUILD_ROOT
 
+#---------------------------------------
 %changelog
-* Wed Jun 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 5: 3.3.1
-* Wed Jun 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: 3.2.1
-* Fri Jan 05 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: new setup
-* Wed Nov 29 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: initial build
+#---------------------------------------
+#
+* Thu May 14 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release

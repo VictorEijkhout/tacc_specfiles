@@ -12,9 +12,10 @@ Summary: Interface Generator
 # Create some macros (spec file variables)
 %define major_version 4
 %define minor_version 0
-%define micro_version 0
+# define micro_version 0
 
-%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+%define pkg_version %{major_version}.%{minor_version}
+#{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -105,6 +106,7 @@ ICL wrapper for C++ around BLAS
 module purge
 # Load Compiler
 %include compiler-load.inc
+%include mpi-defines.inc
 
 # Insert further module commands
 

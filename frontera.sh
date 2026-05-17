@@ -6,6 +6,7 @@ for s in *.spec ; do
         | sed \
 	      -e '/^FRONTERA/s/FRONTERA //' \
 	      -e '/^LS6/d' \
+	      -e '/^STAMPEDE3/d' \
 	      -e 's/PETSCCUDAFLAG/-c/' \
 	      -e 's/GCCDEF/13/' \
 	      -e 's/GCCMIN/8.3.0/' \

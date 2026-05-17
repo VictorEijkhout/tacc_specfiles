@@ -10,6 +10,7 @@ for s in *.spec ; do
 	    -e '/module load python3/d' \
 	    -e '/^FRONTERA/d' \
 	    -e '/^LS6/d' \
+	    -e '/^STAMPEDE3/s/STAMPEDE3 //' \
 	    -e 's/GCCDEF/13/' \
 	    -e 's/GCCMIN/13/' \
 	    -e 's/CMAKEMIN/3.28/' \

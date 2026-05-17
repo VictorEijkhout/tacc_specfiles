@@ -10,7 +10,8 @@ for s in *.spec ; do
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-scratch.inc/' \
 	    -e '/FRONTERA/d' \
 	    -e '/LS6/s/LS6 //' \
-	    -e /cuda-defines/d \
+	    -e '/^STAMPEDE3/d' \
+	    -e '/cuda-defines/d' \
 	    -e 's/GCCDEF/13/' \
 	    -e 's/GCCMIN/9/' \
 	    -e 's/CMAKEMIN/3.21/' \

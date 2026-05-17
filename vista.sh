@@ -10,6 +10,7 @@ for s in *.spec ; do
 	    -e '/module load python3/d' \
 	    -e '/^FRONTERA/d' \
 	    -e '/^LS6/d' \
+	    -e '/^STAMPEDE3/d' \
 	    -e 's/GCC/14/' \
 	> vista_specfiles/$s
 done

@@ -9,8 +9,8 @@ Summary: Trilinos
 %define MODULE_VAR    TRILINOS
 
 # Create some macros (spec file variables)
-%define major_version 16
-%define minor_version 2
+%define major_version 17
+%define minor_version 0
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   7
+Release:   1
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/trilinos/Trilinos
@@ -134,6 +134,7 @@ module --latest load cmake
 module load boost
 module load swig
 module load parmetis parallelnetcdf phdf5/1.14 pnetcdf
+module unload cuda
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
 else
@@ -170,7 +171,23 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
     HAS_OPENMP=OFF \
-mpm.py -t -j 20 install
+mpm.py -t -j 20 -c Configuration.cpu install
+
+docuda=
+STAMPEDE3 docuda=1
+if [ ! -z "${docuda}" ] ; then
+    module load cuda
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+    HAS_OPENMP=OFF \
+    mpm.py -t -j 20 -c Configuration17.cuda install
+fi
+
 rm -rf /tmp/%{pkg_base_name}
 
 popd
@@ -281,17 +298,5 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Fri Mar 13 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 7: chmod
-* Sat Dec 27 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 6: 16.2 throughh mpm
-* Wed May 14 2025 eijkhout <eijkhout@tacc.utexas.edu>
-- release 5: 16.1
-* Wed Aug 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: v16
-* Tue Mar 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: finally figured out netcdf
-* Tue Feb 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: version 15
-* Fri Mar 17 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: initial release
+* Fri May 15 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release of 17

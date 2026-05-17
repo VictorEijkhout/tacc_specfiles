@@ -144,9 +144,11 @@ netcdf-seq 4.10.0 7
 # parallel
 netcdf-par 4.9.2 6
 parallelnetcdf 4.9.2 6
-parallel-netcdf 4.9.2 6
+# this needs to go! parallel-netcdf 4.9.2 6
+
 # legacy version
 netcdf-4.9.1-seq 4.9.1 1
+
 # pnetcdf is something else entirely
 pnetcdf 1.14.1 5
 

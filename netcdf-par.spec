@@ -6,8 +6,8 @@ Summary: Netcdf install
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 9
-%define micro_version 2
+%define minor_version 10
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 %define pkgf_version 4.6.1
@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 6%{?dist}
+Release: 7
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -99,6 +99,13 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
+module --latest load cmake
+module load phdf5/1.14 pnetcdf
+LS6 module load python/3.12
+module -t list | sort | tr '\n' ' '
+
+################ new stuff
+
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
@@ -107,8 +114,8 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-module --latest load cmake
-module load phdf5/1.14 pnetcdf
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
 ##
 ## first install the C version
@@ -116,14 +123,14 @@ module load phdf5/1.14 pnetcdf
 pushd ${VICTOR}/makefiles/netcdf
 
 ## get rid of that PACKAGEROOT
-make par JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=%{MODULE_DIR}
+    MODULEDIR=%{MODULE_DIR} \
+mpm.py -t -j 20 -c Configuration.par install
 
 popd
 
@@ -140,18 +147,19 @@ pushd ${VICTOR}/makefiles/netcdff
     module use ${RPM_MODULE_ROOT}/%{MODULE_DIR}/../
     module load parallelnetcdf/%{pkg_version}
 
-    make \
-	par JCOUNT=10 \
-	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
 	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
 	PACKAGEROOT=/tmp \
 	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
 	INSTALLPATH=%{INSTALL_DIR} \
-	MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+	MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+    mpm.py -t -j 20 -c Configuration.par install
 
 popd
 
 ################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
@@ -175,6 +183,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun May 17 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7 : 4.10, using mpm
 * Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: rebuild for fortran module name
 * Wed Oct 30 2024 eijkhout <eijkhout@tacc.utexas.edu>

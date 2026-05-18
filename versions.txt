@@ -142,8 +142,8 @@ nekrs 26.0 1
 netcdf 4.10.0 7
 netcdf-seq 4.10.0 7
 # parallel
-netcdf-par 4.9.2 6
-parallelnetcdf 4.9.2 6
+netcdf-par 4.10.0 7
+parallelnetcdf 4.10.0 7
 # this needs to go! parallel-netcdf 4.9.2 6
 
 # legacy version

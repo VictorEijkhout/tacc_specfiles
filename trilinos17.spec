@@ -171,7 +171,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
     HAS_OPENMP=OFF \
-mpm.py -t -j 20 -c Configuration.cpu install
+mpm.py -t -j 20 -c Configuration17.cpu install
 
 docuda=
 STAMPEDE3 docuda=1

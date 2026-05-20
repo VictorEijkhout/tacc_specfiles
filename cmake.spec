@@ -11,8 +11,8 @@ Summary: Cmake
 
 # Create some macros (spec file variables)
 %define major_version 4
-%define minor_version 2
-%define micro_version 3
+%define minor_version 3
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   8
+Release:   9
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -175,6 +175,8 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
   # Copy installation from tmpfs to RPM directory
   ls %{INSTALL_DIR}
   cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
@@ -228,7 +230,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -242,7 +244,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 
@@ -276,6 +278,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed May 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: 4.3.2 and chmod
 * Thu Jan 28 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: 4.2.3 using mpm
 * Thu Sep 11 2025 eijkhout <eijkhout@tacc.utexas.edu>

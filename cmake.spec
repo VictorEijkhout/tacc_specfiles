@@ -280,7 +280,6 @@ rm -rf $RPM_BUILD_ROOT
 #
 * Wed May 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: 4.3.2 and chmod
-* Thu Jan 28 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: 4.2.3 using mpm
 * Thu Sep 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: 4.1.1 with system gcc

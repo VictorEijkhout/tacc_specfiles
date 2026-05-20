@@ -10,7 +10,7 @@ Summary: Trilinos
 
 # Create some macros (spec file variables)
 %define major_version 17
-%define minor_version 0
+%define minor_version 1
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}

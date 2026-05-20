@@ -200,8 +200,8 @@ sz 2.1.12 1
 szip 2.1.1 1
 tinker 26.1.2 1
 
-trilinos 17.0.0 1
-trilinos17 17.0.0 1
+trilinos 17.1.0 1
+trilinos17 17.1.0 1
 trilinos16 16.2.1 8
 # old version. why?
 trilinos161 16.1.0 6

@@ -77,12 +77,12 @@ hdf5-par 2.0.0 2
 
 ## backup copies of v1
 hdf5v1 1.14.6 11
-# install.sh -p hdf5 -q 1.14.6 hdf5v1_seq
+# install.sh -p hdf5 -q 1.14.6 hdf5v1-seq
 hdf5v1-seq 1.14.6 11
 phdf5v1 1.14.6 11
 # install.sh -p phdf5 hdf5-par
 hdf5v1-par 1.14.6 11
-# install.sh -m -p phdf5 -q 1.14.6 hdf5v1_par
+# install.sh -m -p phdf5 -q 1.14.6 hdf5v1-par
 
 # old versions
 hdf5-1.10.11-seq 1.10.11 1

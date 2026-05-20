@@ -133,6 +133,8 @@ module purge
 module --latest load cmake 
 module load boost
 module load swig
+module avail parmetis parallelnetcdf phdf5/1.14 pnetcdf
+if [ $? -gt 0 ] ; then exit ; fi
 module load parmetis parallelnetcdf phdf5/1.14 pnetcdf
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl

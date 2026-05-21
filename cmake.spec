@@ -171,17 +171,19 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -t -j 20 install
 
+rm -rf /tmp/%{pkg_base_name}
+
 popd
 
 ################ end of new stuff
 
 chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -230,7 +232,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -244,7 +246,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
+  %defattr(0644,root,root,0755)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 

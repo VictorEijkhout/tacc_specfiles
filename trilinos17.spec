@@ -203,7 +203,7 @@ ls %{INSTALL_DIR}
 find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \; -print
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   

@@ -152,8 +152,7 @@ pushd ${VICTOR}/makefiles/netcdff
 	PACKAGEROOT=/tmp \
 	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
 	INSTALLPATH=%{INSTALL_DIR} \
-	MODULEDIRADD=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-    mpm.py -t -j 20 -c Configuration.par install
+    mpm.py -t -j 20 -c Configuration.par configure build public
 
 popd
 

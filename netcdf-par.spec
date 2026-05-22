@@ -85,7 +85,7 @@ module purge
 rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
 mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
-mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+#mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 
   #######################################
   ##### Create TACC Canary Files ########
@@ -122,14 +122,14 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 ##
 pushd ${VICTOR}/makefiles/netcdf
 
-## get rid of that PACKAGEROOT
+# module goes straight into rpm build root
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIR=%{MODULE_DIR} \
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -t -j 20 -c Configuration.par install
 
 popd

@@ -156,7 +156,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH}/netcdff-%{pkgf_version} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIR=%{MODULE_DIR} \
+    MODULEDIRADD=%{MODULE_DIR} \
 mpm.py -t -j 20 -c Configuration.seq install
 
 popd
@@ -166,7 +166,6 @@ popd
 chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-cp -r %{MODULE_DIR}/* $RPM_BUILD_ROOT/%{MODULE_DIR}/
 
   rm -rf /tmp/build-${pkg_version}*
 

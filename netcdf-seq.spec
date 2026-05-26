@@ -143,12 +143,12 @@ popd
 tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdff-%{pkgf_version}.tgz
 pushd ${VICTOR}/makefiles/netcdff
 
-NETCDF_MODDIR=%{MODULE_DIR}/../
+NETCDF_MODDIR=$RPM_BUILD_ROOT/%{MODULE_DIR}/../
 echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
 ls ${NETCDF_MODDIR}
 ls ${NETCDF_MODDIR}/netcdf
 # should we use the module dir, not in build root?
-module use $RPM_BUILD_ROOT/%{MODULE_DIR}/../
+module use ${NETCDF_MODDIR}
 module load netcdf/%{pkg_version}
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
@@ -156,7 +156,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH}/netcdff-%{pkgf_version} \
     INSTALLPATH=%{INSTALL_DIR} \
-mpm.py -t -j 20 -c Configuration.seq configure build public
+mpm.py -t -j 20 -c Configuration.seq configure build
 
 popd
 

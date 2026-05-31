@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.swig.org/
@@ -158,11 +158,13 @@ popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  rm -rf /tmp/build-${pkg_version}*
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -259,7 +261,9 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Sun Dec 28 2025 eijkhout <eijkhout@tacc.utexas.edu>
+* Sun May 31 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: chmod
+* Sun Dec 28 2025 eijkhout <eijkhout@tacc.utexas.ed>u
 - release 4: 4.4.1
 * Fri Jul 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 4.3.1

@@ -106,7 +106,7 @@ ICL wrapper for C++ around BLAS
 module purge
 # Load Compiler
 %include compiler-load.inc
-%include mpi-defines.inc
+%include mpi-load.inc
 
 # Insert further module commands
 
@@ -136,7 +136,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load hdf5/1.14
+module load phdf5/1.14
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff

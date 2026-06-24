@@ -130,7 +130,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -t -j 20 -c Configuration.par install
+mpm.py -t -j 20 -c Configuration.mpi install
 
 popd
 
@@ -152,7 +152,7 @@ module load parallelnetcdf/%{pkg_version}
 	PACKAGEROOT=/tmp \
 	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
 	INSTALLPATH=%{INSTALL_DIR} \
-    mpm.py -t -j 20 -c Configuration.par configure build 
+    mpm.py -t -j 20 -c Configuration.mpi configure build 
 
 popd
 

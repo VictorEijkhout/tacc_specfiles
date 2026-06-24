@@ -145,7 +145,7 @@ HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 ${testing} \
-mpm.py -t -j 20 -c Configuration.par install
+mpm.py -t -j 20 -c Configuration.mpi install
 
 popd
 

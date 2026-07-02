@@ -45,7 +45,7 @@ dealii-complex 9.7.1 7
 eigen 5.0.0 1
 eigen3 3.4.0 5
 fftw2 2.1.5 1
-fftw3 3.3.10 9
+fftw3 3.3.10 10
 fmtlib 12.1.0 4
 
 #

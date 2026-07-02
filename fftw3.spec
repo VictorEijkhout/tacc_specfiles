@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   9%{?dist}
+Release:   10
 License:   GPL
 Group:     System Environment/Base
 URL:       http://www.fftw.org
@@ -154,6 +154,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
+LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 
 export SRCPATH=`pwd`
@@ -161,27 +162,29 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make single double JCOUNT=10 \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGEVERSION=%{pkg_version} \
-    PACKAGEROOT=/tmp \
-    BUILDDIRROOT=/tmp \
-    SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
+	PACKAGEROOT=/tmp \
+	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
+	INSTALLPATH=%{INSTALL_DIR} \
+    mpm.py -t -j 20 -c Configuration.mpi configure build 
 
 popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  rm -rf /tmp/build-${pkg_version}*
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -273,6 +276,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jul 02 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: mpm install
 * Wed Aug 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: single really fixed.
 * Mon Aug 05 2024 eijkhout <eijkhout@tacc.utexas.edu>

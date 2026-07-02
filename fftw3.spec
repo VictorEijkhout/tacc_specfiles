@@ -167,12 +167,14 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
-	PACKAGEROOT=/tmp \
-	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
-	INSTALLPATH=%{INSTALL_DIR} \
-    mpm.py -t -j 20 -c Configuration.mpi configure build 
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
+    BUILDDIRROOT=/tmp \
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+    mpm.py -t -j 20 -c Configuration.cmake configure build 
 
 popd
 

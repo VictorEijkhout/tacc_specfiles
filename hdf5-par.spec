@@ -144,12 +144,14 @@ HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-${testing} \
-mpm.py -t -j 20 -c Configuration.mpi install
+    ${testing} \
+    mpm.py -t -j 20 -c Configuration.mpi install
 
 popd
 
 ################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 

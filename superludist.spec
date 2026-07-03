@@ -39,10 +39,10 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 Release:   1
 License:   GPL
 Group:     System Environment/Base
-URL:       http://www.fftw.org
+URL:       http://www.superlu.org
 Packager:  eijkhout@tacc.utexas.edu
 # used to be cyrus
-Source:    fftw-%{pkg_version}.tar.gz
+Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
 
 
 %package %{PACKAGE}
@@ -74,7 +74,6 @@ superlu
   # Delete the package installation directory.
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
 
-# note: fftw, not pgk_base_name
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------

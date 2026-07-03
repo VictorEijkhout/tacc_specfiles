@@ -1,31 +1,31 @@
 #
-# zlib.spec
 # Victor Eijkhout
 #
 
-Summary: Zlib
+Summary: A Nice little relocatable skeleton spec file example.
 
 # Give the package a base name
-%define pkg_base_name zlib
-%define MODULE_VAR    ZLIB
+%define pkg_base_name superludist
+%define MODULE_VAR    SUPERLUDIST
 
 # Create some macros (spec file variables)
-%define major_version 1
-%define minor_version 3
-%define micro_version 2
+%define major_version 9
+%define minor_version 2
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
-## .{minor_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-
+%include mpi-defines.inc
 ########################################
 ### Construct name based on includes ###
 ########################################
+#%include name-defines.inc
 %include name-defines-noreloc-home1.inc
-
+#%include name-defines-hidden.inc
+#%include name-defines-hidden-noreloc.inc
 ########################################
 ############ Do Not Remove #############
 ########################################
@@ -36,37 +36,37 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
-License:   BSD
-Group:     Development/Tools
-URL:       https://github.com/madler/zlib
-Packager:  TACC - eijkhout@tacc.utexas.edu
-Source:    %{pkg_base_name}-%{pkg_version}.tgz
+Release:   1
+License:   GPL
+Group:     System Environment/Base
+URL:       http://www.fftw.org
+Packager:  eijkhout@tacc.utexas.edu
+# used to be cyrus
+Source:    fftw-%{pkg_version}.tar.gz
 
-# Turn off debug package mode
-%define debug_package %{nil}
-%define dbg           %{nil}
-%define _build_id_links none
 
 %package %{PACKAGE}
-Summary: Zlib
-Group: Support
+Summary: The package RPM
+Group: Development/Tools
 %description package
 This is the long description for the package RPM...
 
 %package %{MODULEFILE}
-Summary: Zlib
-Group: Support
+Summary: The modulefile RPM
+Group: Lmod/Modulefiles
 %description modulefile
-Zlib
+This is the long description for the modulefile RPM...
 
 %description
-Zlib
-
+superlu
 
 #---------------------------------------
 %prep
 #---------------------------------------
+
+%define debug_package %{nil}
+%define _build_id_links none
+
 
 #------------------------
 %if %{?BUILD_PACKAGE}
@@ -74,10 +74,11 @@ Zlib
   # Delete the package installation directory.
   rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
 
+# note: fftw, not pgk_base_name
 %setup -n %{pkg_base_name}-%{pkg_version}
 
 #-----------------------
-%endif 
+%endif
 # BUILD_PACKAGE |
 #-----------------------
 
@@ -87,13 +88,15 @@ Zlib
   #Delete the module installation directory.
   rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 #--------------------------
-%endif 
-# BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
+
 
 #---------------------------------------
 %build
 #---------------------------------------
+
 
 #---------------------------------------
 %install
@@ -104,16 +107,19 @@ Zlib
 module purge
 # Load Compiler
 %include compiler-load.inc
+# Load MPI Library
+%include mpi-load.inc
 
 # Insert further module commands
+
+echo "Building the package?:    %{BUILD_PACKAGE}"
+echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 
 #------------------------
 %if %{?BUILD_PACKAGE}
 #------------------------
 
-  rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
   mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
-  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   
   #######################################
   ##### Create TACC Canary Files ########
@@ -126,31 +132,25 @@ module purge
   #========================================
   # Insert Build/Install Instructions Here
   #========================================
-  
+
+
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-module load cmake/3.31
-if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
-    module load mkl
-else
-    export MKLFLAG="-mkl"
-fi
-
 ################ new stuff
+
+module -t list | sort | tr '\n' ' '
+module --latest load cmake
+module load parmetis
+LS6 module load python/3.12
+module -t list | sort | tr '\n' ' '
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-FRONTERA export PATH=/opt/apps/intel19/python3/3.9.2/bin/:${PATH}
-FRONTERA export PYTHONPATH=/opt/apps/intel19/impi19_0/python3/3.9.2/lib/python3.9/site-packages:${PYTHONPATH}
-FRONTERA export LD_LIBRARY_PATH=/opt/apps/intel19/python3/3.9.2/lib:${LD_LIBRARY_PATH}
-FRONTERA export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin:${LD_LIBRARY_PATH}
-
-LS6 module load python/3.12
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
@@ -163,7 +163,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -c Configuration -t -j 20 install
+    mpm.py -t -j 20 -c Configuration configure build install
 
 popd
 
@@ -182,7 +182,7 @@ umount %{INSTALL_DIR}
 ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 #-----------------------  
-%endif 
+%endif
 # BUILD_PACKAGE |
 #-----------------------
 
@@ -191,6 +191,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %if %{?BUILD_MODULEFILE}
 #---------------------------
 
+  mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+  
   #######################################
   ##### Create TACC Canary Files ########
   #######################################
@@ -212,10 +214,9 @@ EOF
   %if %{?VISIBLE}
     %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{MODULE_FILENAME}
   %endif
-
 #--------------------------
-%endif 
-# BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 
@@ -224,27 +225,24 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
-  # RPM package contains files within these directories
+  %defattr(0644,root,root,0755)
   %{INSTALL_DIR}
 
 #-----------------------
-%endif 
-# BUILD_PACKAGE |
+  %endif
+  # BUILD_PACKAGE |
 #-----------------------
-
 #---------------------------
 %if %{?BUILD_MODULEFILE}
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
-  # RPM modulefile contains files within these directories
+  %defattr(0644,root,root,0755)
   %{MODULE_DIR}
 
 #--------------------------
-%endif 
-# BUILD_MODULEFILE |
+  %endif
+  # BUILD_MODULEFILE |
 #--------------------------
 
 ########################################
@@ -268,15 +266,7 @@ export PACKAGE_PREUN=1
 #---------------------------------------
 rm -rf $RPM_BUILD_ROOT
 
-#---------------------------------------
 %changelog
-#---------------------------------------
-#
-* Wed Feb 25 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 5: chmod and .version
-* Tue Feb 17 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: 1.3.2 with mpm
-* Tue May 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: update to 1.3.1
-* Mon May 15 2023 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: initial release
+* Fri Jul 03 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial install
+

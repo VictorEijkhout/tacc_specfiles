@@ -143,6 +143,9 @@ module -t list | sort | tr '\n' ' '
 module --latest load cmake
 module load parmetis
 LS6 module load python/3.12
+if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+    module load mkl
+fi
 module -t list | sort | tr '\n' ' '
 
 export SRCPATH=`pwd`

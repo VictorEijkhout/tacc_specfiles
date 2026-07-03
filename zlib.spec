@@ -132,6 +132,11 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module load cmake/3.31
+if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
+    module load mkl
+else
+    export MKLFLAG="-mkl"
+fi
 
 ################ new stuff
 

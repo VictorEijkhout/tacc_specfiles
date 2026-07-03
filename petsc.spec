@@ -143,9 +143,9 @@ export    INSTALLPATH=%{INSTALL_DIR}
 export    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR}
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}
 ./all_configurations.sh \
-    -j 16 \
-    PETSCCUDAFLAG ${petscpython} ${disablefortran} \
-    -v %{pkg_version}
+    -j 16
+    # PETSCCUDAFLAG ${petscpython} ${disablefortran} \
+    # -v %{pkg_version}
 rm -rf /tmp/%{pkg_base_name}
 
 popd

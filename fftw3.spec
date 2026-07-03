@@ -212,13 +212,13 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
   ########### Do Not Remove #############
   #######################################
   
-cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{version} << 'EOF'
+cat > $RPM_BUILD_ROOT/%{MODULE_DIR}/.version.%{pkg_version} << 'EOF'
 #%Module3.1.1#################################################
 ##
-## version file for %{BASENAME}%{version}
+## version file for %{BASENAME}%{pkg_version}
 ##
 
-set     ModulesVersion      "%{version}"
+set     ModulesVersion      "%{pkg_version}"
 EOF
   
   # Check the syntax of the generated lua modulefile only if a visible module

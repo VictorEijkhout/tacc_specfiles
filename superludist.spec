@@ -42,7 +42,7 @@ Group:     System Environment/Base
 URL:       http://www.superlu.org
 Packager:  eijkhout@tacc.utexas.edu
 # used to be cyrus
-Source:    %{pkg_base_name}-%{pkg_version}.tar.gz
+Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 
 %package %{PACKAGE}

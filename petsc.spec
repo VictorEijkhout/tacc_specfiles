@@ -6,7 +6,7 @@ Summary: Petsc install
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 24
+%define minor_version 25
 #define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}
@@ -140,9 +140,9 @@ export    PACKAGEROOT=/tmp
 export    BUILDDIRROOT=/tmp
 export    SRCPATH=${SRCPATH} 
 export    INSTALLPATH=%{INSTALL_DIR} 
-export    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+export    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR}
 export    BUILDDIRROOT=/tmp/%{pkg_base_name}
-./install_all.sh \
+./all_configurations.sh \
     -j 16 \
     PETSCCUDAFLAG ${petscpython} ${disablefortran} \
     -v %{pkg_version}
@@ -174,6 +174,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jul 03 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 27: mpm 
 * Fri Jan 16 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 26 UNRELEASED: with cuda
 * Tue Oct 14 2025 eijkhout <eijkhout@tacc.utexas.edu>

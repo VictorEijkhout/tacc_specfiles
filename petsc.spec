@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 26
+Release: 27
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh

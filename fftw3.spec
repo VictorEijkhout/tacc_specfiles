@@ -154,6 +154,9 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 

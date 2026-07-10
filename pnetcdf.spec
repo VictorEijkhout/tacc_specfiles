@@ -112,18 +112,23 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 LS6 module load python/3.12
-export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
-export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
-
-pushd ${VICTOR}/makefiles/pnetcdf
-
 case ${TACC_SYSTEM} in
     ( frontera | ls6 | stampede3 | vista ) 
       module load autoconf/2.72
       module load automake/1.16.5
     ;;
 esac
+module -t list | sort | tr '\n' ' '
+
+# MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/pnetcdf
 
 # needed? netcdf 4.9.2 3
 

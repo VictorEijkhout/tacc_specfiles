@@ -100,6 +100,9 @@ rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
   #========================================
   
 module --latest load cmake
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 module load phdf5/1.14 pnetcdf
 LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '

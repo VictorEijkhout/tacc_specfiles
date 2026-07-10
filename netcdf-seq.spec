@@ -106,6 +106,9 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 ## module load 
 LS6 # load python before packages add to python path
 LS6 module load python/3.12
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 module load hdf5/1.14
 module --latest load cmake
 # if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 

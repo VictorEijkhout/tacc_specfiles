@@ -145,6 +145,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 module -t list | sort | tr '\n' ' '
 module load gcc
+module load mkl # only for mpm, not actually used
 LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 

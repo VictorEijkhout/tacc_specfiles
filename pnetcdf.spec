@@ -128,7 +128,7 @@ module -t list | sort | tr '\n' ' '
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
-pushd ${VICTOR}/makefiles/pnetcdf
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 # needed? netcdf 4.9.2 3
 

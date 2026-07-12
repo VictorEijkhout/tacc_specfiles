@@ -158,7 +158,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGE=netcdff PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH}/netcdff-%{pkgf_version} \
-    INSTALLPATH=%{INSTALL_DIR} \
+    INSTALLPATH=%{INSTALL_DIR} NOSCRATCHINSTALL=ON \
 mpm.py -t -j 20 -c Configuration.seq configure build
 
 popd

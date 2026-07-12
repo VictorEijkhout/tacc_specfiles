@@ -154,7 +154,7 @@ module load parallelnetcdf/%{pkg_version}
 	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
 	PACKAGEROOT=/tmp \
 	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
-	INSTALLPATH=%{INSTALL_DIR} \
+	INSTALLPATH=%{INSTALL_DIR} NOSCRATCHINSTALL=ON \
     mpm.py -t -j 20 -c Configuration.mpi configure build 
 
 popd

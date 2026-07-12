@@ -145,6 +145,9 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 ## module load 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 ## module load 
 module -t list | sort | tr '\n' ' '
 
@@ -175,6 +178,7 @@ popd
 ################ end of new stuff
 
 # Copy installation from tmpfs to RPM directory
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 ls %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf /tmp/build-${pkg_version}*

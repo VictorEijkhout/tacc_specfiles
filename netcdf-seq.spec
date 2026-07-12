@@ -111,9 +111,6 @@ LS6 module load python/3.12
 %endif
 module load hdf5/1.14
 module --latest load cmake
-# if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-#     module load mkl
-# fi
 module -t list | sort | tr '\n' ' '
 
 export SRCPATH=`pwd`

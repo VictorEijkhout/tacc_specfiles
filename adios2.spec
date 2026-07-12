@@ -116,6 +116,9 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake 
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
 module load phdf5
 module -t list | sort | tr '\n' ' '
 
@@ -132,6 +135,7 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 

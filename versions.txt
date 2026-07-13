@@ -20,7 +20,7 @@ autoconf 2.72 1
 automake 1.16.5 1
 
 berkeleygw 4.0 1
-bison 3.8 1
+bison 3.8 2
 blis 1.1 2
 boost 1.86.0 8
 

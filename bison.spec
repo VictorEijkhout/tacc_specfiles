@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/bison
@@ -153,7 +153,8 @@ make configure build JCOUNT=10 \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+    NOINC=1
 
 popd
 
@@ -260,5 +261,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Mon Jul 13 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: noinc
 * Fri Oct 04 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

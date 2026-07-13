@@ -197,7 +197,7 @@ ssundials 7.6.0 4
 sundials-seq 7.6.0 4
 sundials-par 7.6.0 4
 
-swig 4.4.1 5
+swig 4.4.1 6
 sz 2.1.12 1
 szip 2.1.1 1
 tinker 26.1.2 1

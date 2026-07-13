@@ -134,6 +134,10 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 module --latest load cmake
 module load pcre2
 module load bison
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
+module -t list | sort | tr '\n' ' '
 
 ################ new stuff
 

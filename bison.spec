@@ -157,7 +157,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -t -j 20 install
 
 popd
@@ -219,7 +219,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -233,7 +233,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 

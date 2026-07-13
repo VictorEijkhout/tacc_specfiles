@@ -141,9 +141,8 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 module load gcc/13
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
+export TACC_MKL_INC=/opt/apps/notused/mkl
+export TACC_MKL_LIB=/opt/apps/notused/mkl
 module -t list | sort | tr '\n' ' '
 
 # Find MrPackMod

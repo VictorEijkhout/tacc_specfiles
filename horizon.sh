@@ -12,6 +12,7 @@ for s in *.spec ; do
 	    -e '/^LS6/d' \
 	    -e '/^STAMPEDE3/d' \
 	    -e 's/GCC/14/' \
+	    -e 's/rpmtng/RPMtheNextGeneration/' \
 	> horizon_specfiles/$s
 done
 

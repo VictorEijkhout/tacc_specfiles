@@ -156,11 +156,9 @@ module unload cmake
 module -t list | sort | tr '\n' ' '
 export TACC_CC=gcc
 export TACC_CXX=g++
-
-# make configure build JCOUNT=10 \
-#      $( if [ "${TACC_SYSTEM}" = "vista" ] ; then \
-#         echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
-#             ; fi )
+export TACC_MKL_DIR=/foo/bar
+export TACC_MKL_INC=/foo/bar
+export TACC_MKL_LIB=/foo/bar
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \

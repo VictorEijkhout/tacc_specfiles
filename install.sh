@@ -13,6 +13,10 @@ if [ $# -eq 0 -o $1 = "-h" ] ; then
     usage && exit 0
 fi
 
+system=$( hostname )
+system=${system#*.} # sometimes it's build, sometimes staff
+system=${system%%.}
+
 cuda=
 mpi=
 packagename=
@@ -68,7 +72,7 @@ if [ ! -d "${specdir}" ] ; then
     echo "ERROR no specfile dir <<${specdir}>>" && exit 1
 fi
 cd ${specdir}
-taccfiles=${specdir}/rpmtng/tacc_specfiles/
+taccfiles=${specdir}/RPMtheNextGeneration/tacc_specfiles/
 
 ##
 ## determine version and release frm the versions.txt file

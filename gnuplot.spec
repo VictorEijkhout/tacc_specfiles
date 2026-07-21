@@ -49,6 +49,11 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %define dbg           %{nil}
 %define _build_id_links none
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Gnuplot
 Group: Support

@@ -74,6 +74,11 @@ Packager:   eijkhout@tacc.utexas.edu
 %define dbg           %{nil}
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.
 Group: Applications

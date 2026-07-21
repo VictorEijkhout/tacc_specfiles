@@ -50,6 +50,7 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 # new horizon settings
 %global __brp_check_rpaths %{nil}
 %define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
 
 %package %{PACKAGE}
 Summary: Cmake

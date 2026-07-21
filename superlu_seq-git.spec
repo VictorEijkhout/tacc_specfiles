@@ -55,6 +55,12 @@ Packager:   eijkhout@tacc.utexas.edu
 %define dbg           %{nil}
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
+
 # Prevent weird relocation type 42 error
 # . parsimonious solution: use the correct strip
 # https://bugzilla.redhat.com/show_bug.cgi?id=1545386

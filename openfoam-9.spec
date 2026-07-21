@@ -46,6 +46,11 @@ BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 %define _build_id_links none
 %define dbg           %{nil}
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %define APPS /home1/apps/
 %define MODULES modulefiles
 

@@ -48,6 +48,11 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %define dbg           %{nil}
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Blas alternative
 Group: Numerical library

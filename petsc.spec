@@ -46,6 +46,14 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 %define dbg           %{nil}
 ## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
+
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
+
+
 # Turn off the brp-python-bytecompile script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 

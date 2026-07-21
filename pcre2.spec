@@ -139,27 +139,31 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
   # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -257,7 +261,7 @@ rm -rf $RPM_BUILD_ROOT
 #---------------------------------------
 #
 * Tue Jul 21 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: 10.46
+- release 3: 10.46, using mpm
 * Mon May 06 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 10.43
 * Fri Mar 17 2023 eijkhout <eijkhout@tacc.utexas.edu>

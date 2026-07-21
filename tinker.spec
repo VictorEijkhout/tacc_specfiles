@@ -132,7 +132,7 @@ mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-module load cmake/3.31
+module load cmake
 module load fftw3
 
 ################ new stuff

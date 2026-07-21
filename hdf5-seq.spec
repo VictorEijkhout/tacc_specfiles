@@ -9,8 +9,8 @@ Summary: Hdf5 install
 
 # Create some macros (spec file variables)
 %define major_version 2
-%define minor_version 0
-%define micro_version 0
+%define minor_version 1
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2
+Release: 3
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -189,6 +189,8 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jul 21 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: 2.1.1
 * Wed Dec 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: module version fix
 * Fri Nov 21 2025 eijkhout <eijkhout@tacc.utexas.edu>

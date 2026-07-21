@@ -154,8 +154,9 @@ module unload gcc
 module unload cmake
 ## module load 
 module -t list | sort | tr '\n' ' '
-export TACC_CC=gcc
-export TACC_CXX=g++
+export CC=gcc
+export CXX=g++
+export FC=gfortran
 export TACC_MKL_DIR=/foo/bar
 export TACC_MKL_INC=/foo/bar
 export TACC_MKL_LIB=/foo/bar

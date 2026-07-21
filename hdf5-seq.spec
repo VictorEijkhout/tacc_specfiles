@@ -47,6 +47,11 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 ## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Hdf5 local binary install
 Group: System Environment/Base
@@ -120,7 +125,7 @@ pushd ${VICTOR}/makefiles/hdf5
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load zlib
+module load libaec zlib
 module -t list | sort | tr '\n' ' '
 
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}

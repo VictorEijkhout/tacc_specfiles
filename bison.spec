@@ -145,7 +145,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-module load gcc/13
+module load gcc/GCCMIN
 export TACC_MKL_INC=/opt/apps/notused/mkl
 export TACC_MKL_LIB=/opt/apps/notused/mkl
 module -t list | sort | tr '\n' ' '

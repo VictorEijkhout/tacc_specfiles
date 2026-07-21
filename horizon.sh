@@ -11,7 +11,7 @@ for s in *.spec ; do
 	    -e '/^FRONTERA/d' \
 	    -e '/^LS6/d' \
 	    -e '/^STAMPEDE3/d' \
-	    -e 's/GCC/14/' \
+	    -e 's/GCCMIN/16/' \
 	    -e 's/rpmtng/RPMtheNextGeneration/' \
 	    -e 's/module load mkl/module load nvpl/' \
 	    -e 's/TACC_MKL/TACC_NVPL/' \

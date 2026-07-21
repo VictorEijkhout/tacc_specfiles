@@ -166,7 +166,7 @@ petsc 3.25 27
 petsc322 3.22.5 25
 
 parmetis 4.0.3 2
-pcre2 10.43 2
+pcre2 10.46 3
 pgplot 5.2 1
 plumed 2.9.3 1
 precice 3.2.0 2

@@ -111,6 +111,7 @@ kokkos-cuda 4.6.01 8
 # build sycl version
 kokkos-sycl 4.6.01 8
 
+libaec 1.1.6 1
 libcurl 8.14.1 1
 libmesh 1.8.0 3
 libxc 7.0.0 1

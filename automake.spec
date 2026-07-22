@@ -11,8 +11,8 @@ Summary: Automake
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 16
-%define micro_version 5
+%define minor_version 18
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/automake
@@ -272,5 +272,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Jul 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- relase 2: 1.18.1
 * Mon May 15 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

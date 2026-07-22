@@ -49,6 +49,11 @@ Source0: %{pkg_base_name}-%{pkg_version}.tgz
 # Turn off the brp-python-bytecompile script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Petsc local binary install
 Group: System Environment/Base

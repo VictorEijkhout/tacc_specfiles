@@ -47,6 +47,11 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 ## global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Aspect is an open source finite element package
 Group: Development/Numerical-Libraries

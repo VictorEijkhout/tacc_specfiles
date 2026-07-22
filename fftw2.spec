@@ -48,6 +48,11 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 ## %global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: The package RPM
 Group: Development/Tools

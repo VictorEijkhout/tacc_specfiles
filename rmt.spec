@@ -73,6 +73,11 @@ RMT (R-matrix with time-dependence) is part of the UK-AMOR suite of codes for ta
 %define debug_package %{nil}
 %define _build_id_links none
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 
 #------------------------
 %if %{?BUILD_PACKAGE}

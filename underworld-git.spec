@@ -48,6 +48,11 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 ## %global _missing_build_ids_terminate_build 0
 %global _python_bytecompile_errors_terminate_build 0
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Underworld is a large suite of numerical algorithms from Sandia National Laboratories
 Group: Development/Numerical-Libraries

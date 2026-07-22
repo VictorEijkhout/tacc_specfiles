@@ -45,6 +45,11 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 # Turn off the brp-python-bytecompile script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-pytho\n-bytecompile[[:space:]].*$!!g')
 
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
 %package %{PACKAGE}
 Summary: Gmsh is an open source finite element package
 Group: Development/Numerical-Libraries

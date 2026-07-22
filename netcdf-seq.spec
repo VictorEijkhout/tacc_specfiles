@@ -33,7 +33,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 7
+Release: 8
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -109,7 +109,7 @@ LS6 module load python/3.12
 %if "%{comp_fam}" == "gcc"
   module load mkl
 %endif
-module load hdf5/1.14
+module load hdf5
 module --latest load cmake
 module -t list | sort | tr '\n' ' '
 
@@ -231,6 +231,8 @@ EOF
 #--------------------------
 
 %changelog
+* Wed Jul 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: use default hdf5
 * Fri Apr 03 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: version update
 * Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>

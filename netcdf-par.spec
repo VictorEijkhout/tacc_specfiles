@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 7
+Release: 8
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -103,7 +103,7 @@ module --latest load cmake
 %if "%{comp_fam}" == "gcc"
   module load mkl
 %endif
-module load phdf5/1.14 pnetcdf
+module load phdf5 pnetcdf
 LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 
@@ -184,6 +184,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jul 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: use default hdf5
 * Sun May 17 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7 : 4.10, using mpm
 * Tue Nov 26 2024 eijkhout <eijkhout@tacc.utexas.edu>

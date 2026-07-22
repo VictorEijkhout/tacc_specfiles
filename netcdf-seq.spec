@@ -246,7 +246,7 @@ EOF
 - release 5: trying to fix fortran
 * Thu Aug 22 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: C and Fortran versions
-* Wed Jan 13 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: hdf5 version is going up
+# * Wed Jan 13 2024 eijkhout <eijkhout@tacc.utexas.edu>
+# - release 3: hdf5 version is going up
 * Tue Jan 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : seq and par separated out

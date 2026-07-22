@@ -197,7 +197,7 @@ rm -rf $RPM_BUILD_ROOT
 - release 6: rebuild for fortran module name
 * Wed Oct 30 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: trying to fix fortran
-* Wed Jan 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
-- release 3: hdf5 version is going up
+# * Wed Jan 10 2024 eijkhout <eijkhout@tacc.utexas.edu>
+# - release 3: hdf5 version is going up
 * Tue Jan 09 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : seq and par separated out

@@ -124,7 +124,7 @@ metis git20250821 5
 mfem 4.8 5
 mfem-cpu 4.8 5
 mfem-gpu 4.8 5
-mpfr 4.2.2 3
+mpfr 4.2.2 4
 mpl 0.3.0 5
 
 # install.sh    -p smumps  mumps-seq

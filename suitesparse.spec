@@ -11,7 +11,7 @@ Summary: Prereq for SUITESPARSE
 
 # Create some macros (spec file variables)
 %define major_version 7
-%define minor_version 9
+%define minor_version 11
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/suitesparse
@@ -135,6 +135,8 @@ module purge
   #========================================
   
 module --latest load cmake
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
 module load gmp mpfr
 if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
     module load nvpl
@@ -157,26 +159,31 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-  rm -rf /tmp/build-${pkg_version}*
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -273,6 +280,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: 7.11.0, mpm
 * Wed May 21 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 7.9.0
 * Thu Feb 20 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -191,7 +191,7 @@ siesta-git git20241011 1
 silo 4.12.0 4
 sqlite 3.49.2 4
 superludist 9.2.1 1
-suitesparse 7.9.0 3
+suitesparse 7.11.0 4
 
 sundials 7.6.0 4
 ssundials 7.6.0 4

@@ -9,7 +9,7 @@ Summary: Boost install
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 86
+%define minor_version 90
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 8%{?dist}
+Release: 9
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -100,14 +100,9 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-# %if "%{comp_fam}" == "gcc"
-#   module load mkl
-#   export BLASOPTIONS="-Wl,--start-group $MKLROOT/lib/intel64/libmkl_intel_lp64.so $MKLROOT/lib/intel64/libmkl_sequential.so $MKLROOT/lib/intel64/libmkl_core.so -Wl,--end-group -lpthread -lm"
-#   export BLASFLAG=
-# %else
-#   export BLASOPTIONS=
-#   export BLASFLAG=-mkl
-# %endif
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
+module --latest load cmake
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff
@@ -115,29 +110,32 @@ module -t list | sort | tr '\n' ' '
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export MAKEINCLUDES=${VICTOR}/make-support-files
+
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TOOLSET=pgi ; fi ) \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+# $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TOOLSET=pgi ; fi ) \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc example src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
@@ -164,6 +162,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: 1.90 & mpm
 * Mon Sep 16 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: 1.86
 * Tue Aug 13 2024 eijkhout <eijkhout@tacc.utexas.edu>

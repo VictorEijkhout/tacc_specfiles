@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://gmplib.org/
@@ -145,8 +145,6 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
-
 ## we only install with system gcc
 ## module load 
 module -t list | sort | tr '\n' ' '
@@ -155,28 +153,36 @@ module unload gcc
 ## system cmake is fine except on Frontera: there load 3.20
 module unload cmake
 ## module load 
+LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 export TACC_CC=gcc
 export TACC_CXX=g++
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+# MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -c Configuration -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  rm -rf /tmp/build-${pkg_version}*
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -273,7 +279,9 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Wed Not 05 2025 eijkhout <eijkhout@tacc.utexas.edu>
+* Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: mpm
+* Wed Nov 05 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: system gcc
 * Thu Feb 20 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

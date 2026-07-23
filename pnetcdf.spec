@@ -122,9 +122,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 %endif
 LS6 module load python/3.12
 case ${TACC_SYSTEM} in
-    ( frontera | ls6 | stampede3 | vista ) 
+    ( frontera | horizon | ls6 | stampede3 | vista ) 
       module load autoconf/2.72
-      module load automake/1.16.5
+      module load automake
     ;;
 esac
 module -t list | sort | tr '\n' ' '
@@ -150,8 +150,8 @@ popd
 
 ################ end of new stuff
 
-cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 chmod -R g+rX,o+rX %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 rm -rf /tmp/build-${pkg_version}*
 
@@ -206,7 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 - release 5: chmod and .version
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: using mpm
-* Mon Dec 25 2025 eijkhout <eijkhout@tacc.utexas.edu>
+* Mon Dec 22 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 1.14.1
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 1.14.0

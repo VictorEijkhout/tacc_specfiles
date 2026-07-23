@@ -145,7 +145,6 @@ module -t list | sort | tr '\n' ' '
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export MAKEINCLUDES=${VICTOR}/make-support-files
 
 # find MrPackMod
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}

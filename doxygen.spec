@@ -1,24 +1,25 @@
 #
-# trilinos.spec
+# doxygen.spec
 # Victor Eijkhout
 #
-Summary: Trilinos
+
+Summary: Interface Generator
 
 # Give the package a base name
-%define pkg_base_name trilinos
-%define MODULE_VAR    TRILINOS
+%define pkg_base_name doxygen
+%define MODULE_VAR    DOXYGEN
 
 # Create some macros (spec file variables)
-%define major_version 17
-%define minor_version 1
-%define micro_version 1
+%define major_version 1
+%define minor_version 17
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+## {minor_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
 %include compiler-defines.inc
-%include mpi-defines.inc
 
 ########################################
 ### Construct name based on includes ###
@@ -35,10 +36,10 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   1
 License:   BSD
 Group:     Development/Tools
-URL:       https://github.com/trilinos/Trilinos
+URL:       https://www.doxygen.org/
 Packager:  TACC - eijkhout@tacc.utexas.edu
 Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
@@ -52,8 +53,6 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %define __brp_mangle_shebangs %{nil}
 %undefine _annotated_build
 
-# Turn off the brp-python-bytecompile script
-%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-pytho\n-bytecompile[[:space:]].*$!!g')
 
 %package %{PACKAGE}
 Summary: Blas alternative
@@ -111,9 +110,6 @@ ICL wrapper for C++ around BLAS
 module purge
 # Load Compiler
 %include compiler-load.inc
-%include mpi-load.inc
-
-# Insert further module commands
 
 #------------------------
 %if %{?BUILD_PACKAGE}
@@ -135,30 +131,15 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module --latest load cmake 
-module load boost
-module load swig
-module avail parmetis parallelnetcdf phdf.14 pnetcdf
-if [ $? -gt 0 ] ; then exit ; fi
-module load parmetis parallelnetcdf phdf5 pnetcdf
-module unload cuda
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
-    module load nvpl
-else
-    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-	module load mkl
-    else
-	export MKLFLAG="-mkl"
-    fi
-fi
-LS6 module load python/3.12
-module -t list | sort | tr '\n' ' '
-
-################ new stuff
-
 mkdir -p %{INSTALL_DIR}
 rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
+
+# Insert further module commands
+module --latest load cmake
+module -t list | sort | tr '\n' ' '
+
+################ new stuff
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
@@ -178,35 +159,15 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-    HAS_OPENMP=OFF \
-mpm.py -t -j 20 -c Configuration17.cpu install
-
-docuda=
-STAMPEDE3 docuda=1
-if [ ! -z "${docuda}" ] ; then
-    module load cuda
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGEVERSION=%{pkg_version} \
-    PACKAGEROOT=/tmp \
-    BUILDDIRROOT=/tmp \
-    SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-    HAS_OPENMP=OFF \
-    mpm.py -t -j 20 -c Configuration17.cuda install
-fi
-
-rm -rf /tmp/%{pkg_base_name}
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
 chmod -R g+rX,o+rX %{INSTALL_DIR}
-
-  # Copy installation from tmpfs to RPM directory
+# Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
-find %{INSTALL_DIR} -name \*.py -exec sed -i -e 's?env python *$?env python3?' {} \; -print
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
 rm -rf /tmp/build-${pkg_version}*
@@ -277,7 +238,7 @@ EOF
   %{MODULE_DIR}
 
 #--------------------------
-%endif
+%endif 
 # BUILD_MODULEFILE |
 #--------------------------
 
@@ -306,7 +267,5 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
-* Sun Jul 12 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 2: 17.1.1
-* Fri May 15 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 1: initial release of 17
+* Fri Jul 24 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1: initial release

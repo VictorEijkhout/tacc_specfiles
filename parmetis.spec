@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2%{?dist}
+Release: 3
 License: GPL
 Vendor: https://github.com/scibuilder/parmetis
 Group: Development/Numerical-Libraries
@@ -115,27 +115,30 @@ module --latest load cmake
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
-    pushd ${VICTOR}/makefiles/%{pkg_base_name}
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
-    ## get rid of that PACKAGEROOT
-    export    BUILDDIRROOT=/tmp/%{pkg_base_name}
-    make configure build JCOUNT=20 \
-	HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-	PACKAGEVERSION=%{pkg_version} \
-	PACKAGEROOT=/tmp \
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+    PACKAGEVERSION=%{pkg_version} \
+    PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
-	SRCPATH=${SRCPATH} \
-	INSTALLPATH=%{INSTALL_DIR} \
-	MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    SRCPATH=${SRCPATH} \
+    INSTALLPATH=%{INSTALL_DIR} \
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
-    popd
+popd
 
-    ################ end of new stuff
+################ end of new stuff
 
-    cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-    ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
@@ -153,6 +156,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: use mpm
 * Wed Feb 07 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : just to be sure
 * Thu Nov 30 2023 eijkhout <eijkhout@tacc.utexas.edu>

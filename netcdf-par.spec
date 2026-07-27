@@ -144,8 +144,9 @@ popd
 
 ##
 ## now install the Fortran version
+## assuming that we simply did "make_download netcdff"
 ##
-tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.tgz
+tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdff-%{pkgf_version}.tgz
 pushd ${VICTOR}/makefiles/netcdff
 
 NETCDF_MODDIR=$RPM_BUILD_ROOT/%{MODULE_DIR}/../
@@ -158,7 +159,7 @@ module load parallelnetcdf/%{pkg_version}
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
 	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
 	PACKAGEROOT=/tmp \
-	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
+	SRCPATH=${SRCPATH}/netcdff-%{pkgf_version} \
 	INSTALLPATH=%{INSTALL_DIR} NOSCRATCHINSTALL=ON \
 mpm.py -t -j 20 -c Configuration.mpi configure build 
 

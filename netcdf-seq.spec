@@ -144,6 +144,7 @@ popd
 
 ##
 ## now install the Fortran version
+## assuming that we simply did "make_download netcdff"
 ##
 tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdff-%{pkgf_version}.tgz
 pushd ${VICTOR}/makefiles/netcdff

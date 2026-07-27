@@ -13,11 +13,7 @@ Summary: Unit testing framework for C++
 %define major_version 3
 %define minor_version 15
 %define micro_version 3
-## %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
-
-## define major_version git
-## define pkg_version %{major_version}
-
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -163,27 +159,31 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
-  # Copy everything from tarball over to the installation directory
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
-  rm -rf /tmp/build-${pkg_version}*
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+# Copy everything from tarball over to the installation directory
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+rm -rf /tmp/build-${pkg_version}*
 
-  umount %{INSTALL_DIR}
+umount %{INSTALL_DIR}
   
 #-----------------------  
   %endif

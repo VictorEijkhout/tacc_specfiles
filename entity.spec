@@ -1,0 +1,167 @@
+Summary: Entity install
+
+# Give the package a base name
+%define pkg_base_name entity
+%define MODULE_VAR    ENTITY
+
+# Create some macros (spec file variables)
+%define major_version 1
+%define minor_version 4
+%define micro_version 4
+
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+
+%include rpm-dir.inc
+%include compiler-defines.inc
+%include mpi-defines.inc
+
+########################################
+### Construct name based on includes ###
+########################################
+#%include name-defines.inc
+%include name-defines-noreloc-home1.inc
+
+########################################
+############ Do Not Remove #############
+########################################
+
+############ Do Not Change #############
+Name:      %{pkg_name}
+Version:   %{pkg_version}
+BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
+########################################
+
+Release: 1
+License: GPL
+Vendor: https://github.com/ornladios/ENTITY
+Group: Development/Numerical-Libraries
+Packager: TACC -- eijkhout@tacc.utexas.edu
+Source0: %{pkg_base_name}-%{pkg_version}.tgz
+
+%define debug_package %{nil}
+%define _build_id_links none
+## global _missing_build_ids_terminate_build 0
+%global _python_bytecompile_errors_terminate_build 0
+
+# new horizon settings
+%global __brp_check_rpaths %{nil}
+%define __brp_mangle_shebangs %{nil}
+%undefine _annotated_build
+
+
+%package %{PACKAGE}
+Summary: Entity local binary install
+Group: System Environment/Base
+%package %{MODULEFILE}
+Summary: Entity local binary install
+Group: System Environment/Base
+
+%description
+%description %{PACKAGE}
+Forest support library
+%description %{MODULEFILE}
+Forest support library
+
+%prep
+
+%setup -n %{pkg_base_name}-%{version}
+
+#---------------------------------------
+%build
+#---------------------------------------
+
+
+#---------------------------------------
+%install
+#---------------------------------------
+
+# Setup modules
+%include system-load.inc
+%include compiler-defines.inc
+%include mpi-defines.inc
+module purge
+%include compiler-load.inc
+%include mpi-load.inc
+
+export ENTITY_DIR=`pwd`
+
+#
+# Set Up Installation Directory and tmp file system
+#
+rm -rf $RPM_BUILD_ROOT/%{INSTALL_DIR}
+mkdir -p $RPM_BUILD_ROOT/%{INSTALL_DIR}
+rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
+mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
+
+  #######################################
+  ##### Create TACC Canary Files ########
+  #######################################
+  touch $RPM_BUILD_ROOT/%{INSTALL_DIR}/.tacc_install_canary
+  #######################################
+  ########### Do Not Remove #############
+  #######################################
+
+  #========================================
+  # Insert Build/Install Instructions Here
+  #========================================
+  
+export SRCPATH=`pwd`
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export MAKEINCLUDES=${VICTOR}/make-support-files
+
+mkdir -p %{INSTALL_DIR}
+mount -t tmpfs tmpfs %{INSTALL_DIR}
+
+module --latest load cmake 
+%if "%{comp_fam}" == "gcc"
+  module load mkl
+%endif
+module load kokkos adios2 phdf5
+LS6 module load python/3.12
+module -t list | sort | tr '\n' ' '
+
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+       PACKAGEVERSION=%{pkg_version} \
+       PACKAGEROOT=/tmp \
+       BUILDDIRROOT=/tmp \
+       SRCPATH=${SRCPATH} \
+       INSTALLPATH=%{INSTALL_DIR} \
+       MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -c Configuration.cpu -t -j 20 install
+
+popd
+
+################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+cp -r examples $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
+
+umount %{INSTALL_DIR}
+
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+
+%files %{PACKAGE}
+  %defattr(0644,root,root,0755)
+  %{INSTALL_DIR}
+
+%files %{MODULEFILE}
+  %defattr(0644,root,root,0755)
+  %{MODULE_DIR}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%changelog
+* Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 1 : first release 
+

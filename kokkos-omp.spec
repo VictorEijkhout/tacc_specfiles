@@ -117,7 +117,10 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
+module -t list | sort | tr '\n' ' '
 LS6 module load python/3.12
+module --latest load cmake
+module -t list | sort | tr '\n' ' '
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
@@ -129,10 +132,6 @@ export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 
 pushd ${VICTOR}/makefiles/kokkos
-
-module -t list | sort | tr '\n' ' '
-module --latest load cmake
-module -t list | sort | tr '\n' ' '
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \

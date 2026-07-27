@@ -11,8 +11,8 @@ Summary: Unit testing framework for C++
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 8
-%define micro_version 1
+%define minor_version 15
+%define micro_version 3
 ## %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
 ## define major_version git
@@ -40,7 +40,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/catchorg/Catch2/releases
@@ -273,6 +273,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>u
+- release 5: 3.15.3
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>u
 - release 4: 3.8.1
 * Thu Aug 15 2024 eijkhout <eijkhout@tacc.utexas.edu>u

@@ -1,4 +1,4 @@
-Summary: Netcdf install
+Summary: Netcdf install, parallel version
 
 # Give the package a base name
 %define pkg_base_name parallelnetcdf
@@ -10,7 +10,7 @@ Summary: Netcdf install
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
-%define pkgf_version 4.6.1
+%define pkgf_version 4.6.2
 
 %include rpm-dir.inc
 %include compiler-defines.inc
@@ -104,6 +104,9 @@ rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
   # Insert Build/Install Instructions Here
   #========================================
   
+mkdir -p %{INSTALL_DIR}
+mount -t tmpfs tmpfs %{INSTALL_DIR}
+
 module --latest load cmake
 %if "%{comp_fam}" == "gcc"
   module load mkl
@@ -113,9 +116,6 @@ LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff
-
-mkdir -p %{INSTALL_DIR}
-mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
@@ -149,18 +149,18 @@ tar fxz /admin/build/admin/rpms/frontera/SOURCES/netcdf-fortran-%{pkgf_version}.
 pushd ${VICTOR}/makefiles/netcdff
 
 NETCDF_MODDIR=$RPM_BUILD_ROOT/%{MODULE_DIR}/../
-# echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
-# ls ${NETCDF_MODDIR}
-# ls ${NETCDF_MODDIR}/%{pkg_base_name}
+echo "Is there a netcdf module in <<${NETCDF_MODDIR}>> ?"
+ls ${NETCDF_MODDIR}
+ls ${NETCDF_MODDIR}/%{pkg_base_name}
 module use ${NETCDF_MODDIR}
 module load parallelnetcdf/%{pkg_version}
 
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
 	PACKAGE=parallelnetcdf PACKAGEVERSION=%{pkgf_version} NOMODULE=1 \
 	PACKAGEROOT=/tmp \
 	SRCPATH=${SRCPATH}/netcdf-fortran-%{pkgf_version} \
 	INSTALLPATH=%{INSTALL_DIR} NOSCRATCHINSTALL=ON \
-    mpm.py -t -j 20 -c Configuration.mpi configure build 
+mpm.py -t -j 20 -c Configuration.mpi configure build 
 
 popd
 
@@ -171,7 +171,7 @@ chmod -R g+rX,o+rX %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

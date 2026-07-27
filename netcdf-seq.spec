@@ -1,4 +1,4 @@
-Summary: Netcdf install
+Summary: Netcdf install, sequential version
 
 # Give the package a base name
 %define pkg_base_name netcdf

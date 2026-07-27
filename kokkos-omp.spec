@@ -141,7 +141,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm -j 20 -c Configuration.omp install
+mpm.py -j 20 -c Configuration.omp install
 
 popd
 
@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: 5.2.0
-* Mon Jun 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
+* Mon Jun 16 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: s3 conflict
 * Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: split off omp, more env variables.

@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/suitesparse
@@ -280,6 +280,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Jul 28 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: module fix
 * Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: 7.11.0, mpm
 * Wed May 21 2025 eijkhout <eijkhout@tacc.utexas.edu>

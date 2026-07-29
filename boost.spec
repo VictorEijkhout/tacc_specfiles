@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 9
+Release: 10
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -162,6 +162,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Jul 29 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: module fix
 * Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: 1.90 & mpm
 * Mon Sep 16 2024 eijkhout <eijkhout@tacc.utexas.edu>

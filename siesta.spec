@@ -105,12 +105,10 @@ module --latest load cmake
 module load fftw3
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
+elif [ "${TACC_SYSTEM}" = "horizon" ] ; then
+    module load nvpl
 else
-    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-	module load mkl
-    else
-	export MKLFLAG="-mkl"
-    fi
+    module load mkl
 fi
 
 ## get rid of that PACKAGEROOT

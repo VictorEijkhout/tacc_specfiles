@@ -108,7 +108,9 @@ if [ "${TACC_SYSTEM}" = "vista" ] ; then
 elif [ "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
-    module load mkl
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
+	module load mkl
+    fi
 fi
 
 ## get rid of that PACKAGEROOT

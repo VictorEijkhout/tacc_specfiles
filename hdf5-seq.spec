@@ -128,6 +128,9 @@ module --latest load cmake
 module load libaec zlib
 module -t list | sort | tr '\n' ' '
 
+##
+## Find MrPackMod
+##
 export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
 

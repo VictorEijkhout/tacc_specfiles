@@ -179,8 +179,6 @@ pylauncher 5.3.1 14
 python 3.12.4 1
 rangev3 0.12.0 1
 
-scalapack 2.2.3 1
-
 # install.sh    -p scotch scotch-seq
 # install.sh -m -p ptscotch scotch-par
 scotch 7.0.7 2
@@ -188,6 +186,7 @@ scotch-seq 7.0.7 2
 ptscotch 7.0.7 2
 scotch-par 7.0.7 2
 
+scalapack 2.2.3 1
 scons 4.9.1 1
 siesta 5.4.2 6
 siesta-git git20241011 1

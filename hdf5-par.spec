@@ -50,10 +50,14 @@ Source0: hdf5-%{pkg_version}.tgz
 # new horizon settings
 %global __brp_check_rpaths %{nil}
 %define __brp_mangle_shebangs %{nil}
+%global build_cflags   -O2
+%global build_cxxflags -O2
+%global build_fflags   -O2
+%global build_ldflags  %{nil}
 %undefine _annotated_build
-%global _hardened_cflags %{nil}
-%global _hardened_ldflags %{nil}
-%global _package_note_flags %{nil}
+#global _hardened_cflags #{nil}
+#global _hardened_ldflags #{nil}
+#global _package_note_flags #{nil}
 
 
 %package %{PACKAGE}

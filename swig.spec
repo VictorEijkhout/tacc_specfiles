@@ -52,6 +52,9 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %global __brp_check_rpaths %{nil}
 %define __brp_mangle_shebangs %{nil}
 %undefine _annotated_build
+%global _hardened_cflags %{nil}
+%global _hardened_ldflags %{nil}
+%global _package_note_flags %{nil}
 
 
 %package %{PACKAGE}

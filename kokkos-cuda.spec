@@ -131,7 +131,8 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 ## no prereqs
 module -t list | sort | tr '\n' ' '
-module load cuda/12
+# let's try default cuda
+module load cuda
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff

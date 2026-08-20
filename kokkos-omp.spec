@@ -180,7 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 - release 8: s3 conflict
 * Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: split off omp, more env variables.
-* Sun Mar 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
+* Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6:4.6
 * Thu Mar 13 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: adding sycl

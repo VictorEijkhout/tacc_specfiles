@@ -144,11 +144,11 @@ nclncarg 6.6.2 3
 nekrs 26.0 1
 
 # sequential
-netcdf 4.10.0 8
-netcdf-seq 4.10.0 8
+netcdf 4.10.1 9
+netcdf-seq 4.10.1 9
 # parallel
-netcdf-par 4.10.0 8
-parallelnetcdf 4.10.0 8
+netcdf-par 4.10.1 9
+parallelnetcdf 4.10.1 9
 # this needs to go! parallel-netcdf 4.9.2 6
 
 # legacy version

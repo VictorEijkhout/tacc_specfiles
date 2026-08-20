@@ -7,7 +7,7 @@ Summary: Netcdf install, sequential version
 # Create some macros (spec file variables)
 %define major_version 4
 %define minor_version 10
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 ## corresponding fortran version
@@ -33,7 +33,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 8
+Release: 9
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -240,6 +240,8 @@ EOF
 #--------------------------
 
 %changelog
+* Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: 4.10.1 and lib linking fixed
 * Wed Jul 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: use default hdf5
 * Fri Apr 03 2026 eijkhout <eijkhout@tacc.utexas.edu>

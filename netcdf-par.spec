@@ -10,7 +10,7 @@ Summary: Netcdf install, parallel version
 %define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
-%define pkgf_version 4.6.2
+%define pkgf_version 4.6.4
 
 %include rpm-dir.inc
 %include compiler-defines.inc

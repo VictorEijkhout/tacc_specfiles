@@ -106,13 +106,13 @@ jsonc 0.18 3
 #git20241004 2
 julia git2024 1
 
-kokkos 5.2.0 9
+kokkos 5.2.1 10
 # build omp version 
-kokkos-omp 5.2.0 9
+kokkos-omp 5.2.1 10
 # build cuda version
-kokkos-cuda 5.2.0 9
+kokkos-cuda 5.2.1 10
 # build sycl version
-kokkos-sycl 5.2.0 9
+kokkos-sycl 5.2.1 10
 
 libaec 1.1.6 1
 libcurl 8.21.0 2

@@ -10,7 +10,7 @@ Summary: Kokkos install, new setup
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 2
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   9
+Release:   10
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -172,6 +172,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: 5.2.1
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: 5.2.0
 * Mon Jun 16 2025 eijkhout <eijkhout@tacc.utexas.edu>

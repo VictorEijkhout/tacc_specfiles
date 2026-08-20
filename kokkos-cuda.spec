@@ -8,9 +8,9 @@ Summary: Kokkos, piggybacking on the PETSc install
 %define MODULE_VAR    KOKKOS
 
 # Create some macros (spec file variables)
-%define major_version 4
-%define minor_version 6
-%define micro_version 01
+%define major_version 5
+%define minor_version 2
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   8
+Release:   10
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -207,6 +207,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: 5.2.1
 * Mon Jun 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: s3 conflict
 * Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>

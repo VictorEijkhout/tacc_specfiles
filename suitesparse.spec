@@ -11,8 +11,8 @@ Summary: Prereq for SUITESPARSE
 
 # Create some macros (spec file variables)
 %define major_version 7
-%define minor_version 11
-%define micro_version 0
+%define minor_version 12
+%define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -52,6 +52,10 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 %global __brp_check_rpaths %{nil}
 %define __brp_mangle_shebangs %{nil}
 %undefine _annotated_build
+%global build_cflags   -O2
+%global build_cxxflags -O2
+%global build_fflags   -O2
+%global build_ldflags  %{nil}
 
 
 %package %{PACKAGE}
@@ -280,6 +284,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Wed Aug 19 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: up to 7.12.3
 * Tue Jul 28 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: module fix
 * Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>

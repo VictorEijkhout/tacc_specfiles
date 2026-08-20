@@ -9,7 +9,7 @@ Summary: Boost install
 
 # Create some macros (spec file variables)
 %define major_version 1
-%define minor_version 90
+%define minor_version 92
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 10
+Release: 11
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -55,7 +55,7 @@ Source0: %{pkg_base_name}-%{version}.tgz
 %global build_cxxflags -O2
 %global build_fflags   -O2
 %global build_ldflags  %{nil}
-
+\
 
 %package %{PACKAGE}
 Summary: Boost local binary install
@@ -166,6 +166,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: 1.92
 * Wed Jul 29 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: module fix
 * Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>

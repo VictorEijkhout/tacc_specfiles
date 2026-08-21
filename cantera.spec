@@ -163,8 +163,8 @@ FRONTERA export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/compilers_and_libr
 ################ new stuff
 
 export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}

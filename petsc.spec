@@ -114,8 +114,8 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
   #========================================
   
 export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
@@ -135,8 +135,8 @@ if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
 fi
 
 # Find MrPackMod
-export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
-export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
 
 if [ "${TACC_SYSTEM}" = "ls6" -o "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
     echo ">>>> LS6 & NVidia BUILDING WITHOUT PYTHON"

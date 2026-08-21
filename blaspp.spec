@@ -167,8 +167,8 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/blas++

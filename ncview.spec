@@ -139,8 +139,8 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 module --latest load cmake
 module load hdf5 netcdf udunits
 export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}

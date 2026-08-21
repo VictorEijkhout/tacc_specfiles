@@ -143,8 +143,8 @@ module load fftw3
 ################ new stuff
 
 export SRCPATH=`pwd`
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
-export VICTOR=/admin/build/admin/rpms/frontera/SPECS/rpmtng
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
+export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 FRONTERA export PATH=/opt/apps/intel19/python3/3.9.2/bin/:${PATH}
@@ -153,8 +153,8 @@ FRONTERA export LD_LIBRARY_PATH=/opt/apps/intel19/python3/3.9.2/lib:${LD_LIBRARY
 FRONTERA export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin:${LD_LIBRARY_PATH}
 
 LS6 module load python/3.12
-export PATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng/MrPackMod:${PATH}
-export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/rpmtng:${PYTHONPATH}
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
 
 pushd ${VICTOR}/makefiles/tinker
 

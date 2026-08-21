@@ -135,13 +135,13 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module --latest load cmake 
+module --latest load cmake
 module load boost
 module load swig
-module avail parmetis parallelnetcdf phdf.14 pnetcdf
+module avail parmetis parallelnetcdf phdf pnetcdf
 if [ $? -gt 0 ] ; then exit ; fi
 module load parmetis parallelnetcdf phdf5 pnetcdf
-module unload cuda
+## module unload cuda
 if [ "${TACC_SYSTEM}" = "vista" ] ; then
     module load nvpl
 else
@@ -181,20 +181,20 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     HAS_OPENMP=OFF \
 mpm.py -t -j 20 -c Configuration17.cpu install
 
-docuda=
-STAMPEDE3 docuda=1
-if [ ! -z "${docuda}" ] ; then
-    module load cuda
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    PACKAGEVERSION=%{pkg_version} \
-    PACKAGEROOT=/tmp \
-    BUILDDIRROOT=/tmp \
-    SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-    HAS_OPENMP=OFF \
-    mpm.py -t -j 20 -c Configuration17.cuda install
-fi
+# docuda=
+# STAMPEDE3 docuda=1
+# if [ ! -z "${docuda}" ] ; then
+#     module load cuda
+#     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+#     PACKAGEVERSION=%{pkg_version} \
+#     PACKAGEROOT=/tmp \
+#     BUILDDIRROOT=/tmp \
+#     SRCPATH=${SRCPATH} \
+#     INSTALLPATH=%{INSTALL_DIR} \
+#     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+#     HAS_OPENMP=OFF \
+#     mpm.py -t -j 20 -c Configuration17.cuda install
+# fi
 
 rm -rf /tmp/%{pkg_base_name}
 

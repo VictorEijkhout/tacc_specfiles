@@ -55,7 +55,6 @@ Source0: %{pkg_base_name}-%{version}.tgz
 %global build_cxxflags -O2
 %global build_fflags   -O2
 %global build_ldflags  %{nil}
-\
 
 %package %{PACKAGE}
 Summary: Boost local binary install

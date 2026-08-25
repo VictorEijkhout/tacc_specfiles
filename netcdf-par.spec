@@ -111,12 +111,14 @@ rm -rf $RPM_BUILD_ROOT/%{MODULE_DIR}
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
+
 module --latest load cmake
 %if "%{comp_fam}" == "gcc"
   module load mkl
 %endif
 module load phdf5 pnetcdf
-LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
 
 ################ new stuff

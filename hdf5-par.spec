@@ -149,9 +149,6 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${
 ## HDFFORTRAN=off
 ##
 
-
-if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then testing="TESTING=OFF" ; fi
-
 HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -159,7 +156,6 @@ HOMEDIR=/admin/build/admin/rpms/stampede3/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-    ${testing} \
     mpm.py -t -j 20 -c Configuration.mpi install
 
 popd

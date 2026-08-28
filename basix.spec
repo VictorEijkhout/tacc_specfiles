@@ -152,8 +152,14 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 LS6 # load python before packages add to python path
 LS6 module load python/3.12
 module --latest load cmake
-if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-    module load mkl
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
 fi
 module load nanobind robinmap
 module -t list | sort | tr '\n' ' '

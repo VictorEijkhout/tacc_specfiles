@@ -116,9 +116,15 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module -t list | sort | tr '\n' ' '
-if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-    module load mkl
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
 else
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
+fi
     export MKLFLAG="-mkl"
 fi
 module -t list | sort | tr '\n' ' '

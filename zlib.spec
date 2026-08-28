@@ -148,11 +148,16 @@ rm -rf %{INSTALL_DIR}/*
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 module load cmake
-if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
-    module load mkl
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
 else
-    export MKLFLAG="-mkl"
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
 fi
+
 
 ################ new stuff
 

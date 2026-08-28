@@ -148,8 +148,14 @@ module -t list | sort | tr '\n' ' '
 module --latest load cmake
 module load parmetis
 LS6 module load python/3.12
-if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-    module load mkl
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
 fi
 module -t list | sort | tr '\n' ' '
 

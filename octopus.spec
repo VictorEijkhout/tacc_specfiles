@@ -108,9 +108,15 @@ module --latest load cmake
 ## module load git
 
 module load gsl fftw3
-%if "%{comp_fam}" == "gcc"
-  module load mkl
-%endif
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
+fi
 
 ## get rid of that PACKAGEROOT
 make default_install JCOUNT=10 \

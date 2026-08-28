@@ -151,8 +151,14 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 module -t list | sort | tr '\n' ' '
 module load scons
 module load boost eigen fmtlib hdf5 highfive ssundials yamlcpp
-if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
-    module load mkl
+if [ "${TACC_SYSTEM}" = "vista" ] ; then
+    module load nvpl
+else
+    if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 
+	module load mkl
+    else
+	export MKLFLAG="-mkl"
+    fi
 fi
 module -t list | sort | tr '\n' ' '
 

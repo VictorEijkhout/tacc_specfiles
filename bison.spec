@@ -148,7 +148,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 LS6 # load python before packages add to python path
 LS6 module load python/3.12
 
-module load gcc/GCCMIN
+module load gcc
 export TACC_MKL_INC=/opt/apps/notused/mkl
 export TACC_MKL_LIB=/opt/apps/notused/mkl
 module -t list | sort | tr '\n' ' '

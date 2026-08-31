@@ -11,6 +11,7 @@ for s in *.spec ; do
 	    -e '/FRONTERA/d' \
 	    -e '/LS6/s/LS6 //' \
 	    -e '/^STAMPEDE3/d' \
+	    -e '/^VISTA/d' \
 	    -e '/cuda-defines/d' \
 	    -e 's/GCCDEF/13/' \
 	    -e 's/GCCMIN/9/' \

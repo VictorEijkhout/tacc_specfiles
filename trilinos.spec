@@ -171,6 +171,7 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+VISTA SYSTEMMODULES=cmake \
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

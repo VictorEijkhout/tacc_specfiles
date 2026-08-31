@@ -11,6 +11,7 @@ for s in *.spec ; do
 	    -e '/^FRONTERA/d' \
 	    -e '/^LS6/d' \
 	    -e '/^STAMPEDE3/d' \
+	    -e '/VISTA/s/VISTA //' \
 	    -e 's/GCC/14/' \
 	> vista_specfiles/$s
 done

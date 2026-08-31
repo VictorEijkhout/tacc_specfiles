@@ -160,7 +160,7 @@ export TACC_CXX=g++
 
 ## get rid of that PACKAGEROOT
 make configure build JCOUNT=10 \
-     $( if [ "${TACC_SYSTEM}" = "vista" ] ; then \
+     $( if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then \
             echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
             ; fi ) \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \

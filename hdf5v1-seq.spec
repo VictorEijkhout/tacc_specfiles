@@ -117,7 +117,7 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
 ## fixed in nvidia 25.5
-# if [ "${TACC_SYSTEM}" = "vista" ] ; then
+# if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
 #     ${VICTOR}/makefiles/hdf5/vista_fix.sh
 # fi
 

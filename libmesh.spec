@@ -106,7 +106,7 @@ module -t list | sort | tr '\n' ' '
 module load boost petsc phdf5
 module -t list | sort | tr '\n' ' '
 
-if [ "${TACC_SYSTEM}" = "vista" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
+if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
     export LDFLAGS=-lm
 fi
 

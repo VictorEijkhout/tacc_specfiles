@@ -125,7 +125,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake 
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
+if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 

@@ -142,7 +142,7 @@ module avail parmetis parallelnetcdf phdf pnetcdf
 if [ $? -gt 0 ] ; then exit ; fi
 module load parmetis parallelnetcdf phdf5 pnetcdf
 ## module unload cuda
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
+if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 

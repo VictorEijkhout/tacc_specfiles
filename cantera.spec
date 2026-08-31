@@ -151,7 +151,7 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
 module -t list | sort | tr '\n' ' '
 module load scons
 module load boost eigen fmtlib hdf5 highfive ssundials yamlcpp
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
+if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 

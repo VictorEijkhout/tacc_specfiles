@@ -115,7 +115,7 @@ LS6 # load python before packages add to python path
 LS6 module load python/3.12
 
 module --latest load cmake
-if [ "${TACC_SYSTEM}" = "vista" ] ; then
+if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then 

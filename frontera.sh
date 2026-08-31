@@ -5,6 +5,7 @@ for s in *.spec ; do
     cat $s \
         | sed \
 	      -e '/^FRONTERA/s/FRONTERA //' \
+	      -e '/HORIZON/d' \
 	      -e '/^LS6/d' \
 	      -e '/^STAMPEDE3/d' \
 	      -e '/^VISTA/d' \

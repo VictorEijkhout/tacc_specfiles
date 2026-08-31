@@ -9,8 +9,10 @@ for s in *.spec ; do
 	    -e '/noreloc/s/name-defines.*$/name-defines-cuda-noreloc-home1.inc/' \
 	    -e '/module load python3/d' \
 	    -e '/^FRONTERA/d' \
+	    -e '/HORIZON/s/HORIZON //' \
 	    -e '/^LS6/d' \
 	    -e '/^STAMPEDE3/d' \
+	    -e '/^VISTA/d' \
 	    -e 's/GCCMIN/16/' \
 	    -e 's/rpmtng/RPMtheNextGeneration/' \
 	    -e 's/module load mkl/module load nvpl/' \

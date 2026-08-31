@@ -9,6 +9,7 @@ for s in *.spec ; do
 	    -e 's/PETSCCUDAFLAG//' \
 	    -e '/noreloc/s/name-defines.*$/name-defines-noreloc-scratch.inc/' \
 	    -e '/FRONTERA/d' \
+	    -e '/HORIZON/d' \
 	    -e '/LS6/s/LS6 //' \
 	    -e '/^STAMPEDE3/d' \
 	    -e '/^VISTA/d' \

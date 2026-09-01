@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3
+Release: 4
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -203,17 +203,19 @@ EOF
 
 
 %files %{PACKAGE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   %{MODULE_DIR}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: defattr root,install
 * Tue Jul 21 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 2.1.1
 * Wed Dec 10 2025 eijkhout <eijkhout@tacc.utexas.edu>

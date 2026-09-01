@@ -157,11 +157,11 @@ umount %{INSTALL_DIR}
 %{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
 
 %files %{PACKAGE}-gpu
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}-gpu
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   %{MODULE_DIR}
 
 %clean

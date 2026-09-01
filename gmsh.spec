@@ -148,12 +148,12 @@ umount %{INSTALL_DIR}
 ##
 
 %files %{PACKAGE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   #defattr(-,root,install,)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   #defattr(-,root,install,)
   %{MODULE_DIR}
 

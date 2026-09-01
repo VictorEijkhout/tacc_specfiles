@@ -223,7 +223,7 @@ EOF
 %files package
 #------------------------
 
-%defattr(-,root,root)
+%defattr(-,root,install,)
 %{INSTALL_DIR}
 
 #-----------------------
@@ -235,7 +235,7 @@ EOF
 %files modulefile
 #---------------------------
 
-  %defattr(-,root,install,)
+  %defattr(-,root,install,-)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 

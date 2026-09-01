@@ -200,12 +200,12 @@ EOF
 
 %files %{PACKAGE}
   %defattr(-,root,install,)
-  #defattr(0644,root,root,0755)
+  #defattr(-,root,install,-)
   %{INSTALL_DIR}
 
 %files %{MODULEFILE}
   %defattr(-,root,install,)
-  #defattr(0644,root,root,0755)
+  #defattr(-,root,install,-)
   %{MODULE_DIR}
 
 %clean

@@ -225,7 +225,7 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %files package
 #------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   %{INSTALL_DIR}
 
 #-----------------------
@@ -237,7 +237,7 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 %files modulefile 
 #---------------------------
 
-  %defattr(0644,root,root,0755)
+  %defattr(-,root,install,-)
   %{MODULE_DIR}
 
 #--------------------------

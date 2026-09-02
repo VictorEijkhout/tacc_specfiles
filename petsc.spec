@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 27
+Release: 28
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: petsc-setup.sh
@@ -187,6 +187,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 28: defattr root,install
 * Fri Jul 03 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 27: mpm 
 * Fri Jan 16 2026 eijkhout <eijkhout@tacc.utexas.edu>

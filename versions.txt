@@ -205,7 +205,7 @@ sz 2.1.12 1
 szip 2.1.1 1
 tinker 26.1.2 1
 
-trilinos 17.2.0 3
+trilinos 17.2.1 4
 # 17.1.1 2
 # no longer a separate 17 specfile
 # trilinos17 17.2.0 3

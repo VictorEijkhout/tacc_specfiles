@@ -11,7 +11,7 @@ Summary: Trilinos
 # Create some macros (spec file variables)
 %define major_version 17
 %define minor_version 2
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/trilinos/Trilinos
@@ -259,7 +259,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
+  %defattr(-,root,install,-)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -273,7 +273,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
+  %defattr(-,root,install,-)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 
@@ -307,6 +307,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: defattr root,install
 * Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 17.2.0
 * Sun Jul 12 2026 eijkhout <eijkhout@tacc.utexas.edu>

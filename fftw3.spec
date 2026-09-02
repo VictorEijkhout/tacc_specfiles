@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   10
+Release:   11
 License:   GPL
 Group:     System Environment/Base
 URL:       http://www.fftw.org
@@ -297,6 +297,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: defattr root,install
 * Thu Jul 02 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: mpm install
 * Wed Aug 07 2024 eijkhout <eijkhout@tacc.utexas.edu>

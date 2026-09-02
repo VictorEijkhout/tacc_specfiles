@@ -48,7 +48,7 @@ eigen3 3.4.0 5
 entity 1.4.4 1
 
 fftw2 2.1.5 1
-fftw3 3.3.10 10
+fftw3 3.3.10 11
 fmtlib 12.2.0 6
 
 #

@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 11
+Release: 12
 License: GPL
 Vendor: https://github.com/cburstedde/boost
 #Source1: boost-setup.sh
@@ -165,6 +165,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 12: defattr root,install
 * Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 11: 1.92
 * Wed Jul 29 2026 eijkhout <eijkhout@tacc.utexas.edu>

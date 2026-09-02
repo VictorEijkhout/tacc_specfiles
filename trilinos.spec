@@ -308,7 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 #---------------------------------------
 #
 * Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 4: defattr root,install
+- release 4: defattr root,install, 17.2.1
 * Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 17.2.0
 * Sun Jul 12 2026 eijkhout <eijkhout@tacc.utexas.edu>

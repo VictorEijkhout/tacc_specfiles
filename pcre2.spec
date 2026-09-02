@@ -11,7 +11,7 @@ Summary: Prereq for PCRE2
 
 # Create some macros (spec file variables)
 %define major_version 10
-%define minor_version 46
+%define minor_version 48
 
 %define pkg_version %{major_version}.%{minor_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       //github.com/PCRE2Project/pcre2
@@ -271,6 +271,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: defattr root,install, 10.48
 * Tue Jul 21 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: 10.46, using mpm
 * Mon May 06 2024 eijkhout <eijkhout@tacc.utexas.edu>

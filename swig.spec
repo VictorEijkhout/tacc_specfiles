@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   6
+Release:   7
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.swig.org/
@@ -236,7 +236,7 @@ EOF
 %files package
 #------------------------
 
-  %defattr(-,root,install,)
+  %defattr(-,root,install,-)
   # RPM package contains files within these directories
   %{INSTALL_DIR}
 
@@ -250,7 +250,7 @@ EOF
 %files modulefile 
 #---------------------------
 
-  %defattr(-,root,install,)
+  %defattr(-,root,install,-)
   # RPM modulefile contains files within these directories
   %{MODULE_DIR}
 
@@ -284,6 +284,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: defattr root,install
 * Mon Jul 13 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: noinc
 * Sun May 31 2026 eijkhout <eijkhout@tacc.utexas.edu>

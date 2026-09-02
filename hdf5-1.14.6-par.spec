@@ -139,14 +139,13 @@ export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMo
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
-    $( if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then echo TESTING=OFF ; fi ) \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -t -j 20 -c Configuration.seq install
+mpm.py -t -j 20 -c Configuration.par install
 
 popd
 

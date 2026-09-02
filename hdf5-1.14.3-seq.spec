@@ -134,7 +134,7 @@ LS6 module load python/3.12
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load zlib
+module load libaec zlib
 module -t list | sort | tr '\n' ' '
 
 ##

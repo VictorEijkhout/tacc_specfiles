@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 11
+Release: 12
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -123,20 +123,28 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/hdf5
 
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
+
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load zlib
+module load libaec zlib
 module -t list | sort | tr '\n' ' '
 
-## get rid of that PACKAGEROOT
-make seq JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+##
+## Find MrPackMod
+##
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 -c Configuration.seq install
 
 popd
 
@@ -192,6 +200,8 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 12: defattr root,install, mpm
 * Wed Dec 10 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 11: module version fix
 * Thu Sep 04 2025 eijkhout <eijkhout@tacc.utexas.edu>

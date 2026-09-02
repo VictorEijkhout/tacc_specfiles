@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   6
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/fmtlib/fmt
@@ -279,6 +279,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: defattr root,install
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: 12.2.0
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>

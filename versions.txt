@@ -49,7 +49,7 @@ entity 1.4.4 1
 
 fftw2 2.1.5 1
 fftw3 3.3.10 10
-fmtlib 12.2.0 5
+fmtlib 12.2.0 6
 
 #
 # fenics packages,

@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   6
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jarro2783/cxxopts/releases
@@ -288,6 +288,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: defattr root,install
 * Wed Jun 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: 3.3.1
 * Wed Jun 05 2024 eijkhout <eijkhout@tacc.utexas.edu>

@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5
+Release: 6
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: pnetcdf-setup.sh
@@ -212,6 +212,8 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: defattr root,install
 * Wed Feb 25 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: chmod and .version
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>

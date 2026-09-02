@@ -144,18 +144,18 @@ nclncarg 6.6.2 3
 nekrs 26.0 1
 
 # sequential
-netcdf 4.10.1 9
-netcdf-seq 4.10.1 9
+netcdf 4.10.1 10
+netcdf-seq 4.10.1 10
 # parallel
-netcdf-par 4.10.1 9
-parallelnetcdf 4.10.1 9
+netcdf-par 4.10.1 10
+parallelnetcdf 4.10.1 10
 # this needs to go! parallel-netcdf 4.9.2 6
 
 # legacy version
 netcdf-4.9.1-seq 4.9.1 1
 
 # pnetcdf is something else entirely
-pnetcdf 1.14.1 5
+pnetcdf 1.14.1 6
 
 # ls6: install.sh -c g -v94
 ninja 1.13.1 2

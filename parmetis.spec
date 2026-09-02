@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 3
+Release: 4
 License: GPL
 Vendor: https://github.com/scibuilder/parmetis
 Group: Development/Numerical-Libraries
@@ -160,6 +160,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: defattr root,install
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: use mpm
 * Wed Feb 07 2024 eijkhout <eijkhout@tacc.utexas.edu>

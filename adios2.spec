@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 5
+Release: 6
 License: GPL
 Vendor: https://github.com/ornladios/ADIOS2
 Group: Development/Numerical-Libraries
@@ -172,6 +172,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: defattr root,install
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: 2.12.1
 * Tue Feb 10 2026 eijkhout <eijkhout@tacc.utexas.edu>

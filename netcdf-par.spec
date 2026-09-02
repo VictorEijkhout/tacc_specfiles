@@ -32,7 +32,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 9
+Release: 10
 License: GPL
 Vendor: https://github.com/Unidata/netcdf
 Group: Development/Numerical-Libraries
@@ -202,6 +202,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 10: defattr root,install
 * Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 9: 4.10.1 and lib linking fixed
 * Wed Jul 22 2026 eijkhout <eijkhout@tacc.utexas.edu>

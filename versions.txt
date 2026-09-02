@@ -90,7 +90,9 @@ hdf5v1-par 1.14.6 11
 
 # old versions
 hdf5-1.10.11-seq 1.10.11 1
-hdf5-1.14.3-seq 1.14.3 5
+hdf5-1.14.3-seq 1.14.3 6
+# install.sh -m -p hdf5 -q 1.14.3 hdf5-1.14.3-seq
+# install.sh -m -p phdf5 -q 1.14.3 hdf5-1.14.3-par
 
 highfive 3.2.0 2
 highfive-seq 3.2.0 2

@@ -140,7 +140,8 @@ module purge
   #========================================
   
 module --latest load cmake
-module load boost
+# right now horizon nvidia can't build boost
+module load boost || /bin/true
 module load swig
 module avail parmetis parallelnetcdf phdf pnetcdf
 if [ $? -gt 0 ] ; then exit ; fi
@@ -176,6 +177,7 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 VISTA SYSTEMMODULES=cmake \
+HORIZON HAS_BOOST=OFF \
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \

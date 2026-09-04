@@ -162,9 +162,6 @@ parallelnetcdf 4.10.1 10
 # legacy version
 netcdf-4.9.1-seq 4.9.1 1
 
-# pnetcdf is something else entirely
-pnetcdf 1.14.1 6
-
 # ls6: install.sh -c g -v94
 ninja 1.13.1 2
 
@@ -181,6 +178,10 @@ parmetis 4.0.3 4
 pcre2 10.48 4
 pgplot 5.2 1
 plumed 2.9.3 1
+
+# pnetcdf is something else entirely from netcdf
+pnetcdf 1.15.0 7
+
 precice 3.2.0 2
 proj 9.6.0 3
 pylauncher 5.3.1 14

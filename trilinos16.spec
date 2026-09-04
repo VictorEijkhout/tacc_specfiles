@@ -11,7 +11,7 @@ Summary: Trilinos
 # Create some macros (spec file variables)
 %define major_version 16
 %define minor_version 2
-%define micro_version 1
+%define micro_version 2
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   8
+Release:   9
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/trilinos/Trilinos
@@ -288,6 +288,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 9: defattr root,install, 16.2.2
 * Wed May 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: 16.2.1 patch
 * Fri Mar 13 2026 eijkhout <eijkhout@tacc.utexas.edu>

@@ -218,7 +218,10 @@ trilinos 17.2.1 4
 # 17.1.1 2
 # no longer a separate 17 specfile
 # trilinos17 17.2.0 3
-trilinos16 16.2.1 8
+
+# there were breaking changes 16->17
+# so we need this one for a while
+trilinos16 16.2.2 9
 # old version. why?
 trilinos161 16.1.0 6
 # -p trilinos -q 16.1.0 trilinos161

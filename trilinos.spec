@@ -140,8 +140,7 @@ module purge
   #========================================
   
 module --latest load cmake
-# right now horizon nvidia can't build boost
-module load boost || /bin/true
+module try-load boost
 module load swig
 module avail parmetis parallelnetcdf phdf pnetcdf
 if [ $? -gt 0 ] ; then exit ; fi

@@ -36,7 +36,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   6
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/madler/zlib
@@ -293,6 +293,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: defattr root,install
 * Wed Feb 25 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: chmod and .version
 * Tue Feb 17 2026 eijkhout <eijkhout@tacc.utexas.edu>

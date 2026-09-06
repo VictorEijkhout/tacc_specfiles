@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.mpfr.org/
@@ -304,6 +304,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: defattr root,install
 * Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: mpm
 * Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -172,6 +172,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: defattr root,install
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1 : first release 
 

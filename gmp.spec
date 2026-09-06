@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 License:   BSD
 Group:     Development/Tools
 URL:       https://gmplib.org/
@@ -279,6 +279,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: defattr root,install
 * Thu Jul 23 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: mpm
 * Wed Nov 05 2025 eijkhout <eijkhout@tacc.utexas.edu>

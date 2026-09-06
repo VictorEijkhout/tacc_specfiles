@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   10
+Release:   11
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -284,6 +284,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Sat Sep 05 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: attr
 * Mon Jul 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: 4.4.0
 * Wed May 20 2026 eijkhout <eijkhout@tacc.utexas.edu>

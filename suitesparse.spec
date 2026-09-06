@@ -59,7 +59,7 @@ Source:    %{pkg_base_name}-%{pkg_version}.tgz
 
 
 %package %{PACKAGE}
-Summary: Blas alternative
+Summary: Sparse libraray
 Group: Numerical library
 %description package
 This is the long description for the package RPM...
@@ -68,10 +68,10 @@ This is the long description for the package RPM...
 Summary: The modulefile RPM
 Group: Lmod/Modulefiles
 %description modulefile
-ICL wrapper for C++ around BLAS
+Sparse matrix library
 
 %description
-ICL wrapper for C++ around BLAS
+Sparse matrix library
 
 
 #---------------------------------------
@@ -142,7 +142,7 @@ module --latest load cmake
 LS6 # load python before packages add to python path
 LS6 module load python/3.12
 module load gmp mpfr
-if [ "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
+if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then

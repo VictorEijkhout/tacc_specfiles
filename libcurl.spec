@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://curl.se/libcurl/
@@ -275,6 +275,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: defattr root,install
 * Wed Jul 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: 8.21
 * Tue Jun 24 2025 eijkhout <eijkhout@tacc.utexas.edu>

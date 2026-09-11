@@ -12,7 +12,7 @@ Summary: Cmake
 # Create some macros (spec file variables)
 %define major_version 4
 %define minor_version 4
-%define micro_version 0
+%define micro_version 3
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   11
+Release:   12
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -284,6 +284,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Fri Sep 11 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 12: 4.4.3
 * Sat Sep 05 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 11: attr
 * Mon Jul 20 2026 eijkhout <eijkhout@tacc.utexas.edu>

@@ -199,7 +199,7 @@ scalapack 2.2.3 1
 scons 4.9.1 1
 siesta 5.4.2 6
 siesta-git git20241011 1
-silo 4.12.0 4
+silo 4.12.0 5
 sqlite 3.49.2 4
 superludist 9.2.1 1
 suitesparse 7.12.3 7

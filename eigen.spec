@@ -37,7 +37,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   GNU
 Group:     Development/Tools
 Vendor:     Tuxfamily
@@ -267,5 +267,7 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: defattr root,install
 * Tue Nov 18 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: release reset with 5.0.0

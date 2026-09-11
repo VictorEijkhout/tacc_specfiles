@@ -33,7 +33,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/ninja-build/ninja
@@ -265,6 +265,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: defattr root,install
 * Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: version 1.13
 * Thu May 22 2025 eijkhout <eijkhout@tacc.utexas.edu>

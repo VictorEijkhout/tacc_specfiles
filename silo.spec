@@ -43,7 +43,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   4
+Release:   5
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/jarro2783/silo/releases
@@ -155,7 +155,9 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
 module --latest load cmake
-module load hdf5/1.14
+module load hdf5
+# /1.14
+module -t list | sort | tr '\n' ' '
 
 ################ new stuff
 
@@ -164,26 +166,20 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## this does not work for intel past 2024
-# if "%{comp_fam}" == "intel"
-#   echo "WARNING"
-#   echo "WARNING Intel Fortran set hard to ifort"
-#   echo "WARNING"
-#   export FC=ifort
-#   export TACC_FC=ifort
-# endif
-
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
@@ -284,6 +280,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 5: defattr root,install, use mpm
 * Sun Nov 23 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: 4.12
 * Tue Aug 20 2024 eijkhout <eijkhout@tacc.utexas.edu>

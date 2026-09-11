@@ -21,7 +21,7 @@ done
 
 cat install.sh \
     | sed -e 's/frontera/stampede3/' \
-	  -e 's/COMPILERS/i240,j21_11 i251,j21_15 i260,j21_18 g132,j21_9 g151,j21_15 g161,j21_18 n253,o5_07 n263,o5_09/' \
+	  -e 's/COMPILERS/i240,j21_11 i251,j21_15 i260,j21_18 g132,j21_9 g151,j21_15 g161,j21_18 n253,o5_07 n261,o5_09/' \
     > stampede3_specfiles/install.sh
 
 cd stampede3_specfiles

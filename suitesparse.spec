@@ -147,6 +147,8 @@ if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
 else
     if [ "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
         module load mkl
+    elif [ "${TACC_SYSTEM}" = "stampede3" -a "${TACC_FAMILY_COMPILER}" = "nvidia" ] ; then
+        module load mkl
     else
         export MKLFLAG="-mkl"
     fi

@@ -43,7 +43,7 @@ dealii-complex 9.7.1 7
 # install.sh -p dealii dealii-real
 
 doxygen 1.17.0 1
-eigen 5.0.0 1
+eigen 5.0.0 2
 eigen3 3.4.0 5
 entity 1.4.4 2
 

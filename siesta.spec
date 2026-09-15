@@ -30,7 +30,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 6
+Release: 7
 License: GPL
 Vendor: https://github.com/cburstedde/siesta
 #Source1: siesta-setup.sh
@@ -99,6 +99,12 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+#
+# MrPackMod
+#
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module --latest load cmake
@@ -113,26 +119,25 @@ else
     fi
 fi
 
-## get rid of that PACKAGEROOT
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
-rm -rf /tmp/%{pkg_base_name}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 
 popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc example src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 # popd
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
@@ -150,6 +155,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 15 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 7: mpm
 * Tue Aug 18 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 6: 5.4.2
 * Tue Sep 16 2025 eijkhout <eijkhout@tacc.utexas.edu>

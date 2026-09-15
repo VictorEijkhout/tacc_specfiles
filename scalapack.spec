@@ -94,6 +94,10 @@ mkdir -p $RPM_BUILD_ROOT/%{MODULE_DIR}
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}
 
+if [ "${TACC_SYSTEM}" != "horizon" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
+    module load mkl
+fi
+
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration

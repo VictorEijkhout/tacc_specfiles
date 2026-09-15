@@ -102,7 +102,7 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 module --latest load cmake
-module load fftw3 libxc parallelnetcdf scalapack
+module load fftw3 libxc parallelnetcdf
 if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 elif [ "${TACC_SYSTEM}" = "horizon" ] ; then

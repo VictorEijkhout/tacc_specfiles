@@ -118,7 +118,6 @@ if [ "${TACC_SYSTEM}" = "vista" -a "${TACC_FAMILY_COMPILER}" = "gcc" ] ; then
     export LDFLAGS=-lm
 fi
 
-## get rid of that PACKAGEROOT
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
@@ -130,6 +129,8 @@ mpm.py -t -j 20 install
 popd
 
 ################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 cp -r doc example src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/

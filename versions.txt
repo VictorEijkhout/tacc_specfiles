@@ -125,7 +125,7 @@ kokkos-sycl 5.2.1 10
 libaec 1.1.6 2
 libcurl 8.21.0 3
 libmesh 1.8.0 3
-libxc 7.0.0 1
+libxc 7.0.0 2
 mdspan git20240209 2
 metis git20250821 5
 # 5.2.1.1 4

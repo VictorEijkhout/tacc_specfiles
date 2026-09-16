@@ -7,7 +7,7 @@ Summary: Entity install
 # Create some macros (spec file variables)
 %define major_version 1
 %define minor_version 4
-%define micro_version 4
+%define micro_version 5
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -31,7 +31,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2
+Release: 3
 License: GPL
 Vendor: https://github.com/ornladios/ENTITY
 Group: Development/Numerical-Libraries
@@ -145,7 +145,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
        SRCPATH=${SRCPATH} \
        INSTALLPATH=%{INSTALL_DIR} \
        MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -c Configuration.cpu -t -j 20 install
+mpm.py -c Configuration.cuda -t -j 20 install
 
 popd
 
@@ -173,6 +173,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 15 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: defattr root,install, 1.4.5
 * Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: defattr root,install
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>

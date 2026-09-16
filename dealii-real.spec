@@ -8,8 +8,8 @@ Summary: Dealii install
 
 # Create some macros (spec file variables)
 %define major_version 9
-%define minor_version 7
-%define micro_version 1
+%define minor_version 8
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -52,7 +52,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 7
+Release: 8
 License: GPLv2
 Group: Development/Numerical-Libraries
 Source: %{pkg_base_name}-%{pkg_version}.tgz
@@ -69,6 +69,10 @@ Packager: TACC -- eijkhout@tacc.utexas.edu
 %global __brp_check_rpaths %{nil}
 %define __brp_mangle_shebangs %{nil}
 %undefine _annotated_build
+%global build_cflags   -O2
+%global build_cxxflags -O2
+%global build_fflags   -O2
+%global build_ldflags  %{nil}
 
 %package %{PACKAGE}
 Summary: Dealii is an open source finite element package
@@ -248,6 +252,8 @@ EOF
 %clean
 rm -rf $RPM_BUILD_ROOT
 %changelog
+* Tue Sep 15 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: defattr root,install, 9.8.0
 * Thu Feb 26 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: chmod
 * Wed Feb 11 2026 eijkhout <eijkhout@tacc.utexas.edu>

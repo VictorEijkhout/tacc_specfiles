@@ -37,9 +37,9 @@ cxxopts 3.3.1 6
 
 dealii96 9.6.2 5
 dealii96-real 9.6.2 5
-dealii 9.7.1 7
-dealii-real 9.7.1 7
-dealii-complex 9.7.1 7
+dealii 9.8.0 8
+dealii-real 9.8.0 8
+dealii-complex 9.8.0 8
 # install.sh -p dealii dealii-real
 
 doxygen 1.17.0 1

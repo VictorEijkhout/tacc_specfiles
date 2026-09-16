@@ -111,7 +111,8 @@ highfive-par 3.2.0 2
 hmmer 3.4 1
 
 # installs 32 & 64 bit versions
-hypre 2.31.0 3
+hypre 3.2.0 4
+# 2.31.0 3
 
 jsonc 0.18 3
 #git20241004 2

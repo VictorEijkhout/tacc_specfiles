@@ -26,7 +26,7 @@ Summary: Entity install
 ########################################
 
 ############ Do Not Change #############
-Name:      %{pkg_name}
+Name:      %{pkg_name}-omp
 Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
@@ -127,7 +127,8 @@ else
 	export MKLFLAG="-mkl"
     fi
 fi
-module load kokkos adios2 phdf5
+module load phdf5
+#  kokkos adios2
 module load cuda
 LS6 module load python/3.12
 module -t list | sort | tr '\n' ' '
@@ -159,7 +160,7 @@ rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 
-%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}.lua 
+%{SPEC_DIR}/checkModuleSyntax $RPM_BUILD_ROOT/%{MODULE_DIR}/%{version}-cuda.lua 
 
 %files %{PACKAGE}
   %defattr(-,root,install,-)

@@ -72,7 +72,7 @@ gklib git20240111 2
 gmp 6.3.0 4
 gmsh 4.15.0 2
 gnuplot 6.0.4 1
-gsl 2.8 2
+gsl 2.8 3
 
 ## hdf5 v2, release reset to 1
 hdf5 2.1.1 4

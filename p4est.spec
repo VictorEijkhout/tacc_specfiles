@@ -104,7 +104,6 @@ LS6 module load python/3.12
 
 ## module load
 module --latest load cmake
-module load python3/3.9
 module -t list | sort | tr '\n' ' '
 
 export SRCPATH=`pwd`

@@ -10,14 +10,14 @@ Summary: Prereq for Metis
 %define MODULE_VAR    METIS
 
 # Create some macros (spec file variables)
-#define major_version 5
-#define minor_version 2
-#define micro_version 1
-#define nano_version 1
+%define major_version 5
+%define minor_version 2
+%define micro_version 1
+%define nano_version 4
 
-#define pkg_version %{major_version}.%{minor_version}.%{micro_version}.%{nano_version}
-%define major_version git20250821
-%define pkg_version %{major_version}
+%define pkg_version %{major_version}.%{minor_version}.%{micro_version}.%{nano_version}
+#define major_version git20250821
+#define pkg_version %{major_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -39,7 +39,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   5
+Release:   6
 License:   BSD
 Group:     Development/Tools
 URL:       https://github.com/flame/metis
@@ -137,7 +137,9 @@ module purge
   # Insert Build/Install Instructions Here
   #========================================
   
-module -t list | sort | tr '\n' ' '
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
+
 module --latest load cmake
 module -t list | sort | tr '\n' ' '
 
@@ -152,27 +154,32 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+# find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make i32 i64 JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  rm -rf /tmp/build-${pkg_version}*
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -269,6 +276,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Sep 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 6: mpm, 5.2.1.4
 * Thu Aug 21 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 5: git version
 * Mon Jun 23 2025 eijkhout <eijkhout@tacc.utexas.edu>

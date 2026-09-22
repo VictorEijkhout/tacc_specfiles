@@ -105,6 +105,7 @@ mount -t tmpfs tmpfs %{INSTALL_DIR}
 
 LS6 # load python before packages add to python path
 LS6 module load python/3.12
+
 module --latest load cmake
 module -t list | sort | tr '\n' ' '
 

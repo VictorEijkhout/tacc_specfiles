@@ -131,7 +131,8 @@ libcurl 8.21.0 3
 libmesh 1.8.0 3
 libxc 7.0.0 2
 mdspan git20240209 2
-metis git20250821 5
+metis 5.2.1.4 6
+# git20250821 5
 # 5.2.1.1 4
 
 # install.sh -m -p mfem mfem-cpu

@@ -128,7 +128,7 @@ if [ "${TACC_SYSTEM}" = "ls6" -o "${TACC_SYSTEM}" = "vista" ] ; then
     module load cuda
 fi
 # module load python3
-pip3 install numpy
+# pip3 install numpy
 
 mkdir -p %{INSTALL_DIR}
 mount -t tmpfs tmpfs %{INSTALL_DIR}

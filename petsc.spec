@@ -120,6 +120,9 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
+
 module --latest load cmake
 if [ "${TACC_SYSTEM}" = "ls6" -o "${TACC_SYSTEM}" = "vista" ] ; then
     module load cuda

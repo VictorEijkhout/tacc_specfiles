@@ -159,6 +159,7 @@ module unload gcc
 module unload cmake
 ## module load 
 module -t list | sort | tr '\n' ' '
+export COMPILER=gcc
 export CC=gcc
 export CXX=g++
 export FC=gfortran

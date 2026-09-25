@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   7
+Release:   8
 License:   BSD
 Group:     Development/Tools
 URL:       https://cmake.org
@@ -144,6 +144,10 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+LS6 module load python/3.12
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## we only install with gcc
@@ -157,19 +161,20 @@ module unload cmake
 module -t list | sort | tr '\n' ' '
 export TACC_CC=gcc
 export TACC_CXX=g++
+export TACC_MKL_DIR=/foo/bar
+export TACC_MKL_INC=/foo/bar
+export TACC_MKL_LIB=/foo/bar
 
-## get rid of that PACKAGEROOT
+# nvidia CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 
 make configure build JCOUNT=10 \
-     $( if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then \
-            echo CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 \
-            ; fi ) \
     HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
@@ -276,6 +281,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Sat Sep 05 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 8: attr
 * Thu Sep 11 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 7: 3.31.9 with system gcc
 * Tue Aug 19 2025 eijkhout <eijkhout@tacc.utexas.edu>

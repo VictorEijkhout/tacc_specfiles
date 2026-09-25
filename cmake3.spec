@@ -166,8 +166,7 @@ export TACC_MKL_INC=/foo/bar
 export TACC_MKL_LIB=/foo/bar
 
 # nvidia CMAKEFLAGS=-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,/opt/apps/gcc/14.2.0/lib64 
-make configure build JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \

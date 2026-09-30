@@ -12,7 +12,7 @@ Summary:    Set of tools for manipulating geographic and Cartesian data sets
 # Create some macros (spec file variables)
 %define major_version 5
 %define minor_version 0
-%define micro_version 0
+%define micro_version 1
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -37,7 +37,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 License:   GNU
 Group:     Development/Tools
 Vendor:     Tuxfamily
@@ -267,6 +267,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Sep 30 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3 : 5.0.1 with lib dir
 * Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: defattr root,install
 * Tue Nov 18 2025 eijkhout <eijkhout@tacc.utexas.edu>

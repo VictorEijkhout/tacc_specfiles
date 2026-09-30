@@ -118,7 +118,7 @@ LS6 module load python/3.12
 export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
 
-pushd ${VICTOR}/makefiles/%{pkg_base_name}
+pushd ${VICTOR}/makefiles/highfive
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
@@ -139,10 +139,12 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

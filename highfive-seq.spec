@@ -139,10 +139,12 @@ popd
 
 ################ end of new stuff
 
+chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 
-  rm -rf /tmp/build-${pkg_version}*
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
 

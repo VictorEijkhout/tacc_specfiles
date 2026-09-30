@@ -104,10 +104,10 @@ hdf5-1.14.6-par 1.14.6 12
 # install.sh -m -p  hdf5 -q 1.14.3 hdf5-1.14.3-seq
 # install.sh -m -p phdf5 -q 1.14.3 hdf5-1.14.3-par
 
-highfive 3.2.0 2
-highfive-seq 3.2.0 2
-phighfive 3.2.0 2
-highfive-par 3.2.0 2
+highfive 3.3.0 3
+highfive-seq 3.3.0 3
+phighfive 3.3.0 3
+highfive-par 3.3.0 3
 
 hmmer 3.4 1
 

@@ -9,7 +9,7 @@ Summary: Phighfive install
 
 # Create some macros (spec file variables)
 %define major_version 3
-%define minor_version 2
+%define minor_version 3
 %define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 2
+Release: 3
 License: GPL
 Vendor: https://github.com/BlueBrain/HighFive
 Group: Development/Numerical-Libraries
@@ -160,6 +160,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Sep 30 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3 : 3.3
 * Sun Jan 04 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: new repo location
 * Sun May 18 2025 eijkhout <eijkhout@tacc.utexas.edu>

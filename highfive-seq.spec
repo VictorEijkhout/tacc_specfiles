@@ -123,7 +123,7 @@ pushd ${VICTOR}/makefiles/%{pkg_base_name}
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
 # module load boost eigen
-# module load hdf5
+module load hdf5
 module -t list | sort | tr '\n' ' '
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \

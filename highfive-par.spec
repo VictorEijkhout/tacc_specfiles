@@ -133,7 +133,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -t -j 20 -c Configuration.seq install
+mpm.py -t -j 20 -c Configuration.par install
 
 popd
 

@@ -172,7 +172,7 @@ netcdf-4.9.1-seq 4.9.1 1
 ninja 1.13.1 2
 
 openblas 0.3.29 1
-octopus 16.0 2
+octopus 16.4 3
 p4est 2.8.7 6
 
 # petsc 3.23.6 24

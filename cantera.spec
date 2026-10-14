@@ -9,11 +9,14 @@ Summary: Chemical kinetics
 %define MODULE_VAR    CANTERA
 
 # Create some macros (spec file variables)
-%define major_version 3
-%define minor_version 1
-%define micro_version 0
+#define major_version 3
+#define minor_version 2
+#%define micro_version 0
 
-%define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+#define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+
+%define major_version git
+%define pkg_version %{major_version}
 
 ### Toggle On/Off ###
 %include rpm-dir.inc                  
@@ -36,7 +39,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   2
+Release:   3
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/Cantera/cantera
@@ -147,10 +150,17 @@ echo "Building the modulefile?: %{BUILD_MODULEFILE}"
   mkdir -p %{INSTALL_DIR}
   mount -t tmpfs tmpfs %{INSTALL_DIR}
   
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
+
+FRONTERA module use /opt/apps/intel19/impi19_0/modulefiles
+FRONTERA module load python3/3.9
+FRONTERA export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin
+
 ## module load 
 module -t list | sort | tr '\n' ' '
-module load scons
-module load boost eigen fmtlib hdf5 highfive ssundials yamlcpp
+module load boost eigen fmtlib hdf5 highfive
+# yamlcpp
 if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
@@ -162,10 +172,6 @@ else
 fi
 module -t list | sort | tr '\n' ' '
 
-FRONTERA module use /opt/apps/intel19/impi19_0/modulefiles
-FRONTERA module load python3/3.9
-FRONTERA export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin
-
 ################ new stuff
 
 export SRCPATH=`pwd`
@@ -173,21 +179,27 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+# Find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make default_install JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+SYSTEMMODULES=scons \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 # Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
@@ -284,6 +296,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Oct 14 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 3: mpm
 * Fri Oct 03 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2: including bindir
 * Mon Sep 15 2025 eijkhout <eijkhout@tacc.utexas.edu>

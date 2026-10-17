@@ -8,10 +8,10 @@
 adios2 2.12.1 6
 alps 1.1.1 1
 
-arpack 3.9.1 1
-arpack-seq 3.9.1 1
-parpack 3.9.1 1
-parpack-par 3.9.1 1
+arpack 3.9.1 2
+arpack-seq 3.9.1 2
+parpack 3.9.1 2
+parpack-par 3.9.1 2
 
 aspect 2.2.0 3
 aspect 3.0.0 3

@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 1%{?dist}
+Release: 2
 License: GPL
 Vendor: https://github.com/opencollab/arpack-ng
 #Source1: arpack-setup.sh
@@ -51,7 +51,10 @@ Source0: arpack-%{pkg_version}.tgz
 %global __brp_check_rpaths %{nil}
 %define __brp_mangle_shebangs %{nil}
 %undefine _annotated_build
-
+%global build_cflags   -O2
+%global build_cxxflags -O2
+%global build_fflags   -O2
+%global build_ldflags  %{nil}
 
 %package %{PACKAGE}
 Summary: Arpack local binary install
@@ -62,9 +65,9 @@ Group: System Environment/Base
 
 %description
 %description %{PACKAGE}
-Forest support library
+Restarted Arnoldi
 %description %{MODULEFILE}
-Forest support library
+Restarted Arnoldi
 
 %prep
 
@@ -117,11 +120,12 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
-pushd ${VICTOR}/makefiles/arpack
+LS6 # load python before packages add to python path
+LS6 module load python/3.12
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load eigen
+module load eigen/3
 if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else
@@ -131,19 +135,26 @@ else
 fi
 module -t list | sort | tr '\n' ' '
 
-## get rid of that PACKAGEROOT
-make par JCOUNT=20 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+# Find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
+pushd ${VICTOR}/makefiles/arpack
+
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -t -j 20 install
 
 popd
 
 ################ end of new stuff
+
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 ## cp -r doc src test $RPM_BUILD_ROOT/%{INSTALL_DIR}/
@@ -166,5 +177,7 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Oct 15 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: mpm
 * Thu Mar 14 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1 : under new management

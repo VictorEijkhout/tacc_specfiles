@@ -158,7 +158,6 @@ module -t list | sort | tr '\n' ' '
 export SRCPATH=`pwd`
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
-export MAKEINCLUDES=${VICTOR}/make-support-files
 
 LS6 module load python/3.12
 export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
@@ -180,6 +179,7 @@ popd
 ################ end of new stuff
 
 chmod -R g+rX,o+rX %{INSTALL_DIR}
+
 # Copy installation from tmpfs to RPM directory
 ls %{INSTALL_DIR}
 cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/

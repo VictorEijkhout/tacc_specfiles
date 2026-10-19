@@ -190,6 +190,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+    NOLIB=1 \
 mpm.py -t -j 20 install
 
 popd
@@ -297,7 +298,7 @@ rm -rf $RPM_BUILD_ROOT
 - release 5: include path fix
 * Wed Jul 24 2024 eijkhout <eijkhout@tacc.utexas.edu>
 - release 4: cmake discoverability
-* Mon Nov 14 2023 eijkhout <eijkhout@tacc.utexas.edu>
+* Mon Nov 13 2023 eijkhout <eijkhout@tacc.utexas.edu>
 - relase 3: 3.4.0 and pkgconfig support
 * Fri Jun 07 2019 eijkhout <eijkhout@tacc.utexas.edu>
 - release 2 : removing the bin directory definition

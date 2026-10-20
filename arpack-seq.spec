@@ -125,7 +125,7 @@ LS6 module load python/3.12
 
 module -t list | sort | tr '\n' ' '
 module --latest load cmake
-module load eigen
+module load eigen/3
 if [ "${TACC_SYSTEM}" = "vista" -o "${TACC_SYSTEM}" = "horizon" ] ; then
     module load nvpl
 else

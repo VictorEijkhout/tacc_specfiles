@@ -37,7 +37,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   1
+Release:   2
 License:   BSD
 Group:     Development/Tools
 URL:       https://www.berkeleygw.org/
@@ -272,5 +272,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 #---------------------------------------
 #
+* Tue Oct 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 2: ownership fix
 * Thu May 14 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 1: initial release

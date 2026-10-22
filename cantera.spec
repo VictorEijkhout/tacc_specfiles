@@ -13,9 +13,9 @@ Summary: Chemical kinetics
 #define minor_version 2
 #%define micro_version 0
 
-#define pkg_version %{major_version}.%{minor_version}.%{micro_version}
+#define pkg_version #{major_version}.#{minor_version}.#{micro_version}
 
-%define major_version git
+%define major_version git202610
 %define pkg_version %{major_version}
 
 ### Toggle On/Off ###
@@ -39,7 +39,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   3
+Release:   4
 Group:     Development/Tools
 License: GPL
 Url: https://github.com/Cantera/cantera
@@ -296,6 +296,8 @@ export PACKAGE_PREUN=1
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Oct 22 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 4: git2026
 * Wed Oct 14 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 3: mpm
 * Fri Oct 03 2025 eijkhout <eijkhout@tacc.utexas.edu>

@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release: 12
+Release: 13
 License: GPL
 Vendor: https://portal.hdfgroup.org
 #Source1: hdf5-setup.sh
@@ -204,6 +204,8 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Nov 05 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 13: fortran mode
 * Tue Sep 01 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 12: defattr root,install, mpm
 * Wed Dec 10 2025 eijkhout <eijkhout@tacc.utexas.edu>

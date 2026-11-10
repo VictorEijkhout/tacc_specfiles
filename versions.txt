@@ -102,8 +102,8 @@ hdf5-1.14.3-par 1.14.3 6
 # install.sh -m -p phdf5 -q 1.14.3 hdf5-1.14.3-par
 hdf5-1.14.6-seq 1.14.6 13
 hdf5-1.14.6-par 1.14.6 13
-# install.sh -m -p  hdf5 -q 1.14.3 hdf5-1.14.3-seq
-# install.sh -m -p phdf5 -q 1.14.3 hdf5-1.14.3-par
+# install.sh -m -p  hdf5 -q 1.14.6 hdf5-1.14.6-seq
+# install.sh -m -p phdf5 -q 1.14.6 hdf5-1.14.6-par
 
 highfive 3.3.0 3
 highfive-seq 3.3.0 3

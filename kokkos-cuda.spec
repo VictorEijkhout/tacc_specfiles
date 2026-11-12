@@ -9,8 +9,8 @@ Summary: Kokkos, piggybacking on the PETSc install
 
 # Create some macros (spec file variables)
 %define major_version 5
-%define minor_version 2
-%define micro_version 1
+%define minor_version 3
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -34,7 +34,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   10
+Release:   11
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -153,7 +153,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
+    INSTALLPATH=%{INSTALL_DIR}/cuda \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -j 20 -c Configuration.omp install
 
@@ -212,6 +212,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Nov 12 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: 5.3.0
 * Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: 5.2.1
 * Mon Jun 17 2025 eijkhout <eijkhout@tacc.utexas.edu>

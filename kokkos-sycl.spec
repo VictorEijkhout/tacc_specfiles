@@ -7,9 +7,9 @@ Summary: Kokkos, piggybacking on the PETSc install
 %define MODULE_VAR    KOKKOS
 
 # Create some macros (spec file variables)
-%define major_version 4
-%define minor_version 6
-%define micro_version 01
+%define major_version 5
+%define minor_version 3
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -33,7 +33,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   8
+Release:   11
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -133,6 +133,10 @@ export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export VICTOR=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration
 export MAKEINCLUDES=${VICTOR}/make-support-files
 
+# Find MrPackMod
+export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
+export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
+
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 ## get rid of that PACKAGEROOT
@@ -142,7 +146,7 @@ make sycl JCOUNT=10 \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
+    INSTALLPATH=%{INSTALL_DIR}/sycl \
     MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
 
 popd
@@ -199,6 +203,8 @@ ls $RPM_BUILD_ROOT/%{INSTALL_DIR}/
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Nov 12 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: 5.3.0
 * Mon Jun 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: s3 conflict
 * Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>

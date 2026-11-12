@@ -9,8 +9,8 @@ Summary: Kokkos install, new setup
 
 # Create some macros (spec file variables)
 %define major_version 5
-%define minor_version 2
-%define micro_version 1
+%define minor_version 3
+%define micro_version 0
 
 %define pkg_version %{major_version}.%{minor_version}.%{micro_version}
 
@@ -35,7 +35,7 @@ Version:   %{pkg_version}
 BuildRoot: /var/tmp/%{pkg_name}-%{pkg_version}-buildroot
 ########################################
 
-Release:   10
+Release:   11
 License:   BSD-like
 Group:     Development/Numerical-Libraries
 URL:       https://github.com/kokkos/kokkos
@@ -135,14 +135,14 @@ export MAKEINCLUDES=${VICTOR}/make-support-files
 export PATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration/MrPackMod:${PATH}
 export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${PYTHONPATH}
 
-pushd ${VICTOR}/makefiles/kokkos
+pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
 HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR} \
+    INSTALLPATH=%{INSTALL_DIR}/omp \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -j 20 -c Configuration.omp install
 
@@ -172,6 +172,8 @@ umount %{INSTALL_DIR}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Nov 12 2026 eijkhout <eijkhout@tacc.utexas.edu>
+- release 11: 5.3.0
 * Thu Aug 20 2026 eijkhout <eijkhout@tacc.utexas.edu>
 - release 10: 5.2.1
 * Mon Jul 27 2026 eijkhout <eijkhout@tacc.utexas.edu>

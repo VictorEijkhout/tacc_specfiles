@@ -142,7 +142,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
-    INSTALLPATH=%{INSTALL_DIR}/omp \
+    INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
 mpm.py -j 20 -c Configuration.omp install
 

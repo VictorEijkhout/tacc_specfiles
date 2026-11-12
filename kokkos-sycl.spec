@@ -139,25 +139,27 @@ export PYTHONPATH=/admin/build/admin/rpms/frontera/SPECS/RPMtheNextGeneration:${
 
 pushd ${VICTOR}/makefiles/%{pkg_base_name}
 
-## get rid of that PACKAGEROOT
-make sycl JCOUNT=10 \
-    HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
+HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     PACKAGEVERSION=%{pkg_version} \
     PACKAGEROOT=/tmp \
     BUILDDIRROOT=/tmp \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
-    MODULEDIRSET=$RPM_BUILD_ROOT/%{MODULE_DIR}
+    MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
+mpm.py -j 20 -c Configuration.sycl install
+
 
 popd
 
 ################ end of new stuff
 
-  # Copy installation from tmpfs to RPM directory
-  ls %{INSTALL_DIR}
-  cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+chmod -R g+rX,o+rX %{INSTALL_DIR}
 
-  rm -rf /tmp/build-${pkg_version}*
+# Copy installation from tmpfs to RPM directory
+ls %{INSTALL_DIR}
+cp -r %{INSTALL_DIR}/* $RPM_BUILD_ROOT/%{INSTALL_DIR}/
+
+rm -rf /tmp/build-${pkg_version}*
 
 umount %{INSTALL_DIR}
   
@@ -204,7 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Thu Nov 12 2026 eijkhout <eijkhout@tacc.utexas.edu>
-- release 11: 5.3.0
+- release 11: 5.3.0 and mpm
 * Mon Jun 17 2025 eijkhout <eijkhout@tacc.utexas.edu>
 - release 8: s3 conflict
 * Thu Jun 12 2025 eijkhout <eijkhout@tacc.utexas.edu>

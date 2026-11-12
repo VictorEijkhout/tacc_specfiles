@@ -155,7 +155,7 @@ HOMEDIR=/admin/build/admin/rpms/frontera/SOURCES \
     SRCPATH=${SRCPATH} \
     INSTALLPATH=%{INSTALL_DIR} \
     MODULEDIR=$RPM_BUILD_ROOT/%{MODULE_DIR} \
-mpm.py -j 20 -c Configuration.omp install
+mpm.py -j 20 -c Configuration.cuda install
 
 popd
 
